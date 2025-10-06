@@ -1,0 +1,27 @@
+<svg width="520" height="480" viewBox="0 0 520 480" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect x="20" y="20" width="480" height="440" rx="60" fill="url(#paint0_linear)" opacity="0.15"/>
+  <g filter="url(#filter0_f)">
+    <circle cx="180" cy="180" r="120" fill="#6B5BFF"/>
+  </g>
+  <g filter="url(#filter1_f)">
+    <circle cx="340" cy="260" r="140" fill="#F77A9C"/>
+  </g>
+  <path d="M120 220C120 164 172 120 240 120C308 120 360 164 360 220C360 276 308 320 240 320C172 320 120 276 120 220Z" stroke="rgba(255,255,255,0.65)" stroke-width="2"/>
+  <path d="M160 224C160 190 196 164 240 164C284 164 320 190 320 224C320 258 284 284 240 284C196 284 160 258 160 224Z" stroke="rgba(255,255,255,0.35)" stroke-width="2"/>
+  <path d="M208 228C208 214 222 204 240 204C258 204 272 214 272 228C272 242 258 252 240 252C222 252 208 242 208 228Z" stroke="rgba(255,255,255,0.45)" stroke-width="2"/>
+  <circle cx="396" cy="148" r="24" fill="rgba(255,255,255,0.25)"/>
+  <circle cx="108" cy="320" r="18" fill="rgba(255,255,255,0.3)"/>
+  <defs>
+    <filter id="filter0_f" x="0" y="0" width="360" height="360" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+      <feGaussianBlur stdDeviation="40" result="blur"/>
+    </filter>
+    <filter id="filter1_f" x="140" y="60" width="400" height="400" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+      <feGaussianBlur stdDeviation="45" result="blur"/>
+    </filter>
+    <linearGradient id="paint0_linear" x1="40" y1="40" x2="460" y2="420" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#6B5BFF"/>
+      <stop offset="0.5" stop-color="#C06AFF"/>
+      <stop offset="1" stop-color="#F77A9C"/>
+    </linearGradient>
+  </defs>
+</svg>
