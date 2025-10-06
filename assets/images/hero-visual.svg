@@ -1,0 +1,53 @@
+<svg width="520" height="480" viewBox="0 0 520 480" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg" x1="40" y1="40" x2="460" y2="420" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#6D63FF"/>
+      <stop offset="0.55" stop-color="#9D73FF"/>
+      <stop offset="1" stop-color="#F67AA5"/>
+    </linearGradient>
+    <radialGradient id="orb" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(260 240) scale(220)">
+      <stop stop-color="#6D63FF" stop-opacity="0.6"/>
+      <stop offset="1" stop-color="#050612" stop-opacity="0"/>
+    </radialGradient>
+    <filter id="glow" x="0" y="0" width="520" height="480" color-interpolation-filters="sRGB">
+      <feGaussianBlur stdDeviation="45" result="blur"/>
+      <feBlend in="SourceGraphic" in2="blur" mode="screen"/>
+    </filter>
+  </defs>
+  <rect x="28" y="32" width="464" height="416" rx="64" fill="url(#bg)" opacity="0.18"/>
+  <circle cx="260" cy="240" r="220" fill="url(#orb)"/>
+  <g stroke="rgba(255,255,255,0.38)" stroke-width="2">
+    <path d="M140 180C180 110 340 110 380 180"/>
+    <path d="M112 256C152 192 368 192 408 256" opacity="0.6"/>
+    <path d="M140 332C180 402 340 402 380 332" opacity="0.45"/>
+  </g>
+  <g stroke="rgba(255,255,255,0.2)" stroke-width="1.5" stroke-dasharray="8 14">
+    <path d="M200 120C120 220 120 260 200 360"/>
+    <path d="M320 120C400 220 400 260 320 360"/>
+  </g>
+  <g filter="url(#glow)">
+    <circle cx="260" cy="240" r="74" fill="#6D63FF" fill-opacity="0.65"/>
+    <circle cx="180" cy="168" r="46" fill="#6D63FF" fill-opacity="0.38"/>
+    <circle cx="344" cy="172" r="38" fill="#F67AA5" fill-opacity="0.42"/>
+    <circle cx="176" cy="318" r="34" fill="#8D7BFF" fill-opacity="0.5"/>
+    <circle cx="352" cy="320" r="42" fill="#F67AA5" fill-opacity="0.35"/>
+  </g>
+  <g stroke="rgba(255,255,255,0.45)" stroke-width="2">
+    <line x1="260" y1="240" x2="180" y2="168"/>
+    <line x1="260" y1="240" x2="344" y2="172"/>
+    <line x1="260" y1="240" x2="176" y2="318"/>
+    <line x1="260" y1="240" x2="352" y2="320"/>
+  </g>
+  <g fill="#fff">
+    <circle cx="260" cy="240" r="10"/>
+    <circle cx="180" cy="168" r="8" opacity="0.8"/>
+    <circle cx="344" cy="172" r="8" opacity="0.75"/>
+    <circle cx="176" cy="318" r="7" opacity="0.7"/>
+    <circle cx="352" cy="320" r="9" opacity="0.7"/>
+  </g>
+  <g fill="rgba(255,255,255,0.3)">
+    <circle cx="420" cy="132" r="18"/>
+    <circle cx="116" cy="332" r="14"/>
+    <circle cx="420" cy="348" r="12"/>
+  </g>
+</svg>
