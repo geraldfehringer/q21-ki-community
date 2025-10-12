@@ -355,22 +355,6 @@
             display: block;
         }
 
-        .stats-loading {
-            text-align: center;
-            padding: 20px;
-            color: #666;
-            font-style: italic;
-        }
-
-        .stats-error {
-            text-align: center;
-            padding: 20px;
-            color: #dc3545;
-            background: rgba(220, 53, 69, 0.1);
-            border-radius: 10px;
-            margin: 20px 0;
-        }
-
         @keyframes spin {
             0% { transform: rotate(0deg); }
             100% { transform: rotate(360deg); }
@@ -533,7 +517,6 @@
 
     <script>
         // === KONFIGURATION ===
-        // WICHTIG: Ersetze diese URL mit deiner Google Apps Script Web-App-URL
         const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxJkdVZlow3CUzp80aBfPKCa2juuMkOjJzPCaXl-gdw-jePe7Vtr39VPGSUZfIlNoewvA/exec';
 
         // Form handling
@@ -583,13 +566,6 @@
                 return;
             }
 
-            // Check if Google Script URL is configured
-            if (GOOGLE_SCRIPT_URL === 'https://script.google.com/macros/s/AKfycbxJkdVZlow3CUzp80aBfPKCa2juuMkOjJzPCaXl-gdw-jePe7Vtr39VPGSUZfIlNoewvA/exec') {
-                showErrorModal('Die Anmeldung ist noch nicht konfiguriert. Bitte kontaktiere den Administrator.');
-                console.error('Google Apps Script URL nicht konfiguriert!');
-                return;
-            }
-
             // Disable submit button and show loading
             submitBtn.disabled = true;
             submitBtn.textContent = 'Wird gesendet...';
@@ -607,15 +583,13 @@
                 // Send to Google Apps Script
                 const response = await fetch(GOOGLE_SCRIPT_URL, {
                     method: 'POST',
-                    mode: 'no-cors', // Google Apps Script erfordert no-cors
+                    mode: 'no-cors',
                     headers: {
                         'Content-Type': 'application/json',
                     },
                     body: JSON.stringify(formData)
                 });
 
-                // Bei no-cors können wir den Response nicht lesen, 
-                // gehen aber davon aus, dass es funktioniert hat
                 // Show success modal
                 document.getElementById('successModal').classList.add('active');
                 
@@ -623,10 +597,10 @@
                 form.reset();
                 dateOptions.forEach(opt => opt.classList.remove('selected'));
                 
-                // Update results - warte kurz damit die Daten im Sheet sind
+                // Update results
                 setTimeout(() => {
                     loadResults();
-                }, 2000); // 2 Sekunden warten
+                }, 2000);
 
             } catch (error) {
                 console.error('Fehler:', error);
@@ -641,16 +615,6 @@
         // Load results from Google Sheets via JSONP
         async function loadResults() {
             try {
-                if (GOOGLE_SCRIPT_URL === 'https://script.google.com/macros/s/AKfycbxJkdVZlow3CUzp80aBfPKCa2juuMkOjJzPCaXl-gdw-jePe7Vtr39VPGSUZfIlNoewvA/exec') {
-                    // Zeige Platzhalter-Daten wenn noch nicht konfiguriert
-                    displayResults({
-                        '2025-11-11': { anmeldungen: 0, teilnehmer: 0 },
-                        '2025-11-13': { anmeldungen: 0, teilnehmer: 0 },
-                        '2025-11-18': { anmeldungen: 0, teilnehmer: 0 }
-                    });
-                    return;
-                }
-
                 // JSONP Callback-Name
                 const callbackName = 'workshopStatsCallback_' + Date.now();
                 
@@ -697,6 +661,11 @@
                     displayResults(response.data);
                 } else {
                     console.warn('Keine gültigen Statistiken erhalten');
+                    displayResults({
+                        '2025-11-11': { anmeldungen: 0, teilnehmer: 0 },
+                        '2025-11-13': { anmeldungen: 0, teilnehmer: 0 },
+                        '2025-11-18': { anmeldungen: 0, teilnehmer: 0 }
+                    });
                 }
             } catch (error) {
                 console.error('Fehler beim Laden der Statistiken:', error);
@@ -717,20 +686,16 @@
                 if (stats[date].teilnehmer !== undefined) {
                     totalTeilnehmer += stats[date].teilnehmer;
                 } else {
-                    // Fallback für altes Format
                     totalTeilnehmer += stats[date];
                 }
             });
 
             Object.keys(stats).forEach(date => {
-                // Unterstütze neues und altes Format
                 let teilnehmer, anmeldungen;
                 if (stats[date].teilnehmer !== undefined) {
-                    // Neues Format mit Objekten
                     teilnehmer = stats[date].teilnehmer;
                     anmeldungen = stats[date].anmeldungen;
                 } else {
-                    // Altes Format (nur Zahl)
                     teilnehmer = stats[date];
                     anmeldungen = stats[date];
                 }
@@ -739,7 +704,6 @@
                 
                 const countElement = document.getElementById(`count-${date}`);
                 if (countElement) {
-                    // Zeige Teilnehmer und optional Anmeldungen
                     if (anmeldungen !== teilnehmer && anmeldungen > 0) {
                         countElement.textContent = `${teilnehmer} Teilnehmer (${anmeldungen} ${anmeldungen === 1 ? 'Anmeldung' : 'Anmeldungen'})`;
                     } else {
@@ -749,7 +713,6 @@
                 
                 const bar = document.getElementById(`bar-${date}`);
                 if (bar) {
-                    // Animiere den Balken
                     setTimeout(() => {
                         bar.style.width = `${percentage}%`;
                         bar.textContent = percentage > 0 ? `${percentage}%` : '';
