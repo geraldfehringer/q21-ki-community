@@ -355,6 +355,22 @@
             display: block;
         }
 
+        .stats-loading {
+            text-align: center;
+            padding: 20px;
+            color: #666;
+            font-style: italic;
+        }
+
+        .stats-error {
+            text-align: center;
+            padding: 20px;
+            color: #dc3545;
+            background: rgba(220, 53, 69, 0.1);
+            border-radius: 10px;
+            margin: 20px 0;
+        }
+
         @keyframes spin {
             0% { transform: rotate(0deg); }
             100% { transform: rotate(360deg); }
@@ -518,7 +534,7 @@
     <script>
         // === KONFIGURATION ===
         // WICHTIG: Ersetze diese URL mit deiner Google Apps Script Web-App-URL
-        const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzzx4CXFqpdqfnwBueW56saHOSKSwHYL6YgHsmHRE_n0pAdwbyuF-nYUC6VlNDoy04s-g/exec';
+        const GOOGLE_SCRIPT_URL = 'DEINE_GOOGLE_SCRIPT_URL_HIER';
 
         // Form handling
         const form = document.getElementById('workshopForm');
@@ -568,7 +584,7 @@
             }
 
             // Check if Google Script URL is configured
-            if (GOOGLE_SCRIPT_URL === 'DEINE_GOOGLE_SCRIPT_URL_HIER') {
+            if (GOOGLE_SCRIPT_URL === 'https://script.google.com/macros/s/AKfycbzqRda0940wzpi92K6GCTI7W3Aq29ob1ju7BUiqMgtzoN_ymxETz1_6iAvfqockQZ9nVw/exec') {
                 showErrorModal('Die Anmeldung ist noch nicht konfiguriert. Bitte kontaktiere den Administrator.');
                 console.error('Google Apps Script URL nicht konfiguriert!');
                 return;
@@ -607,10 +623,10 @@
                 form.reset();
                 dateOptions.forEach(opt => opt.classList.remove('selected'));
                 
-                // Update results
+                // Update results - warte kurz damit die Daten im Sheet sind
                 setTimeout(() => {
                     loadResults();
-                }, 1000);
+                }, 2000); // 2 Sekunden warten
 
             } catch (error) {
                 console.error('Fehler:', error);
@@ -622,50 +638,122 @@
             }
         });
 
-        // Load results from Google Sheets
+        // Load results from Google Sheets via JSONP
         async function loadResults() {
             try {
                 if (GOOGLE_SCRIPT_URL === 'DEINE_GOOGLE_SCRIPT_URL_HIER') {
+                    // Zeige Platzhalter-Daten wenn noch nicht konfiguriert
+                    displayResults({
+                        '2025-11-11': { anmeldungen: 0, teilnehmer: 0 },
+                        '2025-11-13': { anmeldungen: 0, teilnehmer: 0 },
+                        '2025-11-18': { anmeldungen: 0, teilnehmer: 0 }
+                    });
                     return;
                 }
 
-                const response = await fetch(GOOGLE_SCRIPT_URL + '?action=getStats', {
-                    method: 'GET'
+                // JSONP Callback-Name
+                const callbackName = 'workshopStatsCallback_' + Date.now();
+                
+                // Promise für JSONP
+                const loadStatsPromise = new Promise((resolve, reject) => {
+                    // Timeout nach 10 Sekunden
+                    const timeout = setTimeout(() => {
+                        cleanup();
+                        reject(new Error('Timeout beim Laden der Statistiken'));
+                    }, 10000);
+
+                    // Globale Callback-Funktion
+                    window[callbackName] = function(data) {
+                        clearTimeout(timeout);
+                        cleanup();
+                        resolve(data);
+                    };
+
+                    // Script-Tag erstellen und hinzufügen
+                    const script = document.createElement('script');
+                    script.id = callbackName;
+                    script.src = GOOGLE_SCRIPT_URL + '?action=getStats&callback=' + callbackName;
+                    script.onerror = function() {
+                        clearTimeout(timeout);
+                        cleanup();
+                        reject(new Error('Fehler beim Laden des Scripts'));
+                    };
+                    document.body.appendChild(script);
+
+                    // Cleanup-Funktion
+                    function cleanup() {
+                        delete window[callbackName];
+                        const scriptElement = document.getElementById(callbackName);
+                        if (scriptElement) {
+                            scriptElement.remove();
+                        }
+                    }
                 });
 
-                const data = await response.json();
+                // Warte auf Response
+                const response = await loadStatsPromise;
                 
-                if (data.success && data.data) {
-                    displayResults(data.data);
+                if (response.success && response.data) {
+                    displayResults(response.data);
+                } else {
+                    console.warn('Keine gültigen Statistiken erhalten');
                 }
             } catch (error) {
                 console.error('Fehler beim Laden der Statistiken:', error);
-                // Fallback: Zeige 0 bei allen
+                // Zeige Platzhalter-Daten bei Fehler
                 displayResults({
-                    '2025-11-11': 0,
-                    '2025-11-13': 0,
-                    '2025-11-18': 0
+                    '2025-11-11': { anmeldungen: 0, teilnehmer: 0 },
+                    '2025-11-13': { anmeldungen: 0, teilnehmer: 0 },
+                    '2025-11-18': { anmeldungen: 0, teilnehmer: 0 }
                 });
             }
         }
 
         // Display results visualization
-        function displayResults(counts) {
-            const total = Object.values(counts).reduce((a, b) => a + b, 0);
+        function displayResults(stats) {
+            // Berechne Gesamtzahl für Prozentangaben
+            let totalTeilnehmer = 0;
+            Object.keys(stats).forEach(date => {
+                if (stats[date].teilnehmer !== undefined) {
+                    totalTeilnehmer += stats[date].teilnehmer;
+                } else {
+                    // Fallback für altes Format
+                    totalTeilnehmer += stats[date];
+                }
+            });
 
-            Object.keys(counts).forEach(date => {
-                const count = counts[date];
-                const percentage = total > 0 ? Math.round((count / total) * 100) : 0;
+            Object.keys(stats).forEach(date => {
+                // Unterstütze neues und altes Format
+                let teilnehmer, anmeldungen;
+                if (stats[date].teilnehmer !== undefined) {
+                    // Neues Format mit Objekten
+                    teilnehmer = stats[date].teilnehmer;
+                    anmeldungen = stats[date].anmeldungen;
+                } else {
+                    // Altes Format (nur Zahl)
+                    teilnehmer = stats[date];
+                    anmeldungen = stats[date];
+                }
+
+                const percentage = totalTeilnehmer > 0 ? Math.round((teilnehmer / totalTeilnehmer) * 100) : 0;
                 
                 const countElement = document.getElementById(`count-${date}`);
                 if (countElement) {
-                    countElement.textContent = `${count} ${count === 1 ? 'Teilnehmer' : 'Teilnehmer'}`;
+                    // Zeige Teilnehmer und optional Anmeldungen
+                    if (anmeldungen !== teilnehmer && anmeldungen > 0) {
+                        countElement.textContent = `${teilnehmer} Teilnehmer (${anmeldungen} ${anmeldungen === 1 ? 'Anmeldung' : 'Anmeldungen'})`;
+                    } else {
+                        countElement.textContent = `${teilnehmer} ${teilnehmer === 1 ? 'Teilnehmer' : 'Teilnehmer'}`;
+                    }
                 }
                 
                 const bar = document.getElementById(`bar-${date}`);
                 if (bar) {
-                    bar.style.width = `${percentage}%`;
-                    bar.textContent = `${percentage}%`;
+                    // Animiere den Balken
+                    setTimeout(() => {
+                        bar.style.width = `${percentage}%`;
+                        bar.textContent = percentage > 0 ? `${percentage}%` : '';
+                    }, 100);
                 }
             });
         }
