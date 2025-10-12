@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Workshop Debug Tool</title>
+    <style>
+        body {
+            font-family: monospace;
+            max-width: 1000px;
+            margin: 40px auto;
+            padding: 20px;
+            background: #1e1e1e;
+            color: #d4d4d4;
+        }
+        h1 {
+            color: #4ec9b0;
+        }
+        .section {
+            background: #252526;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 8px;
+            border-left: 4px solid #007acc;
+        }
+        .success {
+            border-left-color: #4ec9b0;
+            background: #1a3a1a;
+        }
+        .error {
+            border-left-color: #f48771;
+            background: #3a1a1a;
+        }
+        button {
+            background: #007acc;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 14px;
+            margin: 5px;
+        }
+        button:hover {
+            background: #005a9e;
+        }
+        pre {
+            background: #1e1e1e;
+            padding: 15px;
+            border-radius: 4px;
+            overflow-x: auto;
+            border: 1px solid #3c3c3c;
+        }
+        .status {
+            padding: 5px 10px;
+            border-radius: 4px;
+            display: inline-block;
+            margin: 5px 0;
+        }
+        .status.ok {
+            background: #1a3a1a;
+            color: #4ec9b0;
+        }
+        .status.fail {
+            background: #3a1a1a;
+            color: #f48771;
+        }
+        input {
+            width: 100%;
+            padding: 8px;
+            margin: 10px 0;
+            background: #1e1e1e;
+            border: 1px solid #3c3c3c;
+            color: #d4d4d4;
+            border-radius: 4px;
+            font-family: monospace;
+        }
+        .log {
+            background: #1e1e1e;
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 4px;
+            border: 1px solid #3c3c3c;
+            max-height: 300px;
+            overflow-y: auto;
+        }
+        .log-entry {
+            margin: 5px 0;
+            padding: 5px;
+        }
+        .log-time {
+            color: #858585;
+        }
+        .log-info {
+            color: #4ec9b0;
+        }
+        .log-error {
+            color: #f48771;
+        }
+        .log-warn {
+            color: #dcdcaa;
+        }
+    </style>
+</head>
+<body>
+    <h1>🔍 Q21 Workshop Debug Tool</h1>
+    
+    <div class="section">
+        <h2>1️⃣ Google Apps Script URL</h2>
+        <p>Aktuelle URL aus workshop.html:</p>
+        <input type="text" id="scriptUrl" value="https://script.google.com/macros/s/AKfycbxuFLdJacGluO0EYNUpA65TakWOu-uza2XhjHnmHPz3pKGlBWbhHXjomRMe2RDqpP-dXA/exec">
+        <button onclick="testUrl()">URL testen</button>
+        <div id="urlStatus"></div>
+    </div>
+
+    <div class="section">
+        <h2>2️⃣ JSONP Test (getStats)</h2>
+        <button onclick="testGetStats()">Statistiken abrufen</button>
+        <div id="statsStatus"></div>
+        <pre id="statsResponse"></pre>
+    </div>
+
+    <div class="section">
+        <h2>3️⃣ POST Test (Anmeldung)</h2>
+        <p>Test-Anmeldung senden:</p>
+        <input type="email" id="testEmail" placeholder="test@example.com" value="debug@test.com">
+        <select id="testDate">
+            <option value="2025-11-11">11. November 2025</option>
+            <option value="2025-11-13">13. November 2025</option>
+            <option value="2025-11-18">18. November 2025</option>
+        </select>
+        <input type="number" id="testAttendees" value="1" min="1" max="10">
+        <button onclick="testPost()">Test-Anmeldung senden</button>
+        <div id="postStatus"></div>
+    </div>
+
+    <div class="section">
+        <h2>4️⃣ Browser Console Logs</h2>
+        <button onclick="clearLogs()">Logs löschen</button>
+        <div class="log" id="logContainer"></div>
+    </div>
+
+    <div class="section">
+        <h2>5️⃣ Checkliste</h2>
+        <div id="checklist"></div>
+    </div>
+
+    <script>
+        const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxuFLdJacGluO0EYNUpA65TakWOu-uza2XhjHnmHPz3pKGlBWbhHXjomRMe2RDqpP-dXA/exec';
+        const logs = [];
+
+        function addLog(message, type = 'info') {
+            const now = new Date().toLocaleTimeString();
+            logs.push({ time: now, message, type });
+            updateLogDisplay();
+            console.log(`[${type.toUpperCase()}]`, message);
+        }
+
+        function updateLogDisplay() {
+            const container = document.getElementById('logContainer');
+            container.innerHTML = logs.map(log => 
+                `<div class="log-entry">
+                    <span class="log-time">[${log.time}]</span>
+                    <span class="log-${log.type}">${log.message}</span>
+                </div>`
+            ).reverse().join('');
+        }
+
+        function clearLogs() {
+            logs.length = 0;
+            updateLogDisplay();
+        }
+
+        async function testUrl() {
+            const url = document.getElementById('scriptUrl').value;
+            const status = document.getElementById('urlStatus');
+            
+            addLog('Teste URL erreichbarkeit...', 'info');
+            status.innerHTML = '<div class="status">⏳ Teste...</div>';
+            
+            try {
+                // Test mit einfachem GET Request
+                const response = await fetch(url + '?test=1', {
+                    method: 'GET',
+                    mode: 'no-cors'
+                });
+                
+                addLog('URL ist erreichbar (no-cors mode)', 'info');
+                status.innerHTML = '<div class="status ok">✅ URL ist erreichbar</div>';
+                
+            } catch (error) {
+                addLog('Fehler beim URL-Test: ' + error.message, 'error');
+                status.innerHTML = '<div class="status fail">❌ URL nicht erreichbar: ' + error.message + '</div>';
+            }
+        }
+
+        async function testGetStats() {
+            const status = document.getElementById('statsStatus');
+            const response = document.getElementById('statsResponse');
+            
+            addLog('Starte getStats Test via JSONP...', 'info');
+            status.innerHTML = '<div class="status">⏳ Lade Statistiken...</div>';
+            response.textContent = '';
+            
+            const callbackName = 'debugCallback_' + Date.now();
+            
+            const promise = new Promise((resolve, reject) => {
+                const timeout = setTimeout(() => {
+                    cleanup();
+                    reject(new Error('Timeout nach 10 Sekunden'));
+                }, 10000);
+                
+                window[callbackName] = function(data) {
+                    clearTimeout(timeout);
+                    cleanup();
+                    resolve(data);
+                };
+                
+                const script = document.createElement('script');
+                script.id = callbackName;
+                script.src = GOOGLE_SCRIPT_URL + '?action=getStats&callback=' + callbackName;
+                script.onerror = function() {
+                    clearTimeout(timeout);
+                    cleanup();
+                    reject(new Error('Script konnte nicht geladen werden'));
+                };
+                document.body.appendChild(script);
+                
+                addLog('JSONP Request gesendet: ' + script.src, 'info');
+                
+                function cleanup() {
+                    delete window[callbackName];
+                    const scriptEl = document.getElementById(callbackName);
+                    if (scriptEl) scriptEl.remove();
+                }
+            });
+            
+            try {
+                const data = await promise;
+                addLog('Statistiken erfolgreich geladen!', 'info');
+                addLog('Daten: ' + JSON.stringify(data, null, 2), 'info');
+                
+                status.innerHTML = '<div class="status ok">✅ Statistiken erfolgreich geladen</div>';
+                response.textContent = JSON.stringify(data, null, 2);
+                
+                // Analysiere die Daten
+                if (data.success && data.data) {
+                    let totalTeilnehmer = 0;
+                    Object.keys(data.data).forEach(date => {
+                        const stats = data.data[date];
+                        totalTeilnehmer += stats.teilnehmer || 0;
+                        addLog(`${date}: ${stats.anmeldungen || 0} Anmeldungen, ${stats.teilnehmer || 0} Teilnehmer`, 'info');
+                    });
+                    
+                    if (totalTeilnehmer === 0) {
+                        addLog('⚠️ PROBLEM: Alle Teilnehmerzahlen sind 0!', 'warn');
+                        addLog('Mögliche Ursachen:', 'warn');
+                        addLog('- Script liest aus falschen Spalten', 'warn');
+                        addLog('- Datum-Format im Sheet stimmt nicht (muss genau "2025-11-18" sein)', 'warn');
+                        addLog('- Teilnehmerzahl ist nicht als Zahl gespeichert', 'warn');
+                    }
+                } else {
+                    addLog('⚠️ Keine gültigen Daten erhalten', 'warn');
+                }
+                
+            } catch (error) {
+                addLog('Fehler beim Laden: ' + error.message, 'error');
+                status.innerHTML = '<div class="status fail">❌ Fehler: ' + error.message + '</div>';
+                response.textContent = 'Fehler: ' + error.message;
+            }
+        }
+
+        async function testPost() {
+            const email = document.getElementById('testEmail').value;
+            const date = document.getElementById('testDate').value;
+            const attendees = document.getElementById('testAttendees').value;
+            const status = document.getElementById('postStatus');
+            
+            const formData = {
+                email: email,
+                date: date,
+                attendees: parseInt(attendees)
+            };
+            
+            addLog('Sende Test-Anmeldung: ' + JSON.stringify(formData), 'info');
+            status.innerHTML = '<div class="status">⏳ Sende...</div>';
+            
+            try {
+                const response = await fetch(GOOGLE_SCRIPT_URL, {
+                    method: 'POST',
+                    mode: 'no-cors',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(formData)
+                });
+                
+                addLog('Anmeldung gesendet (no-cors, kein Response lesbar)', 'info');
+                status.innerHTML = '<div class="status ok">✅ Anmeldung gesendet. Prüfe im Google Sheet!</div>';
+                
+                // Warte 2 Sekunden und lade Statistiken neu
+                setTimeout(() => {
+                    addLog('Lade Statistiken neu...', 'info');
+                    testGetStats();
+                }, 2000);
+                
+            } catch (error) {
+                addLog('Fehler beim Senden: ' + error.message, 'error');
+                status.innerHTML = '<div class="status fail">❌ Fehler: ' + error.message + '</div>';
+            }
+        }
+
+        // Checkliste erstellen
+        function createChecklist() {
+            const items = [
+                { id: 'url', text: 'Google Apps Script URL ist korrekt' },
+                { id: 'deploy', text: 'Script wurde neu deployed (neue Version erstellt)' },
+                { id: 'code', text: 'FIXED-Code im Apps Script eingefügt' },
+                { id: 'sheet', text: 'Google Sheet: Spalte C = Teilnehmer, Spalte D = Datum' },
+                { id: 'format', text: 'Datum im Sheet: Exakt "2025-11-18" (als Text oder Datum)' },
+                { id: 'number', text: 'Teilnehmerzahl im Sheet: Als Zahl gespeichert (nicht Text)' },
+                { id: 'access', text: 'Apps Script: Zugriff auf "Jeder" gestellt' },
+                { id: 'test', text: 'testStatistics() Funktion im Script ausgeführt und Logs geprüft' }
+            ];
+            
+            const checklist = document.getElementById('checklist');
+            checklist.innerHTML = items.map(item => 
+                `<div style="margin: 10px 0;">
+                    <label style="cursor: pointer;">
+                        <input type="checkbox" id="check-${item.id}" style="width: auto; margin-right: 10px;">
+                        ${item.text}
+                    </label>
+                </div>`
+            ).join('');
+        }
+
+        // Initial Setup
+        window.addEventListener('load', function() {
+            createChecklist();
+            addLog('Debug Tool geladen', 'info');
+            addLog('Script URL: ' + GOOGLE_SCRIPT_URL, 'info');
+            addLog('Klicke auf "Statistiken abrufen" um zu testen', 'info');
+        });
+
+        // Capture console errors
+        window.addEventListener('error', function(e) {
+            addLog('Browser Error: ' + e.message, 'error');
+        });
+    </script>
+</body>
+</html>
