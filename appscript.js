@@ -160,9 +160,10 @@ function getStatistics() {
   }
   
   const stats = {
-    '2025-11-11': { anmeldungen: 0, teilnehmer: 0 },
-    '2025-11-13': { anmeldungen: 0, teilnehmer: 0 },
-    '2025-11-18': { anmeldungen: 0, teilnehmer: 0 }
+    '2026-02-03': { anmeldungen: 0, teilnehmer: 0 },
+    '2026-02-05': { anmeldungen: 0, teilnehmer: 0 },
+    '2026-02-17': { anmeldungen: 0, teilnehmer: 0 },
+    '2026-02-19': { anmeldungen: 0, teilnehmer: 0 }
   };
   
   // Überspringe Header-Zeile (Index 0)
@@ -312,11 +313,11 @@ function sendConfirmationEmail(email, selectedDate, attendees) {
     </div>
     
     <div class="info-box">
-      <h2>🎯 Workshop-Details: KI - WAS ist aktuell möglich?</h2>
-      <p><strong>Warum es die Geschäftswelt wirklich radikalisiert!</strong></p>
-      <p>TOP-Insights von brandaktuellen KI-Modellen. WIE lege ich los? WAS brauche ich? Hype & Realität.</p>
-      <p><strong>📍 Lokation:</strong> wird noch evaluiert, je nach Anmeldungen (wenn jemand Idee hat, bitte melden!)</p>
-      <p><strong>⏱️ Dauer:</strong> 2h+</p>
+      <h2>🎯 Workshop-Details: KI - Alle reden über AGENTIC, was nun?</h2>
+      <p><strong>Aktuelle KI-Modelle und warum alle über AGENTIC reden!</strong></p>
+      <p>TOP-Insights von einem echten AGENTIC-Anwender. WAS GEHT WIRKLICH? 2026 wird ein (noch) krasseres KI-Jahr!</p>
+      <p><strong>📍 Lokation:</strong> Britta&Geri AKR22d, je nach Anmeldungen (wenn jemand Idee hat, bitte melden!)</p>
+      <p><strong>⏱️ Dauer:</strong> 3h+</p>
     </div>
     
     <div class="highlight">
@@ -356,14 +357,14 @@ Vielen Dank für Deine Anmeldung zum Q21 KI_HUB Workshop!
 Dein bevorzugtes Datum: ${dateFormatted}
 Anzahl Teilnehmer: ${attendees}
 
-🎯 WORKSHOP-DETAILS: KI - WAS ist aktuell möglich?
+🎯 WORKSHOP-DETAILS: KI - Alle reden über AGENTIC, was nun?
 
-Warum es die Geschäftswelt wirklich radikalisiert!
+Aktuelle KI-Modelle und warum alle über AGENTIC reden!
 
-TOP-Insights von brandaktuellen KI-Modellen. WIE lege ich los? WAS brauche ich? Hype & Realität.
+TOP-Insights von einem echten AGENTIC-Anwender. WAS GEHT WIRKLICH? 2026 wird ein (noch) krasseres KI-Jahr!
 
-📍 Lokation: wird noch evaluiert, je nach Anmeldungen (wenn jemand Idee hat, bitte melden!)
-⏱️ Dauer: 2h+
+📍 Lokation: Britta&Geri AKR22d, je nach Anmeldungen (wenn jemand Idee hat, bitte melden!)
+⏱️ Dauer: 3h+
 
 ℹ️ WICHTIGER HINWEIS:
 Die finale Terminentscheidung erfolgt in Kürze auf Basis der Abstimmungsergebnisse. Wir wählen den Termin, für den die meisten Teilnehmer gestimmt haben.
@@ -400,11 +401,12 @@ https://q21.ctopilot.de
 // Datum formatieren
 function formatDate(isoDate) {
   const dateMap = {
-    '2025-11-11': '11. November 2025 (Dienstag, 19:00 Uhr)',
-    '2025-11-13': '13. November 2025 (Donnerstag, 19:00 Uhr)',
-    '2025-11-18': '18. November 2025 (Dienstag, 19:00 Uhr)'
+    '2026-02-03': '03. Februar 2026 (Dienstag, 18:30 Uhr)',
+    '2026-02-05': '05. Februar 2026 (Donnerstag, 18:30 Uhr)',
+    '2026-02-17': '17. Februar 2026 (Dienstag, 18:30 Uhr)',
+    '2026-02-19': '19. Februar 2026 (Donnerstag, 18:30 Uhr)'
   };
-  
+
   return dateMap[isoDate] || isoDate;
 }
 
@@ -412,7 +414,7 @@ function formatDate(isoDate) {
 function testEmailSend() {
   Logger.log('=== EMAIL TEST START ===');
   try {
-    sendConfirmationEmail('test@example.com', '2025-11-13', 2);
+    sendConfirmationEmail('test@example.com', '2026-02-03', 2);
     Logger.log('✅ Test-Email erfolgreich versendet');
   } catch (error) {
     Logger.log('❌ Email-Test fehlgeschlagen: ' + error.toString());
@@ -439,7 +441,7 @@ function testStatistics() {
     if (total === 0) {
       Logger.log('⚠️⚠️⚠️ WARNUNG: Keine Teilnehmer gefunden! ⚠️⚠️⚠️');
       Logger.log('Mögliche Probleme:');
-      Logger.log('1. Datum im Sheet nicht im Format "2025-11-18"');
+      Logger.log('1. Datum im Sheet nicht im Format "2026-02-03"');
       Logger.log('2. Teilnehmerzahl nicht als Zahl gespeichert');
       Logger.log('3. Daten in falschen Spalten (C=Teilnehmer, D=Datum)');
       Logger.log('Prüfe die Logs oben für Details zu jeder Zeile!');
