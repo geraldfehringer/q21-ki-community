@@ -110,18 +110,41 @@
         }
 
         .form-group input[type="email"],
-        .form-group input[type="number"] {
+        .form-group input[type="number"],
+        .form-group textarea {
             padding: 12px 15px;
             border: 2px solid #dee2e6;
             border-radius: 10px;
             font-size: 1rem;
             transition: all 0.3s ease;
+            font-family: inherit;
         }
 
-        .form-group input:focus {
+        .form-group textarea {
+            resize: vertical;
+            min-height: 80px;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
             outline: none;
             border-color: #667eea;
             box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+        }
+
+        .char-counter {
+            font-size: 0.85rem;
+            color: #666;
+            text-align: right;
+            margin-top: -5px;
+        }
+
+        .char-counter.warning {
+            color: #e67e22;
+        }
+
+        .char-counter.limit {
+            color: #e74c3c;
         }
 
         .date-options {
@@ -148,7 +171,7 @@
             transform: translateY(-2px);
         }
 
-        .date-option input[type="radio"] {
+        .date-option input[type="checkbox"] {
             width: 24px;
             height: 24px;
             cursor: pointer;
@@ -175,6 +198,15 @@
         .date-label span {
             color: #666;
             font-size: 0.9rem;
+        }
+
+        .multi-select-hint {
+            background: #e3f2fd;
+            padding: 12px 15px;
+            border-radius: 8px;
+            font-size: 0.9rem;
+            color: #1565c0;
+            border-left: 3px solid #2196F3;
         }
 
         .submit-button {
@@ -380,7 +412,7 @@
         <div class="header">
             <a href="index.html" class="back-link">←</a>
             <h1>🚀 KI Workshop Abstimmung</h1>
-            <p>Wähle dein bevorzugtes Datum und melde dich an!</p>
+            <p>Wähle deine bevorzugten Termine und melde dich an!</p>
         </div>
 
         <div class="content">
@@ -422,40 +454,50 @@
                 </div>
 
                 <div class="form-group">
-                    <label>📅 Wähle dein bevorzugtes Datum:</label>
+                    <label>📅 Wähle deine möglichen Termine:</label>
+                    <div class="multi-select-hint">
+                        💡 Mehrfachauswahl möglich – wähle alle Termine, die für dich passen!
+                    </div>
                     <div class="date-options">
                         <label class="date-option">
-                            <input type="radio" name="date" value="2026-02-03" required>
-                            <div class="date-label">
-                                <strong>03. Februar 2026</strong>
-                                <span>Dienstag, ab 18:30 Uhr</span>
-                            </div>
-                        </label>
-
-                        <label class="date-option">
-                            <input type="radio" name="date" value="2026-02-05" required>
-                            <div class="date-label">
-                                <strong>05. Februar 2026</strong>
-                                <span>Donnerstag, ab 18:30 Uhr</span>
-                            </div>
-                        </label>
-
-                        <label class="date-option">
-                            <input type="radio" name="date" value="2026-02-17" required>
+                            <input type="checkbox" name="dates" value="2026-02-17">
                             <div class="date-label">
                                 <strong>17. Februar 2026</strong>
                                 <span>Dienstag, ab 18:30 Uhr</span>
                             </div>
                         </label>
+
                         <label class="date-option">
-                            <input type="radio" name="date" value="2026-02-19" required>
+                            <input type="checkbox" name="dates" value="2026-02-19">
                             <div class="date-label">
                                 <strong>19. Februar 2026</strong>
                                 <span>Donnerstag, ab 18:30 Uhr</span>
                             </div>
                         </label>
+
+                        <label class="date-option">
+                            <input type="checkbox" name="dates" value="2026-02-25">
+                            <div class="date-label">
+                                <strong>25. Februar 2026</strong>
+                                <span>Mittwoch, ab 18:30 Uhr</span>
+                            </div>
+                        </label>
                     </div>
-                    <span class="error-message" id="dateError">Bitte wähle ein Datum aus</span>
+                    <span class="error-message" id="dateError">Bitte wähle mindestens einen Termin aus</span>
+                </div>
+
+                <div class="form-group">
+                    <label for="wishes">
+                        💬 Deine Themenwünsche
+                        <span style="font-size: 0.9rem; font-weight: normal; color: #666;">(optional)</span>
+                    </label>
+                    <textarea 
+                        id="wishes" 
+                        name="wishes" 
+                        maxlength="200" 
+                        placeholder="Welche KI-Themen interessieren dich besonders? Was möchtest du im Workshop lernen oder diskutieren?"
+                    ></textarea>
+                    <div class="char-counter" id="charCounter">0 / 200 Zeichen</div>
                 </div>
 
                 <button type="submit" class="submit-button" id="submitBtn">
@@ -471,26 +513,6 @@
                 <div class="results-bars" id="resultsContainer">
                     <div class="result-item">
                         <div class="result-header">
-                            <span>03. Februar 2026</span>
-                            <span class="result-count" id="count-2026-02-03">0 Teilnehmer</span>
-                        </div>
-                        <div class="result-bar">
-                            <div class="result-fill" id="bar-2026-02-03" style="width: 0%">0%</div>
-                        </div>
-                    </div>
-
-                    <div class="result-item">
-                        <div class="result-header">
-                            <span>05. Februar 2026</span>
-                            <span class="result-count" id="count-2026-02-05">0 Teilnehmer</span>
-                        </div>
-                        <div class="result-bar">
-                            <div class="result-fill" id="bar-2026-02-05" style="width: 0%">0%</div>
-                        </div>
-                    </div>
-
-                    <div class="result-item">
-                        <div class="result-header">
                             <span>17. Februar 2026</span>
                             <span class="result-count" id="count-2026-02-17">0 Teilnehmer</span>
                         </div>
@@ -498,6 +520,7 @@
                             <div class="result-fill" id="bar-2026-02-17" style="width: 0%">0%</div>
                         </div>
                     </div>
+
                     <div class="result-item">
                         <div class="result-header">
                             <span>19. Februar 2026</span>
@@ -505,6 +528,16 @@
                         </div>
                         <div class="result-bar">
                             <div class="result-fill" id="bar-2026-02-19" style="width: 0%">0%</div>
+                        </div>
+                    </div>
+
+                    <div class="result-item">
+                        <div class="result-header">
+                            <span>25. Februar 2026</span>
+                            <span class="result-count" id="count-2026-02-25">0 Teilnehmer</span>
+                        </div>
+                        <div class="result-bar">
+                            <div class="result-fill" id="bar-2026-02-25" style="width: 0%">0%</div>
                         </div>
                     </div>
                 </div>
@@ -538,15 +571,44 @@
         // Form handling
         const form = document.getElementById('workshopForm');
         const emailInput = document.getElementById('email');
+        const wishesInput = document.getElementById('wishes');
+        const charCounter = document.getElementById('charCounter');
         const dateOptions = document.querySelectorAll('.date-option');
         const submitBtn = document.getElementById('submitBtn');
         const loadingSpinner = document.getElementById('loadingSpinner');
 
-        // Visual feedback for date selection
+        // Character counter for wishes
+        wishesInput.addEventListener('input', function() {
+            const count = this.value.length;
+            charCounter.textContent = `${count} / 200 Zeichen`;
+            
+            charCounter.classList.remove('warning', 'limit');
+            if (count >= 180) {
+                charCounter.classList.add('limit');
+            } else if (count >= 150) {
+                charCounter.classList.add('warning');
+            }
+        });
+
+        // Visual feedback for date selection (checkboxes)
         dateOptions.forEach(option => {
-            option.addEventListener('click', function() {
-                dateOptions.forEach(opt => opt.classList.remove('selected'));
-                this.classList.add('selected');
+            const checkbox = option.querySelector('input[type="checkbox"]');
+            
+            // Update visual state on change
+            checkbox.addEventListener('change', function() {
+                if (this.checked) {
+                    option.classList.add('selected');
+                } else {
+                    option.classList.remove('selected');
+                }
+            });
+            
+            // Click on label toggles checkbox
+            option.addEventListener('click', function(e) {
+                if (e.target.tagName !== 'INPUT') {
+                    checkbox.checked = !checkbox.checked;
+                    checkbox.dispatchEvent(new Event('change'));
+                }
             });
         });
 
@@ -575,10 +637,11 @@
                 return;
             }
 
-            // Validate date selection
-            const selectedDate = document.querySelector('input[name="date"]:checked');
-            if (!selectedDate) {
+            // Validate date selection (at least one)
+            const selectedDates = document.querySelectorAll('input[name="dates"]:checked');
+            if (selectedDates.length === 0) {
                 dateError.classList.add('active');
+                showErrorModal('Bitte wähle mindestens einen Termin aus.');
                 return;
             }
 
@@ -587,12 +650,18 @@
             submitBtn.textContent = 'Wird gesendet...';
             loadingSpinner.classList.add('active');
 
+            // Collect selected dates as array
+            const datesArray = Array.from(selectedDates).map(cb => cb.value);
+
             // Prepare form data
             const attendees = document.getElementById('attendees').value;
+            const wishes = wishesInput.value.trim();
+            
             const formData = {
                 email: email,
                 attendees: attendees,
-                date: selectedDate.value
+                dates: datesArray,
+                wishes: wishes
             };
 
             try {
@@ -612,6 +681,8 @@
                 // Reset form
                 form.reset();
                 dateOptions.forEach(opt => opt.classList.remove('selected'));
+                charCounter.textContent = '0 / 200 Zeichen';
+                charCounter.classList.remove('warning', 'limit');
                 
                 // Update results
                 setTimeout(() => {
@@ -678,20 +749,18 @@
                 } else {
                     console.warn('Keine gültigen Statistiken erhalten');
                     displayResults({
-                        '2026-02-03': { anmeldungen: 0, teilnehmer: 0 },
-                        '2026-02-05': { anmeldungen: 0, teilnehmer: 0 },
                         '2026-02-17': { anmeldungen: 0, teilnehmer: 0 },
-                        '2026-02-19': { anmeldungen: 0, teilnehmer: 0 }
+                        '2026-02-19': { anmeldungen: 0, teilnehmer: 0 },
+                        '2026-02-25': { anmeldungen: 0, teilnehmer: 0 }
                     });
                 }
             } catch (error) {
                 console.error('Fehler beim Laden der Statistiken:', error);
                 // Zeige Platzhalter-Daten bei Fehler
                 displayResults({
-                    '2026-02-03': { anmeldungen: 0, teilnehmer: 0 },
-                    '2026-02-05': { anmeldungen: 0, teilnehmer: 0 },
                     '2026-02-17': { anmeldungen: 0, teilnehmer: 0 },
-                    '2026-02-19': { anmeldungen: 0, teilnehmer: 0 }
+                    '2026-02-19': { anmeldungen: 0, teilnehmer: 0 },
+                    '2026-02-25': { anmeldungen: 0, teilnehmer: 0 }
                 });
             }
         }
