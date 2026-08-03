@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="color-scheme" content="light only" />
+<title>Q21 KI_HUB — Top-3-Features: ChatGPT App, Claude Cowork, Claude Design</title>
+<meta name="description" content="Je drei Features, die normalen Nutzern wirklich Arbeit abnehmen — mit Beispiel-Prompts zum Kopieren." />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600..800&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@500;600&display=swap" rel="stylesheet" />
+<style>
+*{box-sizing:border-box}
+body{margin:0;background:#faf7f2;font-family:'IBM Plex Sans',Helvetica,Arial,sans-serif;color:#2a2c3d;-webkit-font-smoothing:antialiased}
+.wrap{max-width:720px;margin:0 auto;padding:26px 14px 46px}
+.card{background:#fff;border:1px solid #e6e1da;border-radius:18px;overflow:hidden}
+.px{padding:34px 38px}
+.eyebrow{font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.16em;text-transform:uppercase}
+h1,h2,h3{font-family:'Bricolage Grotesque','IBM Plex Sans',Helvetica,sans-serif;letter-spacing:-.025em;margin:0;font-weight:800}
+a{color:#b85546;text-decoration:none}
+a:hover{color:#9c4534}
+.mast{background:#212470;padding:26px 38px;display:flex;flex-wrap:wrap;gap:14px;align-items:center;justify-content:space-between}
+.logo{font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:29px;line-height:1;color:#fff}
+.logo span{color:#d68b7e}.logo i{font-family:'IBM Plex Mono',monospace;font-style:normal;color:#7db49c}
+.mast .sub{color:#a4ccba;padding-top:8px}
+.mast .meta{text-align:right;color:#fff}
+.mast .meta .iss{color:#9a9edb;padding-top:6px;font-family:'IBM Plex Mono',monospace;font-size:11px}
+.rule{height:4px;background:#b85546}
+.nav{display:flex;gap:8px;padding:14px 38px;background:#1a1c58;flex-wrap:wrap}
+.nav a{font-family:'IBM Plex Mono',monospace;font-size:11.5px;letter-spacing:.08em;text-transform:uppercase;color:#c3c6ee;border:1px solid #3f46ad;border-radius:999px;padding:7px 14px}
+.nav a:hover{background:#2b2f8f;color:#fff}
+.nav a.on{background:#b85546;border-color:#b85546;color:#fff}
+.intro{background:#fcf4f1;padding:32px 38px 30px}
+.intro h1{font-size:31px;line-height:1.14;color:#212470;font-weight:700}
+.intro h1 em{font-style:normal;color:#b85546}
+.intro p{font-size:14.5px;line-height:1.65;color:#6b6d7a;margin:15px 0 0}
+/* tabs */
+.tabs{display:flex;gap:8px;padding:22px 38px 0;flex-wrap:wrap}
+.tabs button{font-family:'IBM Plex Sans',sans-serif;font-size:13.5px;font-weight:600;background:#f4f1ec;border:1px solid #e6e1da;color:#6b6d7a;border-radius:999px;padding:11px 18px;cursor:pointer;transition:all .15s ease}
+.tabs button:hover{border-color:#b3bece;color:#3c3e4d}
+.tabs button[aria-selected="true"]{background:#212470;border-color:#212470;color:#fff}
+.panel{display:none;padding:26px 38px 8px}
+.panel.on{display:block}
+.tool-head{display:flex;gap:14px;align-items:flex-start;border-bottom:1px solid #ece7df;padding-bottom:20px}
+.mark{flex:0 0 46px;height:46px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:19px;color:#fff}
+.tool-head h2{font-size:23px;color:#1c1e33;font-weight:700}
+.tool-head p{font-size:13px;line-height:1.55;color:#8a8b96;margin:7px 0 0}
+.feat{border-bottom:1px solid #ece7df;padding:24px 0}
+.feat:last-of-type{border-bottom:0}
+.fnum{font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:.16em;text-transform:uppercase;color:#5c9b82}
+.feat h3{font-family:'IBM Plex Sans',sans-serif;font-weight:600;letter-spacing:-.01em;font-size:18px;line-height:1.35;color:#212470;padding-top:8px}
+.feat > p{font-size:14px;line-height:1.65;color:#4d4f5e;margin:9px 0 0}
+.help{background:#faf7f2;border:1px solid #ece7df;border-left:3px solid #b85546;border-radius:12px;padding:14px 16px;margin-top:14px;font-size:13.5px;line-height:1.6;color:#3c3e4d}
+.help b{color:#212470;font-weight:600}
+.prompt{background:#1c1e33;border-radius:12px;padding:16px 18px;margin-top:14px}
+.prompt .lbl{font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:#7db49c}
+.prompt p{font-family:'IBM Plex Mono',monospace;font-size:12.5px;line-height:1.75;color:#e8e6f2;margin:10px 0 0}
+.prompt button{margin-top:14px;font-family:'IBM Plex Mono',monospace;font-size:11.5px;letter-spacing:.06em;background:#3f46ad;border:1px solid #6a70c4;color:#fff;border-radius:9px;padding:9px 15px;cursor:pointer;transition:background .15s ease}
+.prompt button:hover{background:#4d55c9}
+.prompt button.done{background:#5c9b82;border-color:#7db49c}
+.where{display:grid;gap:9px;background:#f6f4ef;border:1px solid #e6e1da;border-radius:14px;padding:20px 22px;margin:22px 0 6px}
+.where .row{display:flex;gap:12px;font-size:13px;line-height:1.55;color:#4d4f5e}
+.where .k{font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:#a9a49c;flex:0 0 96px;padding-top:2px}
+.where b{color:#212470;font-weight:600}
+.warn{margin-top:14px;font-size:12.5px;line-height:1.6;color:#8a6a2f;background:#fdf6e6;border:1px solid #f0e0bb;border-radius:12px;padding:13px 15px}
+.steps{counter-reset:s;list-style:none;margin:16px 0 0;padding:0;display:grid;gap:12px}
+.steps li{counter-increment:s;position:relative;padding-left:38px;font-size:14px;line-height:1.6;color:#3c3e4d}
+.steps li:before{content:counter(s);position:absolute;left:0;top:-1px;width:25px;height:25px;border-radius:50%;background:#212470;color:#fff;font-family:'IBM Plex Mono',monospace;font-size:12px;display:flex;align-items:center;justify-content:center}
+.steps b{color:#212470;font-weight:600}
+.back{background:#212470;border-radius:16px;padding:28px 30px;display:block}
+.back .eyebrow{color:#7db49c}
+.back h2{color:#fff;font-size:25px;line-height:1.15;padding-top:10px}
+.back p{color:#b9bdea;font-size:14px;line-height:1.6;margin:12px 0 0}
+.back span{display:inline-block;font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:.06em;color:#d68b7e;margin-top:16px}
+.foot{background:#faf7f2;border:1px solid #e6e1da;border-radius:14px;padding:22px 24px}
+.foot .t{font-family:'Bricolage Grotesque',sans-serif;font-weight:700;font-size:14px;color:#212470}
+.foot p{font-size:11px;line-height:1.7;color:#8a8b96;margin:8px 0 0}
+.stamp{text-align:center;font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:#b3bece;padding-top:18px}
+@media(max-width:600px){.px,.mast,.nav,.intro,.tabs,.panel{padding-left:22px;padding-right:22px}.mast .meta{text-align:left}.intro h1{font-size:26px}.tabs button{font-size:12.5px;padding:10px 14px}.where .k{flex-basis:80px}}
+</style>
+</head>
+<body>
+<div class="wrap">
+<div class="card">
+
+<div class="mast">
+<div>
+<div class="logo">Q<span>21</span>&nbsp;KI<i>_</i>HUB</div>
+<div class="eyebrow sub">Nachbarschafts-KI-Community</div>
+</div>
+<div class="meta">
+<div class="eyebrow">Praxisteil</div>
+<div class="iss">Ausgabe&nbsp;02&nbsp;·&nbsp;3.&nbsp;August&nbsp;2026</div>
+</div>
+</div>
+<div class="rule"></div>
+<div class="nav">
+<a href="index.html">① Die letzten 4 Wochen</a>
+<a class="on" href="tools.html">② Top-3-Features für dich</a>
+</div>
+
+<div class="intro">
+<div class="eyebrow" style="color:#b85546;padding-bottom:13px">◆&nbsp;&nbsp;Was du sofort nutzen kannst</div>
+<h1>Neun Features, <em>die echte Arbeit abnehmen</em> — keine Spielereien.</h1>
+<p>Drei Werkzeuge, je drei Funktionen. Zu jeder gibt es einen fertigen Beispiel-Prompt: <strong style="color:#2a2c3d">Kopieren, einfügen, laufen lassen.</strong> Wähle unten ein Werkzeug.</p>
+</div>
+
+<div class="tabs" role="tablist">
+<button type="button" role="tab" aria-selected="true" data-p="p1">ChatGPT App</button>
+<button type="button" role="tab" aria-selected="false" data-p="p2">Claude Cowork</button>
+<button type="button" role="tab" aria-selected="false" data-p="p3">Claude Design</button>
+</div>
+
+<!-- ============ ChatGPT ============ -->
+<div class="panel on" id="p1" role="tabpanel">
+<div class="tool-head">
+<div class="mark" style="background:#0f7a5f">GPT</div>
+<div>
+<h2>ChatGPT App</h2>
+<p>Desktop, Web, Handy · Stand August 2026: Chat, Work und Codex in einer App</p>
+</div>
+</div>
+
+<div class="feat">
+<div class="fnum">Feature 01 · seit 9. Juli 2026</div>
+<h3>ChatGPT Work: Du bekommst die fertige Datei, nicht die Anleitung</h3>
+<p>Statt einer Antwort im Chat arbeitet ChatGPT über deine verbundenen Dateien und Apps hinweg und legt am Ende ein fertiges Dokument, eine Tabelle oder eine Präsentation ab. Im Plan-Modus zeigt es vorher, was es tun will — du bestätigst Schritt für Schritt.</p>
+<div class="help"><b>Wo im Alltag?</b> Vier Vereinsprotokolle → eine Seite Zusammenfassung mit allen Beschlüssen. Zwölf Kontoauszug-PDFs → eine Jahresübersicht. Handy-Fotos von Belegen → eine Reisekostentabelle.</div>
+<div class="prompt">
+<div class="lbl">Beispiel zum Kopieren</div>
+<p>Nimm alle PDFs im Ordner „Protokolle 2026". Erstelle daraus ein Word-Dokument: eine Seite Zusammenfassung in einfacher Sprache, danach eine Tabelle mit allen Beschlüssen (Datum, Beschluss, verantwortliche Person, Status). Zeig mir vorher deinen Plan.</p>
+<button type="button" class="copy">Prompt kopieren</button>
+</div>
+</div>
+
+<div class="feat">
+<div class="fnum">Feature 02 · Scheduled Tasks</div>
+<h3>Wiederkehrende Aufgaben, die ohne dich laufen</h3>
+<p>Du legst eine Aufgabe einmal an und bestimmst, wann sie läuft — täglich, wöchentlich, monatlich. ChatGPT erledigt sie im Hintergrund und meldet sich mit dem Ergebnis.</p>
+<div class="help"><b>Wo im Alltag?</b> Montags eine Kurz-Übersicht der Nachrichten zu deinem Thema. Freitags eine Erinnerung mit offenen To-dos aus deinen Notizen. Am Monatsersten die Ausgaben-Übersicht.</div>
+<div class="prompt">
+<div class="lbl">Beispiel zum Kopieren</div>
+<p>Richte eine wiederkehrende Aufgabe ein: jeden Montag um 7:00 Uhr. Suche die fünf wichtigsten Neuigkeiten zu „KI für kleine Vereine und Ehrenamt" der letzten sieben Tage und schreib mir zu jeder zwei Sätze in einfacher Sprache plus Quelle. Kein Fachjargon.</p>
+<button type="button" class="copy">Prompt kopieren</button>
+</div>
+</div>
+
+<div class="feat">
+<div class="fnum">Feature 03 · niedrigste Einstiegshürde</div>
+<h3>ChatGPT per WhatsApp — ohne App, ohne Konto</h3>
+<p>In der EU wieder verfügbar: Du speicherst die Nummer <strong>+1-800-242-8478</strong> als Kontakt und schreibst wie einem Menschen. Sprachnachrichten und Bilder gehen auch. Ein Konto ist optional — es hebt nur die Nutzungsgrenzen an.</p>
+<div class="help"><b>Wo im Alltag?</b> Genau das Feature für alle, die „keine neue App" wollen — Eltern, Nachbarn, Vereinskollegen. Foto vom Behördenbrief hinschicken und um eine Erklärung in einfacher Sprache bitten.</div>
+<div class="prompt">
+<div class="lbl">Beispiel zum Kopieren (als WhatsApp-Nachricht)</div>
+<p>Ich schicke dir ein Foto von einem Brief. Erklär mir in einfacher Sprache: Wer schreibt mir, was will man von mir, bis wann muss ich reagieren, und was passiert, wenn ich nichts tue? Danach: drei Sätze, die ich antworten kann.</p>
+<button type="button" class="copy">Prompt kopieren</button>
+</div>
+</div>
+
+<div class="where">
+<div class="row"><div class="k">Wo finden</div><div>Desktop-App: Umschalter oben — <b>Chat · Work · Codex</b>. Die alte Ansicht heißt jetzt „ChatGPT Classic".</div></div>
+<div class="row"><div class="k">Kosten</div><div>Work startete auf dem Desktop für alle Pläne; abgerechnet wird <b>nach Aufwand der Aufgabe</b>, nicht pauschal.</div></div>
+<div class="row"><div class="k">Achtung</div><div>Gruppenchats gibt es nicht mehr, und der <b>Atlas-Browser endet am 9. August 2026</b> — Lesezeichen vorher sichern.</div></div>
+</div>
+<div class="warn">Für uns in der EU wichtig: Bei „ChatGPT Sites" (Webseiten direkt aus ChatGPT veröffentlichen) war das <strong>öffentliche</strong> Veröffentlichen im EWR zum Start nicht freigeschaltet. Bauen und intern teilen geht, öffentlich publizieren noch nicht überall.</div>
+</div>
+
+<!-- ============ Cowork ============ -->
+<div class="panel" id="p2" role="tabpanel">
+<div class="tool-head">
+<div class="mark" style="background:#b85546">CW</div>
+<div>
+<h2>Claude Cowork</h2>
+<p>Desktop, Web und Handy · allgemein verfügbar seit 9. April 2026, seit 7. Juli auch in der Cloud · ab Pro-Plan</p>
+</div>
+</div>
+
+<div class="feat">
+<div class="fnum">Feature 01 · Ordnerzugriff</div>
+<h3>Claude arbeitet direkt in deinen Dateien — kein Hochladen mehr</h3>
+<p>Du gibst genau einen Ordner frei; darin darf Claude lesen, ändern und neu anlegen. Der Unterschied zum Chat in einem Satz: Chat erklärt dir den Weg, Cowork geht ihn.</p>
+<div class="help"><b>Wo im Alltag?</b> Chaotischer Downloads-Ordner wird sortiert und einheitlich benannt. Aus 30 Fotos und Notizen entsteht ein Vereinsbericht. Aus Screenshots wird eine Tabelle.</div>
+<div class="prompt">
+<div class="lbl">Beispiel zum Kopieren</div>
+<p>Arbeite nur im Ordner „Downloads". Sortiere alles in Unterordner nach Jahr und Thema. Benenne Rechnungen einheitlich um: JJJJ-MM-TT_Firma_Betrag.pdf. Lösche nichts. Schreib am Ende eine Datei UEBERSICHT.md mit allem, was du verschoben hast.</p>
+<button type="button" class="copy">Prompt kopieren</button>
+</div>
+</div>
+
+<div class="feat">
+<div class="fnum">Feature 02 · Cloud &amp; Handy (Beta, seit 7. Juli 2026)</div>
+<h3>Laptop zu — die Aufgabe läuft weiter</h3>
+<p>Seit 7. Juli laufen Cowork-Sitzungen standardmäßig in einer abgeschirmten, nur für diese Sitzung erzeugten Umgebung auf den Servern von Anthropic — die Arbeit geht also weiter, wenn du dein Gerät zuklappst. Cowork gibt es jetzt auch im Browser und als Handy-App: am Rechner starten, unterwegs nachschauen.</p>
+<div class="help"><b>Wo im Alltag?</b> Große Aufräum- oder Recherche-Aufgaben vor dem Weggehen anstoßen und beim Kaffee auf dem Handy abnehmen. Wichtig: An <b>lokale Dateien</b> kommt die Sitzung nur, solange die Desktop-App auf deinem Rechner offen ist — sonst läuft sie weiter, ohne deine Ordner zu sehen.</div>
+<div class="prompt">
+<div class="lbl">Beispiel zum Kopieren</div>
+<p>Das dauert länger, lass es in der Cloud laufen: Durchsuche die 40 PDFs im Ordner „Fördermittel" und baue eine Tabelle mit Programm, Frist, maximaler Summe, Zielgruppe und Link. Sortiere nach nächster Frist. Schick mir eine Zusammenfassung, wenn du fertig bist.</p>
+<button type="button" class="copy">Prompt kopieren</button>
+</div>
+</div>
+
+<div class="feat">
+<div class="fnum">Feature 03 · Nachvollziehbarkeit + /schedule</div>
+<h3>Jeder Schritt sichtbar — und monatlich von allein</h3>
+<p>Claude zeigt mit, welche Datei es öffnet, welches Werkzeug es nutzt und was es als Nächstes plant; du kannst jederzeit eingreifen oder es laufen lassen. Wiederkehrende Aufgaben legst du mit <strong>/schedule</strong> direkt in einer Aufgabe an (oder links über „Scheduled") — sie laufen in der Cloud, also auch bei zugeklapptem Rechner.</p>
+<div class="help"><b>Wo im Alltag?</b> Genau die Funktion, die aus „unheimlich" ein Werkzeug macht: Du siehst schwarz auf weiß, was passiert ist — Kontrolle statt Vertrauen auf gut Glück.</div>
+<div class="prompt">
+<div class="lbl">Beispiel zum Kopieren</div>
+/schedule — jeden Monatsersten: Lies die neuen Belege im Ordner „Belege", ergänze sie in „Kosten_2026.xlsx" (Datum, Anbieter, Betrag, Kategorie) und schreib mir drei Sätze, was auffällt. Frag nach, bevor du eine bestehende Zeile änderst.</p>
+<button type="button" class="copy">Prompt kopieren</button>
+</div>
+</div>
+
+<div class="where">
+<div class="row"><div class="k">Wo finden</div><div>Claude-App → Reiter <b>Cowork</b> neben Chat (Mac, Windows, Web, iPhone, Android). Ordner gibst du bewusst und einzeln frei — alles außerhalb bleibt unsichtbar.</div></div>
+<div class="row"><div class="k">Kosten</div><div>In allen bezahlten Plänen ab <b>Pro</b> enthalten. Als Modell läuft standardmäßig <b>Claude Opus 5</b>; Cloud-Sitzungen sind noch Beta und kommen zuerst bei Max an.</div></div>
+<div class="row"><div class="k">Wofür nicht</div><div>Nicht für Passwörter, Ausweisdaten oder Gesundheitsdaten. Gib immer den <b>kleinsten</b> Ordner frei, der reicht — und teste erst mit Kopien.</div></div>
+</div>
+<div class="warn">Ernst gemeinte Warnung: Ein Nutzer hat auf diesem Weg 15.000 Familienfotos verloren. Ein Agent, der löschen und umbenennen darf, tut das gründlich. Schreib „lösche nichts" in den Auftrag und arbeite anfangs nur mit Kopien.</div>
+</div>
+
+<!-- ============ Design ============ -->
+<div class="panel" id="p3" role="tabpanel">
+<div class="tool-head">
+<div class="mark" style="background:#5c9b82">CD</div>
+<div>
+<h2>Claude Design</h2>
+<p>Eigener Arbeitsbereich mit Leinwand · Forschungs-Vorschau seit 17. April 2026, ab Claude Pro</p>
+</div>
+</div>
+
+<div class="feat">
+<div class="fnum">Feature 01 · Von der Idee zum Klickbaren</div>
+<h3>Beschreiben statt gestalten — und es ist sofort anklickbar</h3>
+<p>Du beschreibst, was du brauchst; Claude baut eine erste funktionierende Version — Landingpage, Formular, Foliensatz, Ein-Seiter. Startpunkt kann auch ein Screenshot, eine bestehende Website oder eine Datei sein.</p>
+<div class="help"><b>Wo im Alltag?</b> Anmeldeseite fürs nächste Treffen. Ein-Seiter für die Stadt, mit dem du Räume beantragst. Ein Aushang, den man am Handy lesen kann.</div>
+<div class="prompt">
+<div class="lbl">Beispiel zum Kopieren</div>
+<p>Baue eine einseitige Anmeldeseite für unser Nachbarschafts-KI-Treffen: Titel, drei Sätze Erklärung, Termin und Ort, ein Formular (Name, E-Mail, Erfahrungslevel) und ein Feld „Welche Aufgabe nervt dich?". Freundlich, ruhig, gut lesbar auf dem Handy, große Schrift.</p>
+<button type="button" class="copy">Prompt kopieren</button>
+</div>
+</div>
+
+<div class="feat">
+<div class="fnum">Feature 02 · Ändern ohne Code</div>
+<h3>Kommentar hinschreiben, Regler ziehen, fertig</h3>
+<p>Du korrigierst nicht per langer Erklärung, sondern direkt: Kommentar an die Stelle setzen, Text im Entwurf anfassen und überschreiben — oder die Schieberegler nutzen, die Claude passend zum Layout selbst erzeugt (etwa für Abstände und Größen).</p>
+<div class="help"><b>Wo im Alltag?</b> „Diese Überschrift ist zu klein für meine Mutter" ist eine gültige Anweisung. Genau so arbeitet man hier — in normaler Sprache, am richtigen Element.</div>
+<div class="prompt">
+<div class="lbl">Beispiel zum Kopieren</div>
+<p>Mach die Schrift überall so groß, dass man sie ohne Brille lesen kann, und erhöhe den Abstand zwischen den Abschnitten. Zeig mir zwei Varianten: eine sehr ruhige und eine mit mehr Farbe. Der Anmelde-Knopf soll auf jedem Handy sichtbar bleiben.</p>
+<button type="button" class="copy">Prompt kopieren</button>
+</div>
+</div>
+
+<div class="feat">
+<div class="fnum">Feature 03 · Wiedererkennbar &amp; weiterverwendbar</div>
+<h3>Dein Look wird übernommen — und du kommst wieder heraus</h3>
+<p>Claude Design kann eure Farben, Schriften und Bausteine aus vorhandenen Dateien, einer Website oder einem Design-System übernehmen, sodass jedes neue Dokument automatisch nach euch aussieht. Fertiges lässt sich exportieren (u.&nbsp;a. HTML/CSS, React, SVG), in Canva weiterbearbeiten oder als Paket an Claude Code zur Umsetzung übergeben.</p>
+<div class="help"><b>Wo im Alltag?</b> Einmal Vereinsfarben und Logo einlesen — danach sehen Einladung, Aushang und Folien wie aus einer Hand aus. Kein Nachbauen bei jedem Anlass.</div>
+<div class="prompt">
+<div class="lbl">Beispiel zum Kopieren</div>
+<p>Hier ist unsere Website und unser Logo. Übernimm Farben und Schriften daraus als festen Stil. Erstelle damit drei Dinge im gleichen Look: eine Einladung als Ein-Seiter, einen Aushang im Hochformat und fünf Folien für den Rückblick. Am Ende alles zum Herunterladen.</p>
+<button type="button" class="copy">Prompt kopieren</button>
+</div>
+</div>
+
+<div class="where">
+<div class="row"><div class="k">Wo finden</div><div>Eigenes Fenster mit eigener Adresse — <b>nicht</b> im normalen Chat versteckt. Verbrauch wird separat gezählt.</div></div>
+<div class="row"><div class="k">Kosten</div><div>Forschungs-Vorschau für <b>Pro, Max, Team und Enterprise</b>. Kein kostenloser Zugang.</div></div>
+<div class="row"><div class="k">Grenzen</div><div>Prototypen sind Entwürfe: schnell und überzeugend, aber vor dem echten Einsatz prüfen — besonders bei Formularen und persönlichen Daten.</div></div>
+</div>
+</div>
+
+<div class="px" style="padding-top:30px;padding-bottom:0">
+<div class="eyebrow" style="color:#5c9b82">Dein Einstieg in 15 Minuten</div>
+<h2 style="font-size:22px;color:#1c1e33;font-weight:700;padding-top:8px">Wenn du nur eine Sache ausprobierst, dann diese</h2>
+<ol class="steps">
+<li>Lege einen <b>Testordner</b> auf dem Schreibtisch an und kopiere ein paar unwichtige Dateien hinein — nie mit Originalen anfangen.</li>
+<li>Gib genau diesen Ordner frei und nimm den <b>ersten Prompt aus dem Cowork-Reiter</b>. Lies mit, was passiert.</li>
+<li>Bring das Ergebnis zum nächsten Treffen mit — auch wenn es schiefgegangen ist. <b>Daraus lernen alle am meisten.</b></li>
+</ol>
+</div>
+
+<div class="px" style="padding-top:30px;padding-bottom:0">
+<a class="back" href="index.html">
+<div class="eyebrow">Seite ① · Zurück zum Newsletter</div>
+<h2>Die 5 KI-Ereignisse der letzten 4 Wochen</h2>
+<p>Neue EU-Kennzeichnungspflicht, neue Modelle, ein Sicherheits-Weckruf — jeweils mit „was heißt das für dich".</p>
+<span>← Zur Übersicht</span>
+</a>
+</div>
+
+<footer class="px" style="padding-top:30px">
+<div class="foot">
+<div class="t">Q21 KI_HUB · Quartier21</div>
+<p>Stand: 3. August 2026 · Fragen? <a href="mailto:gf@startvisor.ai" style="color:#8a8b96">gf@startvisor.ai</a><br />Funktionen und Verfügbarkeiten ändern sich derzeit wöchentlich — was hier steht, ist der Stand bei Redaktionsschluss. Prüfe vor wichtigen Entscheidungen selbst nach.</p>
+</div>
+</footer>
+
+</div>
+<div class="stamp">Nachbarschafts-KI-Community</div>
+</div>
+
+<script>
+document.querySelector('.tabs').addEventListener('click',function(e){
+  var b=e.target.closest('button'); if(!b) return;
+  this.querySelectorAll('button').forEach(function(x){x.setAttribute('aria-selected',String(x===b))});
+  document.querySelectorAll('.panel').forEach(function(p){p.classList.toggle('on',p.id===b.dataset.p)});
+});
+document.addEventListener('click',function(e){
+  var b=e.target.closest('.copy'); if(!b) return;
+  var t=b.parentElement.querySelector('p').innerText.trim();
+  var done=function(){b.textContent='Kopiert ✓';b.classList.add('done');setTimeout(function(){b.textContent='Prompt kopieren';b.classList.remove('done')},1800)};
+  if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(t).then(done,function(){fb()})}else{fb()}
+  function fb(){var a=document.createElement('textarea');a.value=t;document.body.appendChild(a);a.select();try{document.execCommand('copy');done()}catch(x){b.textContent='Bitte manuell markieren'}a.remove()}
+});
+</script>
+</body>
+</html>
