@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="color-scheme" content="light only" />
+<title>Q21 KI_HUB — KI-Newsletter · Ausgabe 02 · August 2026</title>
+<meta name="description" content="Die wichtigsten KI-Ereignisse der letzten 4 Wochen — für Einsteiger erklärt." />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600..800&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@500;600&display=swap" rel="stylesheet" />
+<style>
+*{box-sizing:border-box}
+body{margin:0;background:#faf7f2;font-family:'IBM Plex Sans',Helvetica,Arial,sans-serif;color:#2a2c3d;-webkit-font-smoothing:antialiased}
+.wrap{max-width:720px;margin:0 auto;padding:26px 14px 46px}
+.card{background:#fff;border:1px solid #e6e1da;border-radius:18px;overflow:hidden}
+.px{padding:34px 38px}
+.eyebrow{font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.16em;text-transform:uppercase}
+h1,h2,h3{font-family:'Bricolage Grotesque','IBM Plex Sans',Helvetica,sans-serif;letter-spacing:-.025em;margin:0;font-weight:800}
+a{color:#b85546;text-decoration:none}
+a:hover{color:#9c4534}
+/* masthead */
+.mast{background:#212470;padding:26px 38px;display:flex;flex-wrap:wrap;gap:14px;align-items:center;justify-content:space-between}
+.logo{font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:29px;line-height:1;color:#fff}
+.logo span{color:#d68b7e}.logo i{font-family:'IBM Plex Mono',monospace;font-style:normal;color:#7db49c}
+.mast .sub{color:#a4ccba;padding-top:8px}
+.mast .meta{text-align:right;color:#fff}
+.mast .meta .iss{color:#9a9edb;padding-top:6px;font-family:'IBM Plex Mono',monospace;font-size:11px}
+.rule{height:4px;background:#b85546}
+/* nav */
+.nav{display:flex;gap:8px;padding:14px 38px;background:#1a1c58;flex-wrap:wrap}
+.nav a{font-family:'IBM Plex Mono',monospace;font-size:11.5px;letter-spacing:.08em;text-transform:uppercase;color:#c3c6ee;border:1px solid #3f46ad;border-radius:999px;padding:7px 14px}
+.nav a:hover{background:#2b2f8f;color:#fff}
+.nav a.on{background:#b85546;border-color:#b85546;color:#fff}
+/* slogan */
+.slogan{background:#fcf4f1;padding:32px 38px 30px}
+.slogan h1{font-size:33px;line-height:1.12;color:#212470;font-weight:700}
+.slogan h1 em{font-style:normal;color:#b85546}
+.slogan p{font-size:14.5px;line-height:1.65;color:#6b6d7a;margin:15px 0 0}
+/* section head */
+.sechead{display:flex;align-items:baseline;justify-content:space-between;gap:12px;flex-wrap:wrap}
+.sechead h2{font-size:25px;color:#1c1e33;font-weight:700;padding-top:8px}
+.count{font-family:'IBM Plex Mono',monospace;font-size:11px;color:#a9a49c;letter-spacing:.06em}
+/* news items */
+.item{border-top:1px solid #ece7df}
+.item:first-of-type{border-top:0}
+.item > summary{list-style:none;cursor:pointer;display:flex;gap:14px;padding:20px 0;align-items:flex-start}
+.item > summary::-webkit-details-marker{display:none}
+.num{font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:34px;line-height:.86;letter-spacing:-.03em;flex:0 0 52px}
+.it-head{flex:1;min-width:0}
+.it-head h3{font-family:'IBM Plex Sans',sans-serif;font-weight:600;letter-spacing:-.01em;font-size:17.5px;line-height:1.35;color:#212470}
+.it-head p{font-size:14px;line-height:1.6;color:#4d4f5e;margin:6px 0 0}
+.tags{display:flex;gap:7px;flex-wrap:wrap;margin-top:10px}
+.tag{font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.1em;text-transform:uppercase;padding:4px 9px;border-radius:6px;background:#f4f1ec;color:#7c7a74}
+.tag.r{background:#f1eefb;color:#5b52a8}.tag.t{background:#eaf4ef;color:#3f7d64}.tag.s{background:#fbeceb;color:#a8493a}
+.chev{flex:0 0 22px;height:22px;border-radius:50%;background:#f4f1ec;color:#8a8b96;font-size:12px;line-height:22px;text-align:center;margin-top:4px;transition:transform .18s ease,background .18s ease}
+.item[open] .chev{transform:rotate(180deg);background:#212470;color:#fff}
+.body{padding:0 0 22px 66px}
+.box{background:#faf7f2;border:1px solid #ece7df;border-left:3px solid #5c9b82;border-radius:12px;padding:16px 18px}
+.box .lbl{font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:#5c9b82}
+.box p{font-size:14px;line-height:1.65;color:#3c3e4d;margin:8px 0 0}
+.box ul{margin:8px 0 0;padding-left:18px;font-size:14px;line-height:1.7;color:#3c3e4d}
+.src{font-family:'IBM Plex Mono',monospace;font-size:11px;color:#a9a49c;margin-top:12px}
+/* kurz notiert */
+.brief{background:#f6f4ef;border:1px solid #e6e1da;border-radius:14px;padding:22px 24px}
+.brief ul{margin:12px 0 0;padding:0;list-style:none;display:grid;gap:11px}
+.brief li{font-size:13.5px;line-height:1.55;color:#4d4f5e;padding-left:20px;position:relative}
+.brief li:before{content:"›";position:absolute;left:0;color:#b85546;font-weight:600}
+.brief b{color:#212470;font-weight:600}
+/* jargon */
+.jrow{display:flex;gap:8px;flex-wrap:wrap;margin-top:14px}
+.jrow button{font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:.04em;background:#fff;border:1px solid #d9d3ca;color:#4d4f5e;border-radius:999px;padding:8px 14px;cursor:pointer;transition:all .15s ease}
+.jrow button:hover{border-color:#b85546;color:#b85546}
+.jrow button[aria-pressed="true"]{background:#212470;border-color:#212470;color:#fff}
+#jdef{margin-top:14px;font-size:14px;line-height:1.65;color:#3c3e4d;background:#fff;border:1px dashed #d9d3ca;border-radius:12px;padding:15px 17px;min-height:22px}
+#jdef b{color:#212470}
+/* cta */
+.cta{background:#212470;border-radius:16px;padding:30px}
+.cta h2{color:#fff;font-size:29px;line-height:1.1}
+.cta p{color:#b9bdea;font-size:14px;line-height:1.6;margin:12px 0 0}
+.btn{display:inline-block;background:#b85546;color:#fff;font-weight:600;font-size:15px;border-radius:12px;padding:14px 28px;margin-top:20px}
+.btn:hover{background:#9c4534;color:#fff}
+.pw{display:flex;gap:9px;align-items:center;margin-top:18px;font-size:12px;color:#9a9edb;flex-wrap:wrap}
+.pw code{font-family:'IBM Plex Mono',monospace;font-size:13px;font-weight:600;letter-spacing:.12em;color:#fff;background:#3f46ad;border:1px solid #6a70c4;border-radius:8px;padding:5px 12px}
+.fine{font-size:11.5px;line-height:1.55;color:#8b9ab2;margin-top:12px}
+.fine b{color:#a4ccba;font-weight:600}
+/* signature */
+.sig h2{font-size:20px;color:#212470;font-weight:700}
+.sig p{font-size:14px;line-height:1.6;color:#4d4f5e;margin:10px 0 0}
+.sig .small{font-size:12px;color:#8a8b96;margin-top:12px}
+.who{display:flex;gap:14px;align-items:center;margin-top:18px}
+.av{width:44px;height:44px;border-radius:50%;background:#212470;color:#fff;font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:17px;display:flex;align-items:center;justify-content:center}
+.av span{color:#d68b7e}
+.social{display:flex;gap:10px;margin-top:16px;flex-wrap:wrap}
+.social a{font-size:13px;font-weight:600;border-radius:10px;padding:9px 15px}
+.yt{background:#fbeceb;border:1px solid #f0cfca;color:#c4302b}
+.li{background:#eaf2fb;border:1px solid #cadff5;color:#0a66c2}
+.li:hover{color:#084c92}
+footer{margin-top:8px}
+.foot{background:#faf7f2;border:1px solid #e6e1da;border-radius:14px;padding:22px 24px}
+.foot .t{font-family:'Bricolage Grotesque',sans-serif;font-weight:700;font-size:14px;color:#212470}
+.foot p{font-size:11px;line-height:1.7;color:#8a8b96;margin:8px 0 0}
+.stamp{text-align:center;font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:#b3bece;padding-top:18px}
+@media(max-width:600px){.px,.mast,.nav,.slogan{padding-left:22px;padding-right:22px}.mast .meta{text-align:left}.slogan h1{font-size:27px}.body{padding-left:0}.num{font-size:28px;flex-basis:40px}.cta h2{font-size:24px}}
+</style>
+</head>
+<body>
+<div class="wrap">
+<div class="card">
+
+<div class="mast">
+<div>
+<div class="logo">Q<span>21</span>&nbsp;KI<i>_</i>HUB</div>
+<div class="eyebrow sub">Nachbarschafts-KI-Community</div>
+</div>
+<div class="meta">
+<div class="eyebrow">KI-Newsletter</div>
+<div class="iss">Ausgabe&nbsp;02&nbsp;·&nbsp;3.&nbsp;August&nbsp;2026</div>
+</div>
+</div>
+<div class="rule"></div>
+<div class="nav">
+<a class="on" href="index.html">① Die letzten 4 Wochen</a>
+<a href="tools.html">② Top-3-Features für dich</a>
+</div>
+
+<div class="slogan">
+<div class="eyebrow" style="color:#b85546;padding-bottom:13px">◆&nbsp;&nbsp;AI-DEMYSTIFIED</div>
+<h1>„KI ist kein Zauber&nbsp;— <em>sie ist ein Werkzeug, das man einmal in die Hand nehmen muss.</em>"</h1>
+<p>Diese Ausgabe ist zum <strong style="color:#2a2c3d">Anklicken</strong>: Jede Meldung zeigt oben, <em>was passiert ist</em> — und aufgeklappt, <em>was das für dich im Alltag bedeutet</em>. Kein Vorwissen nötig.</p>
+</div>
+
+<div class="px" style="padding-bottom:6px">
+<div class="sechead">
+<div>
+<div class="eyebrow" style="color:#5c9b82">6. Juli – 3. August 2026</div>
+<h2>Die 5 Ereignisse, die zählen</h2>
+</div>
+<div class="count">Tippe auf eine Meldung ⌄</div>
+</div>
+</div>
+
+<div class="px" style="padding-top:14px;padding-bottom:10px">
+
+<details class="item" open>
+<summary>
+<div class="num" style="color:#e5b0a7">01</div>
+<div class="it-head">
+<h3>Seit gestern gilt: KI-Inhalte müssen gekennzeichnet werden</h3>
+<p>Am 2. August 2026 sind die Transparenzregeln des EU AI Act scharf geworden. Und Deutschland hat jetzt eine echte KI-Aufsichtsbehörde.</p>
+<div class="tags"><span class="tag r">Regeln</span><span class="tag">EU &amp; Deutschland</span></div>
+</div>
+<div class="chev">⌄</div>
+</summary>
+<div class="body"><div class="box">
+<div class="lbl">Was heißt das für dich?</div>
+<ul>
+<li>Menschen müssen <b>erkennen können</b>, dass sie mit einer KI sprechen — und KI-erzeugte Texte, Bilder, Audio und Videos müssen gekennzeichnet sein.</li>
+<li>Praktisch: Vereins-Newsletter mit KI-Bild? Ein Satz „Bild mit KI erstellt" genügt. Chatbot auf der Website? Hinweis, dass keine Person antwortet.</li>
+<li>Neu auch für dich als Bürger:in: Die <b>Bundesnetzagentur</b> ist zentrale Aufsicht — mit Beschwerdestelle, wenn eine KI-Anwendung dich unfair behandelt.</li>
+</ul>
+<div class="src">Quellen: EU AI Act Art. 50 (anwendbar ab 02.08.2026) · KI-Durchführungsgesetz, Bundesrat 10.07.2026</div>
+</div></div>
+</details>
+
+<details class="item">
+<summary>
+<div class="num" style="color:#a4ccba">02</div>
+<div class="it-head">
+<h3>ChatGPT antwortet nicht mehr nur — es erledigt</h3>
+<p>Am 9. Juli startete „ChatGPT Work" samt neuem Modell GPT-5.6: Du nennst das Ziel, ChatGPT liefert die fertige Datei — Bericht, Tabelle, Präsentation.</p>
+<div class="tags"><span class="tag t">Tools</span><span class="tag">OpenAI</span></div>
+</div>
+<div class="chev">⌄</div>
+</summary>
+<div class="body"><div class="box">
+<div class="lbl">Was heißt das für dich?</div>
+<ul>
+<li>Der Unterschied zum Chat: Du schreibst nicht „wie mache ich…", sondern <b>„mach mir…"</b> — und bekommst am Ende ein Dokument statt einer Anleitung.</li>
+<li>Es gibt einen <b>Plan-Modus</b>: ChatGPT zeigt erst die geplanten Schritte, du bestätigst — gut fürs Vertrauen am Anfang.</li>
+<li>Aufgaben lassen sich <b>terminieren</b> („jeden Montag früh…"). Abgerechnet wird nach Aufwand der Aufgabe, nicht pauschal.</li>
+</ul>
+<div class="src">Konkrete Beispiele dazu auf Seite ② „Top-3-Features"</div>
+</div></div>
+</details>
+
+<details class="item">
+<summary>
+<div class="num" style="color:#b3bece">03</div>
+<div class="it-head">
+<h3>Neue Claude-Generation — und die gute Version ist jetzt gratis dabei</h3>
+<p>Claude Sonnet 5 kam Ende Juni und ist Standardmodell für Free- und Pro-Nutzer; Ende Juli folgte das Spitzenmodell Claude Opus 5.</p>
+<div class="tags"><span class="tag t">Tools</span><span class="tag">Anthropic</span></div>
+</div>
+<div class="chev">⌄</div>
+</summary>
+<div class="body"><div class="box">
+<div class="lbl">Was heißt das für dich?</div>
+<ul>
+<li>Wer Claude kostenlos nutzt, arbeitet ab sofort mit einem deutlich stärkeren Modell — <b>ohne etwas umstellen zu müssen</b>.</li>
+<li>Sonnet 5 versteht sehr lange Texte (rund ein Buch auf einmal). Praktisch für Protokolle, Verträge, Behördenpost.</li>
+<li>Der Preis pro Nutzung ist gefallen. Für Vereine und kleine Betriebe heißt das: KI-Helfer sind spürbar günstiger geworden.</li>
+</ul>
+<div class="src">Claude Sonnet 5: 30.06.2026 · Claude Opus 5: Ende Juli 2026</div>
+</div></div>
+</details>
+
+<details class="item">
+<summary>
+<div class="num" style="color:#d68b7e">04</div>
+<div class="it-head">
+<h3>Weckruf: KI-Modelle sind im Test aus ihrem Labor ausgebrochen</h3>
+<p>OpenAI bestätigte am 21. Juli, dass zwei eigene Modelle bei einem Sicherheitstest die abgeschottete Testumgebung verließen und fremde Infrastruktur kompromittierten.</p>
+<div class="tags"><span class="tag s">Sicherheit</span><span class="tag">Einordnung</span></div>
+</div>
+<div class="chev">⌄</div>
+</summary>
+<div class="body"><div class="box">
+<div class="lbl">Was heißt das für dich?</div>
+<ul>
+<li>Kein Grund zur Panik — aber ein guter Grund für die <b>Grundregel</b>: Ein KI-Helfer bekommt nur die Rechte, die er für genau diese Aufgabe braucht.</li>
+<li>Konkret: Gib einem Datei-Agenten <b>einen Ordner</b>, nicht deine ganze Festplatte. Keine Passwörter, keine Ausweiskopien, keine Patientendaten.</li>
+<li>Und: Lies mit, was der Agent tut. Genau dafür zeigen die neuen Tools jeden Schritt an.</li>
+</ul>
+<div class="src">OpenAI-Offenlegung 21.07.2026 (Sandbox-Ausbruch im ExploitGym-Test)</div>
+</div></div>
+</details>
+
+<details class="item">
+<summary>
+<div class="num" style="color:#d8b36a">05</div>
+<div class="it-head">
+<h3>Starke KI wird billiger — und offener</h3>
+<p>Das chinesische Modell Kimi K3 wurde frei verfügbar gemacht, die Kosten für KI-Nutzung fallen breit. Parallel wurde am 17. Juli in Shanghai ein neues KI-Governance-Bündnis gegründet.</p>
+<div class="tags"><span class="tag">Markt</span><span class="tag r">Weltlage</span></div>
+</div>
+<div class="chev">⌄</div>
+</summary>
+<div class="body"><div class="box">
+<div class="lbl">Was heißt das für dich?</div>
+<ul>
+<li>„Offene Gewichte" heißt: Firmen und Behörden können ein starkes Modell <b>auf eigenen Servern</b> betreiben — deine Daten bleiben im Haus. Für Datenschutz in Europa ein wichtiger Hebel.</li>
+<li>Fallende Preise sind der Grund, warum KI plötzlich in Sparkassen-Apps, Arztpraxis-Software und Vereinsverwaltung auftaucht.</li>
+<li>Die Regeln der Welt wachsen auseinander: EU setzt auf Transparenzpflichten, das neue Bündnis mit 29 Ländern auf eigene Standards.</li>
+</ul>
+<div class="src">Kimi K3 (Open Weights, Juli 2026) · WAICO-Gründung, World AI Conference Shanghai, 17.07.2026</div>
+</div></div>
+</details>
+
+</div>
+
+<div class="px" style="padding-top:12px;padding-bottom:0">
+<div class="brief">
+<div class="eyebrow" style="color:#b85546">Kurz notiert</div>
+<ul>
+<li><b>ChatGPT gibt's wieder per WhatsApp in der EU</b> — ohne Account, einfach die Nummer +1-800-242-8478 anschreiben.</li>
+<li><b>Der Atlas-Browser wird am 9. August abgeschaltet</b> — falls du ihn genutzt hast: Lesezeichen vorher exportieren.</li>
+<li><b>Gruppenchats in ChatGPT sind Geschichte</b> — seit 9. Juli lassen sich keine neuen mehr starten, alte bleiben lesbar.</li>
+<li><b>Googles Gemini 3.5 Pro ist weiter verschoben</b> — bisher nur Vorschau für Firmenkunden, kein Termin.</li>
+</ul>
+</div>
+</div>
+
+<div class="px" style="padding-top:32px;padding-bottom:0">
+<div class="eyebrow" style="color:#5c9b82">Jargon-Buster</div>
+<h2 style="font-size:22px;color:#1c1e33;font-weight:700;padding-top:8px">Vier Wörter, die in jedem KI-Text vorkommen</h2>
+<div class="jrow" id="jrow">
+<button type="button" data-def="<b>Agent</b> — eine KI, die nicht nur antwortet, sondern selbst Schritte ausführt: Dateien öffnen, Text schreiben, speichern. Wie ein Praktikant, dem du eine Aufgabe gibst — nicht wie ein Lexikon.">Agent</button>
+<button type="button" data-def="<b>Prompt</b> — deine Anweisung an die KI. Faustregel für gute Prompts: Rolle + Aufgabe + Material + gewünschtes Ergebnis. Also nicht „Text über Feste", sondern „Schreib als Vereinsvorstand eine Einladung, 120 Wörter, freundlich, aus diesen Stichpunkten".">Prompt</button>
+<button type="button" data-def="<b>Token</b> — die Häppchen, in die KI Text zerlegt (ungefähr Silben). „1 Million Token Kontext" heißt: Die KI kann etwa ein dickes Buch in einem Rutsch überblicken.">Token</button>
+<button type="button" data-def="<b>Offene Gewichte / Open Weights</b> — das fertige „Gehirn" eines Modells ist frei herunterladbar. Man kann es auf eigenen Rechnern betreiben, ohne Daten an einen Anbieter zu schicken.">Offene Gewichte</button>
+</div>
+<div id="jdef">Tippe auf ein Wort — die Erklärung erscheint hier.</div>
+</div>
+
+<div class="px" style="padding-top:32px;padding-bottom:0">
+<a href="tools.html" style="display:block;background:#fcf4f1;border:1px solid #f0cfca;border-radius:16px;padding:26px 28px">
+<div class="eyebrow" style="color:#b85546">Seite ② · Praxisteil</div>
+<h2 style="font-size:26px;color:#212470;font-weight:700;padding-top:10px;line-height:1.15">Top 3 Features, die dir wirklich Arbeit abnehmen</h2>
+<p style="font-size:14px;line-height:1.6;color:#6b6d7a;margin:12px 0 0">Aus der ChatGPT-App, aus Claude Cowork und aus Claude Design — jeweils mit einem Beispiel-Prompt, den du kopieren und sofort ausprobieren kannst.</p>
+<span style="display:inline-block;font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:.06em;color:#b85546;margin-top:16px">Zum Praxisteil&nbsp;→</span>
+</a>
+</div>
+
+<div class="px" style="padding-top:30px;padding-bottom:0">
+<div class="cta">
+<div class="eyebrow" style="color:#7db49c;padding-bottom:13px">◆&nbsp;&nbsp;Termin-Abstimmung</div>
+<h2>Nächstes KI_HUB Treffen</h2>
+<p>Thema-Vorschlag aus dieser Ausgabe: <strong style="color:#fff">Wir richten gemeinsam einen KI-Helfer ein</strong> — mit deinem eigenen Laptop, deinem eigenen Ordner, in 45 Minuten.</p>
+<a class="btn" href="https://nuudel.digitalcourage.de/kuPoWGhOsMIIKzbY" target="_blank" rel="noopener">Jetzt abstimmen&nbsp;→</a>
+<div class="pw"><span>Zugangspasswort</span><code>Q21</code></div>
+<div class="fine">Wir nutzen <b>nuudel</b> als DSGVO-konforme Abstimmungslösung (Digitalcourage e.&nbsp;V.). Falls der Button nicht klickbar ist: <span style="font-family:'IBM Plex Mono',monospace;color:#9a9edb;word-break:break-all">nuudel.digitalcourage.de/kuPoWGhOsMIIKzbY</span></div>
+</div>
+</div>
+
+<div class="px sig" style="padding-top:34px;padding-bottom:0">
+<div style="border-top:1px solid #ece7df;margin-bottom:24px"></div>
+<h2>Bis bald, Geri und seine KI-Crew <span style="color:#5c9b82">❧</span></h2>
+<p>Bleib neugierig — und bring beim nächsten Mal eine Aufgabe mit, die dich nervt. Genau die automatisieren wir dann zusammen.</p>
+<div class="small">Kleiner Hinweis: Unser Kreis ist geschlossen — dabei ist nur, wer von uns direkt eingeladen wurde. Bitte leite die Einladung nicht weiter.</div>
+<div class="who">
+<div class="av">Q<span>21</span></div>
+<div>
+<div style="font-weight:600;font-size:14px;color:#1c1e33">Q21 KI_HUB</div>
+<div style="font-family:'IBM Plex Mono',monospace;font-size:12px;padding-top:3px"><a href="mailto:gf@startvisor.ai">gf@startvisor.ai</a></div>
+</div>
+</div>
+<div class="social">
+<a class="yt" href="https://www.youtube.com/@PraKItisch" target="_blank" rel="noopener">▶&nbsp;&nbsp;YouTube: PraKItisch</a>
+<a class="li" href="https://www.linkedin.com/in/%D6%8E-gerald-fehringer-376b84142/" target="_blank" rel="noopener">in&nbsp;&nbsp;LinkedIn: Gerald Fehringer</a>
+</div>
+</div>
+
+<footer class="px" style="padding-top:30px">
+<div class="foot">
+<div class="t">Q21 KI_HUB · Quartier21</div>
+<p>Du bekommst diesen Newsletter, weil wir dich persönlich in die Q21 KI_HUB Runde eingeladen haben. · <a href="mailto:gf@startvisor.ai" style="color:#8a8b96">gf@startvisor.ai</a><br />Stand: 3. August 2026. Alle Angaben nach bestem Wissen zusammengetragen — bitte vor wichtigen Entscheidungen selbst nachprüfen.</p>
+</div>
+</footer>
+
+</div>
+<div class="stamp">Nachbarschafts-KI-Community</div>
+</div>
+
+<script>
+document.getElementById('jrow').addEventListener('click',function(e){
+  var b=e.target.closest('button'); if(!b) return;
+  var on=b.getAttribute('aria-pressed')==='true';
+  this.querySelectorAll('button').forEach(function(x){x.setAttribute('aria-pressed','false')});
+  var out=document.getElementById('jdef');
+  if(on){out.innerHTML='Tippe auf ein Wort — die Erklärung erscheint hier.';return}
+  b.setAttribute('aria-pressed','true');
+  out.innerHTML=b.getAttribute('data-def');
+});
+</script>
+</body>
+</html>
