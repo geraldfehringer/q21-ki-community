@@ -72,10 +72,19 @@ a:hover{color:#9c4534}
 .back p{color:#b9bdea;font-size:14px;line-height:1.6;margin:12px 0 0}
 .back span{display:inline-block;font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:.06em;color:#d68b7e;margin-top:16px}
 .foot{background:#faf7f2;border:1px solid #e6e1da;border-radius:14px;padding:22px 24px}
+.linkbox{background:#fcf4f1;border:1px solid #f0cfca;border-radius:16px;padding:26px 28px}
+.linkbox .t{font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:22px;color:#212470}
+.linkbox .d{font-size:13.5px;line-height:1.6;color:#6b6d7a;margin:8px 0 0}
+.linkgrid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:16px}
+.lk{font-size:13px;font-weight:600;border-radius:10px;padding:11px 15px;display:block}
+.yt2{background:#fbeceb;border:1px solid #f0cfca;color:#c4302b}
+.bl{background:#eef0fb;border:1px solid #d6dbf5;color:#3f46ad}
+.hf{background:#eaf4ef;border:1px solid #cfe6da;color:#3f7d64}
+.pl{background:#fbf3e0;border:1px solid #f0ddab;color:#8a6a2f}
 .foot .t{font-family:'Bricolage Grotesque',sans-serif;font-weight:700;font-size:14px;color:#212470}
 .foot p{font-size:11px;line-height:1.7;color:#8a8b96;margin:8px 0 0}
 .stamp{text-align:center;font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:#b3bece;padding-top:18px}
-@media(max-width:600px){.px,.mast,.nav,.intro,.tabs,.panel{padding-left:22px;padding-right:22px}.mast .meta{text-align:left}.intro h1{font-size:26px}.tabs button{font-size:12.5px;padding:10px 14px}.where .k{flex-basis:80px}}
+@media(max-width:600px){.px,.mast,.nav,.intro,.tabs,.panel{padding-left:22px;padding-right:22px}.mast .meta{text-align:left}.intro h1{font-size:26px}.tabs button{font-size:12.5px;padding:10px 14px}.where .k{flex-basis:80px}.linkgrid{grid-template-columns:1fr}}
 </style>
 </head>
 <body>
@@ -89,13 +98,14 @@ a:hover{color:#9c4534}
 </div>
 <div class="meta">
 <div class="eyebrow">Praxisteil</div>
-<div class="iss">Ausgabe&nbsp;02&nbsp;·&nbsp;3.&nbsp;August&nbsp;2026</div>
+<div class="iss">Ausgabe&nbsp;02&nbsp;·&nbsp;5.&nbsp;August&nbsp;2026</div>
 </div>
 </div>
 <div class="rule"></div>
 <div class="nav">
 <a href="index.html">① Die letzten 4 Wochen</a>
 <a class="on" href="tools.html">② Top-3-Features für dich</a>
+<a href="mein-stack.html">③ Mein KI-Stack</a>
 </div>
 
 <div class="intro">
@@ -159,7 +169,7 @@ a:hover{color:#9c4534}
 <div class="where">
 <div class="row"><div class="k">Wo finden</div><div>Desktop-App: Umschalter oben — <b>Chat · Work · Codex</b>. Die alte Ansicht heißt jetzt „ChatGPT Classic".</div></div>
 <div class="row"><div class="k">Kosten</div><div>Work startete auf dem Desktop für alle Pläne; abgerechnet wird <b>nach Aufwand der Aufgabe</b>, nicht pauschal.</div></div>
-<div class="row"><div class="k">Achtung</div><div>Gruppenchats gibt es nicht mehr, und der <b>Atlas-Browser endet am 9. August 2026</b> — Lesezeichen vorher sichern.</div></div>
+<div class="row"><div class="k">Achtung</div><div>Gruppenchats gibt es nicht mehr, und der <b>Atlas-Browser endet in wenigen Tagen, am 9. August 2026</b> — Lesezeichen vorher sichern.</div></div>
 </div>
 <div class="warn">Für uns in der EU wichtig: Bei „ChatGPT Sites" (Webseiten direkt aus ChatGPT veröffentlichen) war das <strong>öffentliche</strong> Veröffentlichen im EWR zum Start nicht freigeschaltet. Bauen und intern teilen geht, öffentlich publizieren noch nicht überall.</div>
 </div>
@@ -170,7 +180,7 @@ a:hover{color:#9c4534}
 <div class="mark" style="background:#b85546">CW</div>
 <div>
 <h2>Claude Cowork</h2>
-<p>Desktop, Web und Handy · allgemein verfügbar seit 9. April 2026, seit 7. Juli auch in der Cloud · ab Pro-Plan</p>
+<p>Desktop, Web und Handy · allgemein verfügbar seit 9. April 2026, seit 7. Juli auch in der Cloud · ab Pro-Plan — in unserer Runde derzeit nicht im Einsatz, mehr dazu auf Seite ③</p>
 </div>
 </div>
 
@@ -212,7 +222,7 @@ a:hover{color:#9c4534}
 
 <div class="where">
 <div class="row"><div class="k">Wo finden</div><div>Claude-App → Reiter <b>Cowork</b> neben Chat (Mac, Windows, Web, iPhone, Android). Ordner gibst du bewusst und einzeln frei — alles außerhalb bleibt unsichtbar.</div></div>
-<div class="row"><div class="k">Kosten</div><div>In allen bezahlten Plänen ab <b>Pro</b> enthalten. Als Modell läuft standardmäßig <b>Claude Opus 5</b>; Cloud-Sitzungen sind noch Beta und kommen zuerst bei Max an.</div></div>
+<div class="row"><div class="k">Kosten</div><div>In allen bezahlten Plänen ab <b>Pro</b> enthalten. Als Modell läuft standardmäßig <b>Claude Opus 5</b> (Preis für Sonnet 5 steigt übrigens zum 1. September); Cloud-Sitzungen sind noch Beta und kommen zuerst bei Max an.</div></div>
 <div class="row"><div class="k">Wofür nicht</div><div>Nicht für Passwörter, Ausweisdaten oder Gesundheitsdaten. Gib immer den <b>kleinsten</b> Ordner frei, der reicht — und teste erst mit Kopien.</div></div>
 </div>
 <div class="warn">Ernst gemeinte Warnung: Ein Nutzer hat auf diesem Weg 15.000 Familienfotos verloren. Ein Agent, der löschen und umbenennen darf, tut das gründlich. Schreib „lösche nichts" in den Auftrag und arbeite anfangs nur mit Kopien.</div>
@@ -282,18 +292,40 @@ a:hover{color:#9c4534}
 </div>
 
 <div class="px" style="padding-top:30px;padding-bottom:0">
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:16px">
 <a class="back" href="index.html">
-<div class="eyebrow">Seite ① · Zurück zum Newsletter</div>
-<h2>Die 5 KI-Ereignisse der letzten 4 Wochen</h2>
-<p>Neue EU-Kennzeichnungspflicht, neue Modelle, ein Sicherheits-Weckruf — jeweils mit „was heißt das für dich".</p>
+<div class="eyebrow">Seite ①</div>
+<h2 style="font-size:21px">Die 6 KI-Ereignisse der letzten 4 Wochen</h2>
+<p>Neue EU-Transparenzregeln, neue Modelle, ein doppelter Sicherheits-Weckruf und ein Forschungsdurchbruch.</p>
 <span>← Zur Übersicht</span>
 </a>
+<a class="back" href="mein-stack.html" style="background:#212470">
+<div class="eyebrow">Seite ③</div>
+<h2 style="font-size:21px">Mein aktueller KI-Stack</h2>
+<p>Welches Tool ich wofür nutze — und was ich bewusst nicht nutze.</p>
+<span>Zum KI-Stack →</span>
+</a>
+</div>
+</div>
+
+<div class="px" style="padding-top:30px;padding-bottom:0">
+<div class="linkbox">
+<div class="eyebrow" style="color:#b85546">◆&nbsp;&nbsp;Bonus</div>
+<div class="t" style="padding-top:8px">Geri's Linkempfehlungen</div>
+<p class="d">Mehr zum Weiterschauen, -lesen und -ausprobieren:</p>
+<div class="linkgrid">
+<a class="lk yt2" href="https://www.youtube.com/@PraKItisch" target="_blank" rel="noopener">▶&nbsp;&nbsp;YouTube-Kanal</a>
+<a class="lk bl" href="https://prakitisch.ailoft.de/" target="_blank" rel="noopener">✎&nbsp;&nbsp;Blog: PraKItisch</a>
+<a class="lk hf" href="https://llm.ailoft.de/" target="_blank" rel="noopener">⚙&nbsp;&nbsp;KI-Helferlein</a>
+<a class="lk pl" href="https://www.youtube.com/playlist?list=PL26s470RGHC13cfyQEbJiUplYqBZYh7mK" target="_blank" rel="noopener">☰&nbsp;&nbsp;YT-Playlist: KI-Empfehlungen</a>
+</div>
+</div>
 </div>
 
 <footer class="px" style="padding-top:30px">
 <div class="foot">
 <div class="t">Q21 KI_HUB · Quartier21</div>
-<p>Stand: 3. August 2026 · Fragen? <a href="mailto:gf@startvisor.ai" style="color:#8a8b96">gf@startvisor.ai</a><br />Funktionen und Verfügbarkeiten ändern sich derzeit wöchentlich — was hier steht, ist der Stand bei Redaktionsschluss. Prüfe vor wichtigen Entscheidungen selbst nach.</p>
+<p>Stand: 5. August 2026 · Fragen? <a href="mailto:gf@startvisor.ai" style="color:#8a8b96">gf@startvisor.ai</a><br />Funktionen und Verfügbarkeiten ändern sich derzeit wöchentlich — was hier steht, ist der Stand bei Redaktionsschluss. Prüfe vor wichtigen Entscheidungen selbst nach.</p>
 </div>
 </footer>
 
