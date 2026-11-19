@@ -24,7 +24,7 @@
 .eyebrow{display:inline-flex;align-items:center;gap:10px;font-size:.78rem;letter-spacing:.28em;
   text-transform:uppercase;color:var(--lavender);font-weight:600;
   padding:10px 20px;border-radius:100px;border:1px solid rgba(169,155,240,.3);
-  background:rgba(169,155,240,.08);margin-bottom:34px;
+  background:rgba(169,155,240,.08);margin-bottom:34px;text-wrap:balance;
   animation:q21-rise .9s var(--ease) .35s both}
 .pulse-dot{width:8px;height:8px;border-radius:50%;background:var(--green);
   box-shadow:0 0 0 0 rgba(91,168,74,.6);animation:q21-ping 2.2s infinite}
@@ -62,7 +62,7 @@
 /* ---------- Workshop teaser ---------- */
 .workshop-teaser{padding:70px 0 0}
 .teaser{display:flex;align-items:center;gap:34px;flex-wrap:wrap}
-.teaser-txt{flex:1;min-width:280px}
+.teaser-txt{flex:1 1 260px;min-width:0}
 .teaser-txt h3{font-family:var(--font-display);font-size:clamp(1.4rem,3.2vw,2rem);margin-bottom:12px}
 .teaser-txt h3 em{font-style:normal;color:var(--apricot)}
 .teaser-txt p{color:rgba(245,237,220,.7);font-weight:300;max-width:560px}
@@ -73,22 +73,50 @@
 /* ---------- Logo showcase ---------- */
 .showcase{padding:100px 0 110px}
 .showcase-box{border-radius:var(--r-lg);overflow:hidden;border:1px solid var(--stroke);
-  background:var(--violet);position:relative}
+  background:var(--violet);position:relative;max-width:880px;margin:0 auto}
 .showcase-box::before{content:'';position:absolute;inset:-1px;border-radius:inherit;padding:1px;
   background:linear-gradient(120deg,var(--lavender),transparent 30%,transparent 70%,var(--apricot));
   -webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);
   -webkit-mask-composite:xor;mask-composite:exclude;pointer-events:none}
-.showcase-box img{width:100%;display:block}
-.swatches{display:flex;gap:10px;flex-wrap:wrap;margin-top:22px}
+.showcase-box img{display:block;width:100%;height:auto}
+.swatches{display:flex;gap:10px;flex-wrap:wrap;margin-top:22px;justify-content:center}
 .sw{display:flex;align-items:center;gap:8px;font-size:.78rem;color:rgba(245,237,220,.65);
   border:1px solid var(--stroke);border-radius:100px;padding:7px 14px}
-.sw i{width:13px;height:13px;border-radius:50%;display:inline-block}
+.sw i{width:13px;height:13px;border-radius:50%;display:inline-block;flex-shrink:0}
 
 /* ---------- Contact ---------- */
 .contact{padding:0 0 120px}
 .contact-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
 @media(max-width:860px){.contact-grid{grid-template-columns:1fr}}
 .cta-band{margin-top:20px}
+
+/* ---------- Responsive hardening ---------- */
+@media(max-width:760px){
+  .hero{padding:124px 20px 64px}
+  .hero-mark{margin:38px auto 0}
+  .features{padding:72px 0 24px}
+  .bento{gap:14px}
+  .workshop-teaser{padding:52px 0 0}
+  .teaser{gap:22px}
+  .teaser .btn{width:100%;justify-content:center}
+  .showcase{padding:64px 0 84px}
+  .contact{padding:0 0 84px}
+}
+@media(max-width:480px){
+  .eyebrow{letter-spacing:.2em;font-size:.68rem;padding:9px 15px;gap:8px}
+  .hero h1{font-size:clamp(2.1rem,11vw,2.6rem)}
+  .hero p.lead{font-size:.98rem}
+  .hero-actions .btn{width:100%;justify-content:center}
+  .marquee{padding:14px 0}
+  .marquee-track span{font-size:.82rem;letter-spacing:.1em;padding:0 18px;gap:18px}
+  .card .num{font-size:2.6rem;top:16px;right:18px}
+  .swatches{gap:8px}
+  .sw{font-size:.72rem;padding:6px 11px}
+}
+@media(max-width:360px){
+  .hero h1{font-size:2rem}
+  .brand-word{font-size:.9rem}
+}
 </style>
 </head>
 <body>
