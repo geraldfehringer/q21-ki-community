@@ -221,3 +221,28 @@ footer{position:relative;z-index:2;border-top:1px solid var(--stroke);padding:44
     transition-duration:.01ms!important;scroll-behavior:auto}
   .reveal{opacity:1;transform:none}
 }
+
+/* ---------- Responsive hardening (small devices) ---------- */
+@media(max-width:760px){
+  .nav{top:12px}
+  .card{padding:26px 22px}
+  .cta-band{padding:48px 22px}
+  .cta-band .btn{width:100%;justify-content:center}
+  footer{padding:34px 0 42px}
+  .foot{flex-direction:column;text-align:center;gap:12px}
+  .sec-head{margin-bottom:36px}
+  .form-card{padding:30px 20px}
+  .date-option{padding:16px}
+  .info-card h2{font-size:1.2rem}
+}
+@media(max-width:480px){
+  .nav{padding:8px 8px 8px 14px}
+  .brand svg{width:28px;height:28px}
+  .brand-word{font-size:.92rem}
+  .nav-links a{font-size:.78rem;padding:7px 12px}
+  .btn{padding:14px 24px;font-size:.92rem}
+  .c-card{padding:22px 20px}
+  .form-group label{font-size:.95rem}
+  .date-label strong{font-size:1rem}
+  .result-header{font-size:.92rem;flex-wrap:wrap;gap:4px}
+}
