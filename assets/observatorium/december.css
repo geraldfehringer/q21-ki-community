@@ -141,21 +141,60 @@
   object-position: 48% 55%;
 }
 
+.winter-effects {
+  /* Same cover crop and focal point as the 1152 × 768 courtyard. */
+  position: absolute;
+  width: max(100cqw, 150cqh);
+  aspect-ratio: 3 / 2;
+  left: 48%;
+  top: 55%;
+  transform: translate(-48%, -55%);
+  pointer-events: none;
+}
+
+.miso-kopf {
+  transform-origin: 897px 463px;
+  transform: rotate(-9deg);
+}
+.miso-pfote {
+  transform-origin: 889.5px 503px;
+  transform: rotate(166deg);
+}
+.miso-placard {
+  transform-origin: 888px 490px;
+  transform: rotate(2deg);
+}
+.miso-sign-first { font: italic 48px var(--serif); }
+.miso-sign-last { font: bold 52px Georgia, serif; }
 .winter-steam { display: none; }
 
 @media (prefers-reduced-motion: no-preference) {
-  /* Match the photo's 3:2 cover crop and its 48% / 55% focal point. */
-  :root:has(.motion:not([hidden])) .winter-steam {
-    display: block;
-    position: absolute;
-    width: max(100cqw, 150cqh);
-    aspect-ratio: 3 / 2;
-    left: 48%;
-    top: 55%;
-    transform: translate(-48%, -55%);
-    pointer-events: none;
+  :root:has(.motion:not([hidden])) .winter-steam { display: inline; }
+  :root:has(.motion:not([hidden])) :is(.miso-kopf, .miso-pfote, .miso-pflaster, .miso-placard) {
+    animation: var(--miso-motion) 7s ease-in-out infinite;
   }
-
+  .miso-kopf { --miso-motion: miso-blick; }
+  .miso-pfote { --miso-motion: miso-zeigt; }
+  .miso-pflaster { --miso-motion: miso-pfotenabdruck; }
+  .miso-placard { --miso-motion: miso-lift; }
+  @keyframes miso-blick {
+    0%, 90%, 100% { transform: rotate(0); }
+    22%, 73% { transform: rotate(-9deg); }
+    44% { transform: rotate(-7deg); }
+  }
+  @keyframes miso-zeigt {
+    0%, 90%, 100% { transform: rotate(0); }
+    22%, 73% { transform: rotate(166deg); }
+  }
+  @keyframes miso-pfotenabdruck {
+    0%, 90%, 100% { opacity: 0; }
+    6%, 85% { opacity: 1; }
+  }
+  @keyframes miso-lift {
+    0%, 90%, 100% { transform: rotate(-10deg); }
+    17% { transform: rotate(3.5deg); }
+    22%, 73% { transform: rotate(2deg); }
+  }
   .steam-plume {
     transform-box: fill-box;
     transform-origin: center bottom;
@@ -171,7 +210,7 @@
   .steam-plume .steam-thread { stroke-width: 5; animation-delay: -2.6s; }
   .steam-back .steam-thread { animation-delay: -3.9s; }
 
-  :root:has(.motion[aria-pressed="true"]) :is(.steam-plume, .steam-plume path) {
+  :root:has(.motion[aria-pressed="true"]) :is(.steam-plume, .steam-plume path, .miso-kopf, .miso-pfote, .miso-pflaster, .miso-placard) {
     animation-play-state: paused;
   }
   @keyframes steam-rise { to { stroke-dashoffset: -172; } }

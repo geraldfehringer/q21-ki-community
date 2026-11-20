@@ -20,7 +20,7 @@
   <link rel="icon" href="assets/observatorium/zeichen.svg" type="image/svg+xml">
   <link rel="preload" href="assets/atlas/fonts/InstrumentSerif-Italic.ttf" as="font" type="font/ttf" crossorigin>
   <link rel="stylesheet" href="assets/observatorium/observatorium.css">
-  <link rel="stylesheet" href="assets/observatorium/december.css?v=miso">
+  <link rel="stylesheet" href="assets/observatorium/december.css?v=miso-schild">
   <link rel="stylesheet" href="assets/observatorium/quiz.css">
   <script defer src="assets/observatorium/observatorium.js"></script>
   <script defer src="assets/observatorium/quiz.js"></script>
@@ -74,9 +74,9 @@
           </div>
           <p class="poll-note" id="abstimmung-hinweis">Für die Abstimmung brauchst du ein Passwort. <a href="mailto:gf@startvisor.ai?subject=Passwort%20zur%20Terminabstimmung%20im%20Dezember">Frag Geri danach.</a></p>
         </div>
-        <figure class="winter-figure">
-          <img src="assets/atlas/gluehwein.webp?v=miso" width="1152" height="768" loading="lazy" alt="Zwei dampfende Glühweinbecher mit Orange und Zimt. Auf dem verschneiten Kopfsteinpflaster dahinter sitzt die Katze MISO mit hellblauem Halsband.">
-          <svg class="winter-steam" viewBox="0 0 1152 768" aria-hidden="true" focusable="false">
+        <figure class="winter-figure" id="miso">
+          <img src="assets/atlas/gluehwein.webp?v=miso" width="1152" height="768" loading="lazy" alt="Zwei dampfende Glühweinbecher. Auf dem Kopfsteinpflaster dahinter hebt Katze MISO ein Schild mit der Aufschrift „KI last, CAT First!“ hoch.">
+          <svg class="winter-effects" viewBox="0 0 1152 768" aria-hidden="true" focusable="false">
             <defs>
               <linearGradient id="steam-light" x1="0" y1="1" x2="0" y2="0">
                 <stop stop-color="#fff4d9" stop-opacity="0"/>
@@ -85,8 +85,23 @@
                 <stop offset="1" stop-color="#fff6e9" stop-opacity="0"/>
               </linearGradient>
               <filter id="steam-softness" x="-35%" y="-15%" width="170%" height="130%"><feGaussianBlur stdDeviation="3"/></filter>
+              <linearGradient id="miso-enamel" x2=".2" y2="1">
+                <stop stop-color="#364d40"/><stop offset=".42" stop-color="#22392e"/><stop offset="1" stop-color="#162a22"/>
+              </linearGradient>
+              <image id="miso-fell" href="assets/atlas/gluehwein.webp?v=miso" width="1152" height="768"/>
+              <filter id="miso-fellkante" x="-40%" y="-40%" width="180%" height="180%"><feGaussianBlur stdDeviation="0.75"/></filter>
+              <filter id="miso-weich" x="-40%" y="-40%" width="180%" height="180%"><feGaussianBlur stdDeviation="2.8"/></filter>
+              <mask id="miso-freies-pflaster" maskUnits="userSpaceOnUse" x="869" y="490" width="32" height="38">
+                <path fill="white" filter="url(#miso-fellkante)" d="M879 496Q883 498 886 502Q889 510 893.8 514.5L892.2 524Q886 523 878 524L877 513Z"/>
+              </mask>
+              <mask id="miso-kopfform" maskUnits="userSpaceOnUse" x="858" y="394" width="87" height="83">
+                <path fill="white" filter="url(#miso-weich)" d="M874 407Q890 411 899 419Q914 417 929 416Q934 433 927 448Q922 454 914 460Q902 470 890 469Q872 465 869 451Q866 433 874 407Z"/>
+              </mask>
+              <mask id="miso-pfotenform" maskUnits="userSpaceOnUse" x="877" y="495" width="22" height="31">
+                <path fill="white" filter="url(#miso-fellkante)" d="M884.8 503.3Q884.4 500.2 887.4 499.5Q893.5 498.1 894 503.5Q894.8 509.5 892.5 515.9Q891 520.9 887.7 520.8L883.1 520.6Q879.9 520.2 881.5 517.3Q882.9 514.7 885.4 512.7Q886.4 506.9 884.8 503.3Z"/>
+              </mask>
             </defs>
-            <g fill="none" stroke="url(#steam-light)" stroke-linecap="round" filter="url(#steam-softness)">
+            <g class="winter-steam" fill="none" stroke="url(#steam-light)" stroke-linecap="round" filter="url(#steam-softness)">
               <g class="steam-plume">
                 <path d="M354 400 C303 348 351 319 388 306 S472 264 432 221 S383 164 447 99"/>
                 <path class="steam-thread" d="M346 396 C330 367 286 327 334 300 S442 281 423 244 S347 195 393 149"/>
@@ -95,6 +110,29 @@
                 <path d="M565 378 C545 339 580 324 602 304 S584 283 578 265 S586 231 610 210 S633 177 624 156"/>
                 <path class="steam-thread" d="M573 374 C550 338 609 314 608 297 S585 267 592 250 S621 218 632 196"/>
               </g>
+            </g>
+            <image class="miso-pflaster" href="assets/atlas/miso-pflaster.webp" x="864" y="408" width="76" height="120" mask="url(#miso-freies-pflaster)"/>
+            <g class="miso-kopf">
+              <use href="#miso-fell" mask="url(#miso-kopfform)"/>
+            </g>
+            <g class="miso-placard" stroke-linejoin="round">
+              <path d="M836 375 L887 497 L895 494 L849 370 Z" fill="#80532f" stroke="#422a19" stroke-width="2.5"/>
+              <path d="M844 379 Q868 435 888 488" fill="none" stroke="#cea774" stroke-width="2.2"/>
+              <path d="M636 267 L867 267 Q868 277 882 280 L882 389 Q870 390 867 401 L636 401 Q634 392 622 390 L622 281 Q634 277 636 267 Z"
+                    fill="#5b3b24" stroke="#38271e" stroke-width="4"/>
+              <path d="M635 262 L867 262 Q869 272 882 275 L882 385 Q870 386 867 396 L635 396 Q632 386 621 385 L621 276 Q631 274 635 262 Z"
+                    fill="url(#miso-enamel)" stroke="#ddba7a" stroke-width="3.5"/>
+              <path d="M640 268 L862 268 Q865 277 875 280 L875 380 Q866 382 862 390 L640 390 Q637 382 628 380 L628 281 Q637 278 640 268 Z"
+                    fill="none" stroke="#d8b67b" stroke-width="1.5"/>
+              <path d="M645 302 H676 M828 302 H859" fill="none" stroke="#d4aa69" stroke-width="2"/>
+              <path d="m670 302 5 -3 6 3 -6 3z m153 0 5 -3 6 3 -6 3z" fill="#e8c794"/>
+              <g text-anchor="middle" fill="#ffebc9">
+                <text x="752" y="316" class="miso-sign-first">KI last,</text>
+                <text x="752" y="371" class="miso-sign-last" textLength="225" lengthAdjust="spacingAndGlyphs">CAT First!</text>
+              </g>
+            </g>
+            <g class="miso-pfote">
+              <use href="#miso-fell" mask="url(#miso-pfotenform)"/>
             </g>
           </svg>
         </figure>

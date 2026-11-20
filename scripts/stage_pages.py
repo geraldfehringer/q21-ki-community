@@ -23,6 +23,7 @@ PUBLIC_FILES = (
     "assets/observatorium/fonts/dm-sans.ttf",
     "assets/observatorium/fonts/dm-sans-license.txt",
     "assets/atlas/gluehwein.webp",
+    "assets/atlas/miso-pflaster.webp",
     "assets/atlas/fonts/InstrumentSerif-Italic.ttf",
     "assets/atlas/fonts/OFL.txt",
     "newsletter/2026-06/index.html",
