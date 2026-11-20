@@ -19,8 +19,7 @@
   padding: clamp(1.65rem, 3.6vw, 3.75rem);
 }
 
-.winter-kicker,
-.winter-figure figcaption {
+.winter-kicker {
   font: 500 .78rem/1.45 var(--mono);
   letter-spacing: .085em;
   text-transform: uppercase;
@@ -138,15 +137,6 @@
   object-position: 48% 55%;
 }
 
-.winter-figure figcaption {
-  position: absolute;
-  right: .85rem;
-  bottom: .85rem;
-  padding: .3rem .55rem;
-  color: #fff2e4;
-  background: #211b1f;
-  font-size: .75rem;
-}
 
 .bench,
 .contact {
@@ -242,6 +232,5 @@
   .winter-copy { padding: clamp(1.15rem, 5vw, 2rem); }
   .winter-copy h2 { font-size: clamp(2.6rem, 12vw, 4.7rem); }
   .winter-figure { min-height: 0; aspect-ratio: 1.65; }
-  .winter-figure figcaption { right: .5rem; bottom: .5rem; }
   .bench, .contact { gap: 1.4rem; }
 }
