@@ -17,6 +17,7 @@ PUBLIC_FILES = (
     "assets/observatorium/quiz.js",
     "assets/observatorium/zeichen.svg",
     "assets/observatorium/quartier.webp",
+    "assets/observatorium/gerald-fehringer.webp",
     "assets/observatorium/fonts/dm-sans.ttf",
     "assets/observatorium/fonts/dm-sans-license.txt",
     "assets/atlas/gluehwein.webp",

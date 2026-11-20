@@ -126,7 +126,9 @@
 
 .winter-figure {
   position: relative;
+  container-type: size;
   min-height: 100%;
+  overflow: hidden;
   background: #302525;
 }
 
@@ -139,6 +141,45 @@
   object-position: 48% 55%;
 }
 
+.winter-steam { display: none; }
+
+@media (prefers-reduced-motion: no-preference) {
+  /* Match the photo's 3:2 cover crop and its 48% / 55% focal point. */
+  :root:has(.motion:not([hidden])) .winter-steam {
+    display: block;
+    position: absolute;
+    width: max(100cqw, 150cqh);
+    aspect-ratio: 3 / 2;
+    left: 48%;
+    top: 55%;
+    transform: translate(-48%, -55%);
+    pointer-events: none;
+  }
+
+  .steam-plume {
+    transform-box: fill-box;
+    transform-origin: center bottom;
+    animation: steam-drift 6.2s ease-in-out infinite alternate;
+  }
+  .steam-back { animation-duration: 5.4s; animation-delay: -2s; }
+  .steam-plume path {
+    stroke-width: 12;
+    stroke-dasharray: 68 104;
+    animation: steam-rise 4.3s linear infinite;
+  }
+  .steam-back path { stroke-width: 9; animation-duration: 4.9s; animation-delay: -1.8s; }
+  .steam-plume .steam-thread { stroke-width: 5; animation-delay: -2.6s; }
+  .steam-back .steam-thread { animation-delay: -3.9s; }
+
+  :root:has(.motion[aria-pressed="true"]) :is(.steam-plume, .steam-plume path) {
+    animation-play-state: paused;
+  }
+  @keyframes steam-rise { to { stroke-dashoffset: -172; } }
+  @keyframes steam-drift {
+    from { transform: skewX(-1.7deg) scaleY(.98); }
+    to { transform: skewX(2.4deg) scaleY(1.035); }
+  }
+}
 
 .bench,
 .contact {
@@ -150,7 +191,36 @@
 }
 
 .bench { border-bottom: 1px solid var(--line); }
-.contact { border-top: 1px solid var(--line); }
+.contact {
+  grid-template-columns: minmax(10rem, 16rem) minmax(0, 65ch);
+  align-items: center;
+  justify-content: center;
+  column-gap: clamp(2.4rem, 6vw, 6rem);
+  padding: clamp(1.75rem, 4vw, 4.25rem);
+  margin-bottom: clamp(2.2rem, 4vw, 4rem);
+  border: 1px solid #493f50;
+  border-radius: 12px;
+  background: radial-gradient(ellipse at 14% 45%, #3a303b, transparent 48%), #1b181f;
+}
+.organizer-portrait {
+  position: relative;
+  margin: 0 .55rem .55rem 0;
+  border-radius: 48% 48% 5px 5px / 36% 36% 5px 5px;
+}
+.organizer-portrait::before {
+  content: "";
+  position: absolute;
+  inset: .55rem -.55rem -.55rem .55rem;
+  border: 1px solid #a492ab;
+  border-radius: inherit;
+}
+.organizer-portrait img {
+  position: relative;
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: inherit;
+}
 .bench .overline, .contact .overline { color: var(--lilac); }
 
 .bench .red-rule,
@@ -215,7 +285,7 @@
 .bench-topics details[open] summary b::after { transform: rotate(0); }
 .bench-topics details p { max-width: 61ch; margin: 0 0 1.2rem .15rem; }
 
-.contact-body { max-width: 52ch; }
+.contact-body { max-width: 65ch; }
 .contact-body .primary { margin-top: 1rem; }
 .contact-body nav { gap: 1.15rem; margin-top: .6rem; color: var(--soft); font-size: .9rem; }
 
@@ -230,9 +300,23 @@
 
 @media (max-width: 700px) {
   .winter, .contact { width: 89%; }
-  .winter-spread, .bench, .contact { grid-template-columns: minmax(0, 1fr); }
+  .winter-spread, .bench { grid-template-columns: minmax(0, 1fr); }
   .winter-copy { padding: clamp(1.15rem, 5vw, 2rem); }
   .winter-copy h2 { font-size: clamp(2.6rem, 12vw, 4.7rem); }
   .winter-figure { min-height: 0; aspect-ratio: 1.65; }
-  .bench, .contact { gap: 1.4rem; }
+  .bench { gap: 1.4rem; }
+  .contact {
+    grid-template-columns: clamp(4.8rem, 19vw, 7.5rem) minmax(0, 1fr);
+    grid-template-areas: "portrait role" "portrait name" "bio bio" "action action" "profiles profiles";
+    gap: 0 clamp(.95rem, 3vw, 1.5rem);
+    padding: clamp(1rem, 4vw, 1.8rem);
+  }
+  .organizer-portrait { grid-area: portrait; }
+  .contact-body { display: contents; }
+  .contact .overline { grid-area: role; align-self: end; font-size: .67rem; }
+  .contact .red-rule { display: none; }
+  .contact h2 { grid-area: name; align-self: start; margin: .35rem 0 0; font-size: clamp(2rem, 7vw, 3.4rem); }
+  .contact-body p { grid-area: bio; margin-top: 1.25rem; }
+  .contact-body .primary { grid-area: action; justify-self: start; }
+  .contact-body nav { grid-area: profiles; }
 }

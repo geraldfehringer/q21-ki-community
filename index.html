@@ -72,6 +72,27 @@
         </div>
         <figure class="winter-figure">
           <img src="assets/atlas/gluehwein.webp" width="1152" height="768" loading="lazy" alt="Zwei dampfende Becher Glühwein mit Orange und Zimt vor einem winterlichen Backsteinhof.">
+          <svg class="winter-steam" viewBox="0 0 1152 768" aria-hidden="true" focusable="false">
+            <defs>
+              <linearGradient id="steam-light" x1="0" y1="1" x2="0" y2="0">
+                <stop stop-color="#fff4d9" stop-opacity="0"/>
+                <stop offset=".14" stop-color="#fff4d9" stop-opacity=".8"/>
+                <stop offset=".67" stop-color="#fff3da" stop-opacity=".58"/>
+                <stop offset="1" stop-color="#fff6e9" stop-opacity="0"/>
+              </linearGradient>
+              <filter id="steam-softness" x="-35%" y="-15%" width="170%" height="130%"><feGaussianBlur stdDeviation="3"/></filter>
+            </defs>
+            <g fill="none" stroke="url(#steam-light)" stroke-linecap="round" filter="url(#steam-softness)">
+              <g class="steam-plume">
+                <path d="M354 400 C303 348 351 319 388 306 S472 264 432 221 S383 164 447 99"/>
+                <path class="steam-thread" d="M346 396 C330 367 286 327 334 300 S442 281 423 244 S347 195 393 149"/>
+              </g>
+              <g class="steam-plume steam-back">
+                <path d="M565 378 C545 339 580 324 602 304 S584 283 578 265 S586 231 610 210 S633 177 624 156"/>
+                <path class="steam-thread" d="M573 374 C550 338 609 314 608 297 S585 267 592 250 S621 218 632 196"/>
+              </g>
+            </g>
+          </svg>
         </figure>
       </div>
       <div class="bench" id="programm">
@@ -233,11 +254,13 @@
       <div class="issue-list" id="lektuere"><a href="newsletter/2026-08/"><small>August 2026</small><strong>Welche Werkzeuge helfen im Alltag?</strong><span>Lesen</span></a><a href="newsletter/2026-06/"><small>Juni 2026</small><strong>Ein kritischer Blick auf den KI-Buzz</strong><span>Lesen</span></a></div>
     </section>
     <section id="kontakt" class="contact" aria-labelledby="contact-title">
-      <div><span class="overline"><span class="red-rule"></span> Kontakt</span><h2 id="contact-title">Komm <i>dazu.</i></h2></div>
+      <div class="organizer-portrait"><img src="assets/observatorium/gerald-fehringer.webp" width="777" height="863" loading="lazy" decoding="async" alt="Porträt von Gerald Fehringer"></div>
       <div class="contact-body">
-        <p>Ob du zum ersten Mal einen Prompt schreibst oder schon länger an einem Projekt tüftelst: Du bist willkommen. Schreib uns, wenn du zum Treffen kommen oder ein Thema mitbringen möchtest.</p>
-        <a class="primary" href="mailto:gf@startvisor.ai">Der Runde schreiben</a>
-        <nav aria-label="Öffentliche Kanäle"><a href="https://www.linkedin.com/in/%D6%8E-gerald-fehringer-376b84142/" rel="noreferrer">LinkedIn</a><a href="https://www.youtube.com/@PraKItisch" rel="noreferrer">PraKItisch auf YouTube</a></nav>
+        <span class="overline"><span class="red-rule"></span> Moderator &amp; Organisator</span>
+        <h2 id="contact-title">Gerald <i>Fehringer</i></h2>
+        <p>Geri hat Cloudeteer mitgegründet, dort die Technik geleitet und bringt rund drei Jahrzehnte IT-Erfahrung mit ins Q21. Mit seinem Team hat er unter anderem eine App entwickelt, die Weinetiketten auf Fotos erkennt. Bring deine eigene Frage mit und probiere mit Geri aus, wie dir KI im Alltag hilft und wie du ihre Antworten überprüfst.</p>
+        <a class="primary" href="mailto:gf@startvisor.ai?subject=Anmeldung%20zum%20Q21-KI-Treffen">Bei Geri zum Treffen anmelden</a>
+        <nav aria-label="Geris öffentliche Profile"><a href="https://www.linkedin.com/in/%D6%8E-gerald-fehringer-376b84142/" rel="noreferrer">Geri auf LinkedIn</a><a href="https://www.youtube.com/@PraKItisch" rel="noreferrer">PraKItisch auf YouTube</a></nav>
       </div>
     </section>
   </main>
