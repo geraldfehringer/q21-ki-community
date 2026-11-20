@@ -1,369 +1,142 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="de">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Q21 KI_HUB — Nachbarschafts-KI-Community im Quartier 21</title>
-<meta name="description" content="Offener Q21-Hof für Nachbarschaft und KI. Entdecke die Welt der Künstlichen Intelligenz gemeinsam mit Gleichgesinnten aus deiner Nachbarschaft — lernen, teilen, wachsen.">
-<link rel="icon" type="image/svg+xml" href="assets/images/favicon.svg">
-<meta property="og:type" content="website">
-<meta property="og:url" content="https://q21.ctopilot.de/">
-<meta property="og:title" content="Q21 KI_HUB — Nachbarschafts-KI-Community">
-<meta property="og:description" content="KI für alle. Gemeinsam im Quartier. Lernen, teilen, wachsen — und gestalte deine digitale Zukunft.">
-<meta property="og:image" content="https://q21.ctopilot.de/assets/images/q21-logo.png">
-<meta name="twitter:card" content="summary_large_image">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/css/q21.css">
-<style>
-/* ---------- Hero ---------- */
-.hero{position:relative;z-index:2;min-height:100svh;display:grid;place-items:center;
-  padding:140px 24px 90px;text-align:center}
-.hero-inner{max-width:980px}
-.hero h1{font-family:var(--font-display);font-size:clamp(2.6rem,8vw,5.6rem);line-height:1.04;
-  letter-spacing:-.01em;animation:q21-rise .9s var(--ease) .5s both}
-.hero h1 .grad{background:linear-gradient(100deg,var(--cream) 20%,var(--lavender) 55%,var(--apricot) 90%);
-  -webkit-background-clip:text;background-clip:text;color:transparent}
-.hero p.lead{max-width:640px;margin:28px auto 0;font-size:clamp(1.02rem,2vw,1.24rem);font-weight:300;
-  color:rgba(245,237,220,.82);animation:q21-rise .9s var(--ease) .65s both}
-.hero-actions{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;margin-top:42px;
-  animation:q21-rise .9s var(--ease) .8s both}
-.hero-mark{margin:54px auto 0;width:min(560px,86vw);animation:q21-rise .9s var(--ease) .95s both}
-.hero-mark svg{width:100%;height:auto;display:block}
-
-/* ---------- Bento features ---------- */
-.features{padding:110px 0 40px}
-.bento{display:grid;grid-template-columns:repeat(12,1fr);gap:18px}
-.bento .card{grid-column:span 6}
-.bento .card:nth-child(1){grid-column:span 7}
-.bento .card:nth-child(2){grid-column:span 5}
-.bento .card:nth-child(3){grid-column:span 5}
-.bento .card:nth-child(4){grid-column:span 7}
-.card .num{position:absolute;top:22px;right:26px;font-family:var(--font-display);font-size:3.4rem;
-  color:transparent;-webkit-text-stroke:1.5px rgba(245,237,220,.16);line-height:1;transition:.5s}
-.card:hover .num{-webkit-text-stroke-color:var(--apricot);transform:scale(1.08)}
-.card .icon{width:58px;height:58px;border-radius:16px;display:grid;place-items:center;margin-bottom:22px;
-  border:1px solid var(--stroke)}
-.bento .card:nth-child(odd) .icon{background:linear-gradient(140deg,rgba(169,155,240,.22),rgba(169,155,240,.06))}
-.bento .card:nth-child(even) .icon{background:linear-gradient(140deg,rgba(240,179,92,.22),rgba(240,179,92,.06))}
-.card h3{font-size:1.3rem;font-weight:700;margin-bottom:12px;letter-spacing:.01em}
-.card p{color:rgba(245,237,220,.68);font-size:.98rem;font-weight:300}
-@media(max-width:860px){.bento .card,.bento .card:nth-child(n){grid-column:span 12}}
-
-/* ---------- Workshop teaser ---------- */
-.workshop-teaser{padding:70px 0 0}
-.teaser{display:flex;align-items:center;gap:34px;flex-wrap:wrap}
-.teaser-txt{flex:1 1 260px;min-width:0}
-.teaser-txt h3{font-family:var(--font-display);font-size:clamp(1.4rem,3.2vw,2rem);margin-bottom:12px}
-.teaser-txt h3 em{font-style:normal;color:var(--apricot)}
-.teaser-txt p{color:rgba(245,237,220,.7);font-weight:300;max-width:560px}
-.teaser-txt p + p{margin-top:10px}
-.teaser-meta{display:flex;gap:10px;flex-wrap:wrap;margin-top:20px;align-items:center}
-.teaser-meta span,.teaser-meta a{font-size:.78rem;border:1px solid var(--stroke);border-radius:100px;padding:7px 14px;
-  color:rgba(245,237,220,.65);background:var(--glass)}
-.teaser-meta a{text-decoration:none;transition:color .3s,border-color .3s,background .3s}
-.teaser-meta a:hover{color:var(--apricot);border-color:rgba(240,179,92,.5);background:rgba(240,179,92,.08)}
-.teaser-note{margin-top:14px;font-size:.8rem;color:rgba(245,237,220,.55)}
-.teaser-note a{color:var(--apricot);text-decoration:none;border-bottom:1px dashed rgba(240,179,92,.5)}
-.teaser-note a:hover{border-bottom-style:solid}
-
-/* ---------- #CriticalThinking widget ---------- */
-@property --ht-ang{syntax:'<angle>';initial-value:0deg;inherits:false}
-.hashtag-widget{display:inline-flex;align-items:center;gap:10px;margin-top:18px;
-  padding:11px 20px;border-radius:100px;position:relative;isolation:isolate;
-  background:rgba(26,15,46,.65);backdrop-filter:blur(10px);
-  font-weight:700;font-size:.95rem;letter-spacing:.02em;line-height:1;
-  cursor:default;user-select:none;transition:transform .35s var(--ease)}
-.hashtag-widget:hover{transform:translateY(-2px) scale(1.03)}
-.hashtag-widget::before{content:'';position:absolute;inset:-2px;border-radius:inherit;z-index:-2;
-  background:conic-gradient(from var(--ht-ang),var(--lavender-bright),var(--apricot),#8fdb79,var(--lavender-bright));
-  animation:ht-spin 6s linear infinite;
-  filter:drop-shadow(0 0 9px rgba(169,155,240,.5))}
-@keyframes ht-spin{to{--ht-ang:360deg}}
-.hashtag-widget::after{content:'';position:absolute;inset:0;border-radius:inherit;pointer-events:none;
-  background:linear-gradient(110deg,transparent 30%,rgba(245,237,220,.14) 50%,transparent 70%);
-  background-size:200% 100%;animation:ht-shimmer 3.4s ease-in-out infinite}
-@keyframes ht-shimmer{0%{background-position:200% 0}100%{background-position:-200% 0}}
-.ht-icon{flex-shrink:0}
-.ht-text{font-weight:800;
-  background:linear-gradient(100deg,var(--lavender-bright) 15%,var(--apricot) 90%);
-  -webkit-background-clip:text;background-clip:text;color:transparent;min-height:1em}
-.ht-cursor{display:inline-block;width:2px;height:1.05em;border-radius:1px;background:var(--apricot);
-  box-shadow:0 0 8px rgba(240,179,92,.8);animation:ht-blink 1s steps(1) infinite;margin-left:1px}
-@keyframes ht-blink{50%{opacity:0}}
-@media(max-width:480px){.hashtag-widget{font-size:.88rem;padding:10px 16px}}
-
-/* ---------- Logo showcase ---------- */
-.showcase{padding:100px 0 110px}
-.showcase-box{border-radius:var(--r-lg);overflow:hidden;border:1px solid var(--stroke);
-  background:var(--violet);position:relative;max-width:880px;margin:0 auto}
-.showcase-box::before{content:'';position:absolute;inset:-1px;border-radius:inherit;padding:1px;
-  background:linear-gradient(120deg,var(--lavender),transparent 30%,transparent 70%,var(--apricot));
-  -webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);
-  -webkit-mask-composite:xor;mask-composite:exclude;pointer-events:none}
-.showcase-box img{display:block;width:100%;height:auto}
-
-/* ---------- Contact ---------- */
-.contact{padding:0 0 120px}
-.contact-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
-@media(max-width:860px){.contact-grid{grid-template-columns:1fr}}
-.cta-band{margin-top:20px}
-
-/* ---------- Responsive hardening ---------- */
-@media(max-width:760px){
-  .hero{padding:124px 20px 64px}
-  .hero-mark{margin:38px auto 0}
-  .features{padding:72px 0 24px}
-  .bento{gap:14px}
-  .workshop-teaser{padding:52px 0 0}
-  .teaser{gap:22px}
-  .teaser .btn{width:100%;justify-content:center}
-  .showcase{padding:64px 0 84px}
-  .contact{padding:0 0 84px}
-}
-@media(max-width:480px){
-  .hero h1{font-size:clamp(2.1rem,11vw,2.6rem)}
-  .hero p.lead{font-size:.98rem}
-  .hero-actions .btn{width:100%;justify-content:center}
-  .marquee{padding:14px 0}
-  .marquee-track span{font-size:.82rem;letter-spacing:.1em;padding:0 18px;gap:18px}
-  .card .num{font-size:2.6rem;top:16px;right:18px}
-}
-@media(max-width:360px){
-  .hero h1{font-size:2rem}
-  .brand-word{font-size:.9rem}
-}
-</style>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light">
+  <meta name="description" content="Ein interaktiver Atlas der Q21 KI-Community. Entdecke Praxisaustausch, Werkstatt und Lesestoff aus dem Quartier 21.">
+  <meta name="theme-color" content="#f6f4e9">
+  <meta name="referrer" content="no-referrer">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self'; style-src 'self'; img-src 'self'; font-src 'self'; base-uri 'none'; form-action 'none'">
+  <link rel="canonical" href="https://q21.ctopilot.de/">
+  <meta property="og:title" content="Q21 KI_HUB · Der KI-Atlas fürs Quartier">
+  <meta property="og:description" content="Die KI-Runde in Hamburg-Barmbek. Entdecke die Themenkarte und unseren Dezember-Workshop mit Glühwein.">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="de_DE">
+  <meta property="og:url" content="https://q21.ctopilot.de/">
+  <meta property="og:image" content="https://q21.ctopilot.de/assets/atlas/gluehwein.webp">
+  <meta property="og:image:alt" content="Illustrierte Glühweintassen im winterlichen Quartier">
+  <title>Q21 KI_HUB · Der KI-Atlas fürs Quartier</title>
+  <link rel="icon" href="assets/atlas/mark.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="assets/atlas/atlas.css">
+  <link rel="stylesheet" href="assets/atlas/winter.css">
+  <script src="assets/atlas/atlas.js" defer></script>
 </head>
-<body>
-
-<canvas class="bg-canvas" id="q21-net" aria-hidden="true"></canvas>
-<div class="bg-glow" aria-hidden="true"></div>
-<div class="grain" aria-hidden="true"></div>
-<div class="cursor-glow" id="q21-glow" aria-hidden="true"></div>
-
-<nav class="nav">
-  <a class="brand" href="index.html">
-    <svg width="34" height="34" viewBox="0 0 64 64" fill="none" aria-hidden="true">
-      <path d="M22 6 H12 a6 6 0 0 0-6 6 v10" stroke="#A99BF0" stroke-width="6" stroke-linecap="round"/>
-      <path d="M42 58 H52 a6 6 0 0 0 6-6 v-10" stroke="#F0B35C" stroke-width="6" stroke-linecap="round"/>
-      <circle cx="24" cy="40" r="8" fill="#F0B35C"/>
-      <circle cx="42" cy="24" r="5" fill="#A99BF0"/>
-    </svg>
-    <span class="brand-word">Q21 <em>KI_HUB</em></span>
-  </a>
-  <div class="nav-links">
-    <a href="#programm">Programm</a>
-    <a href="#kontakt">Kontakt</a>
-    <a class="nav-cta" href="newsletter/2026-08/">Newsletter ↗</a>
-  </div>
-</nav>
-
-<header class="hero">
-  <div class="hero-inner">
-    <h1>KI für alle.<br><span class="grad">Gemeinsam im Quartier.</span></h1>
-    <p class="lead">Entdecke die Welt der Künstlichen Intelligenz mit Gleichgesinnten aus deiner Nachbarschaft. Lerne, teile, wachse — und gestalte deine digitale Zukunft.</p>
-    <div class="hero-actions">
-      <a class="btn btn-primary" href="#newsletter">Dabei sein <span class="arr">→</span></a>
-      <a class="btn btn-ghost" href="#programm">Programm ansehen</a>
-    </div>
-
-    <div class="hero-mark" aria-hidden="true">
-      <svg viewBox="0 0 560 240" fill="none" role="img" aria-label="Q21 KI_HUB Dialog-Marke">
-        <!-- left bracket -->
-        <path d="M118 34 H62 a20 20 0 0 0-20 20 v56" stroke="#A99BF0" stroke-width="14" stroke-linecap="round">
-          <animate attributeName="stroke-width" values="14;17;14" dur="3s" repeatCount="indefinite"/>
-        </path>
-        <!-- right bracket -->
-        <path d="M442 206 h56 a20 20 0 0 0 20-20 v-56" stroke="#F0B35C" stroke-width="14" stroke-linecap="round">
-          <animate attributeName="stroke-width" values="14;17;14" dur="3s" begin="1.5s" repeatCount="indefinite"/>
-        </path>
-        <!-- bottom + top bar -->
-        <path d="M118 206 H64" stroke="#F0B35C" stroke-width="14" stroke-linecap="round" stroke-dasharray="90" stroke-dashoffset="90">
-          <animate attributeName="stroke-dashoffset" values="90;0" dur="1.2s" fill="freeze"/>
-        </path>
-        <path d="M442 34 h54" stroke="#A99BF0" stroke-width="14" stroke-linecap="round" stroke-dasharray="90" stroke-dashoffset="90">
-          <animate attributeName="stroke-dashoffset" values="90;0" dur="1.2s" begin=".4s" fill="freeze"/>
-        </path>
-        <!-- typing dots -->
-        <circle cx="205" cy="120" r="17" fill="#F0B35C">
-          <animate attributeName="r" values="17;13;17" dur="2.4s" repeatCount="indefinite"/>
-        </circle>
-        <circle cx="262" cy="120" r="11" fill="#A99BF0">
-          <animate attributeName="r" values="11;15;11" dur="2.4s" begin=".3s" repeatCount="indefinite"/>
-        </circle>
-        <circle cx="313" cy="120" r="8" fill="#F0B35C" opacity=".85">
-          <animate attributeName="opacity" values=".85;.25;.85" dur="2.4s" begin=".6s" repeatCount="indefinite"/>
-          <animate attributeName="r" values="8;4;8" dur="2.4s" begin=".6s" repeatCount="indefinite"/>
-        </circle>
-      </svg>
-    </div>
-  </div>
-</header>
-
-<div class="marquee" aria-hidden="true">
-  <div class="marquee-track">
-    <span>Nachbarschaft <i>◆</i> KI-Praxis <i>◆</i> Live-Demos <i>◆</i> Mentoring <i>◆</i> Workshops <i>◆</i> Community <i>◆</i> Quartier 21 <i>◆</i></span>
-    <span>Nachbarschaft <i>◆</i> KI-Praxis <i>◆</i> Live-Demos <i>◆</i> Mentoring <i>◆</i> Workshops <i>◆</i> Community <i>◆</i> Quartier 21 <i>◆</i></span>
-  </div>
-</div>
-
-<section class="features" id="programm">
-  <div class="wrap">
-    <div class="sec-head reveal">
-      <div class="sec-tag">Programm</div>
-      <h2 class="sec-title">Was dich im KI_HUB erwartet</h2>
-    </div>
-    <div class="bento">
-      <article class="card reveal" data-tilt>
-        <div class="num">01</div>
-        <div class="icon"><svg width="28" height="28" viewBox="0 0 24 24" fill="none"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z" stroke="#A99BF0" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
-        <h3>Echter Praxisaustausch</h3>
-        <p>Keine Verkaufsveranstaltung — professioneller Austausch aus der KI-Praxis. Echte Erfahrungen, echte Anwendungen, echte Nachbar:innen.</p>
-      </article>
-      <article class="card reveal" data-tilt>
-        <div class="num">02</div>
-        <div class="icon"><svg width="28" height="28" viewBox="0 0 24 24" fill="none"><path d="M9.5 14.5 3 21M9 6a4.5 4.5 0 0 1 5-4.3c-.6 1.9-.2 3.7 1.1 5C16.4 8 18.3 8.4 20.2 7.8A4.5 4.5 0 0 1 16 13a4.5 4.5 0 0 1-1.6-.3L9.5 17.6a2.3 2.3 0 1 1-3.2-3.2L9 11.5c-.2-.5-.3-1-.3-1.6z" stroke="#F0B35C" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
-        <h3>Experten-Mentoring</h3>
-        <p>Erfahrene KI-Experten begleiten deine Projekte: Webseiten, Mobile Apps, Startup-Support und KI im Alltag.</p>
-      </article>
-      <article class="card reveal" data-tilt>
-        <div class="num">03</div>
-        <div class="icon"><svg width="28" height="28" viewBox="0 0 24 24" fill="none"><rect x="2" y="4" width="20" height="16" rx="3" stroke="#F0B35C" stroke-width="2"/><path d="m10 9 5 3-5 3V9z" stroke="#F0B35C" stroke-width="2" stroke-linejoin="round"/></svg></div>
-        <h3>Live-Demos &amp; Treffen</h3>
-        <p>Strukturierte Themenlisten und KI-Demos zum Anfassen. Erlebe KI hautnah und interaktiv.</p>
-      </article>
-      <article class="card reveal" data-tilt>
-        <div class="num">04</div>
-        <div class="icon"><svg width="28" height="28" viewBox="0 0 24 24" fill="none"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2M9 11a4 4 0 1 0 0-8 4 4 0 0 0 0 8zm14 10v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75" stroke="#A99BF0" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
-        <h3>Community-Leitung</h3>
-        <p>Koordination durch einen KI-Enthusiasten, der tagtäglich mit KI-Projekten arbeitet und Startups unterstützt.</p>
-      </article>
-    </div>
-  </div>
-</section>
-
-<section class="workshop-teaser">
-  <div class="wrap">
-    <div class="card reveal">
-      <div class="teaser">
-        <div class="teaser-txt">
-          <div class="sec-tag">Aktuell</div>
-          <h3>Workshop DEZEMBER: Wie krass sind die aktuellen KI-Modelle <em>wirklich?</em></h3>
-          <p>Brandaktueller Fokus: Gemini Carbon/Neo, ChatGPT 6.2 Sol/Astra, Anthropic Ops 5.5/Fable 5.2</p>
-          <p>Praktische Beispiele: Images, Video, Webseiten, 3D-Designs, autarke Steuerung Eures Computers mit KI ;-)</p>
-          <div class="hashtag-widget" role="text" aria-label="Hashtag Critical Thinking" title="#CriticalThinking">
-            <svg class="ht-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-              <path d="M12 3v3m0 12v3M3 12h3m12 0h3M5.6 5.6l2.1 2.1m8.6 8.6 2.1 2.1m0-12.8-2.1 2.1M7.7 16.3l-2.1 2.1" stroke="#F0B35C" stroke-width="1.8" stroke-linecap="round"/>
-              <circle cx="12" cy="12" r="3.2" stroke="#A99BF0" stroke-width="1.8"/>
-            </svg>
-            <span class="ht-text" id="htText" aria-hidden="true">#CriticalThinking</span>
-            <span class="ht-cursor" aria-hidden="true"></span>
-          </div>
-          <div class="teaser-meta">
-            <span>⏱ Beginn ab 19:00h</span>
-            <span>📍 Britta&amp;Geri AKR22d</span>
-            <a href="https://nuudel.digitalcourage.de/X6sgIv7Rh28fYmRq" target="_blank" rel="noopener">🗳 Terminabstimmung läuft ↗</a>
-          </div>
-          <p class="teaser-note">Hinweis: Die Abstimmung ist passwortgeschützt. Bei Bedarf kontaktiere Geri: <a href="mailto:gf@startvisor.ai">gf@startvisor.ai</a></p>
-        </div>
-        <a class="btn btn-primary" href="https://nuudel.digitalcourage.de/X6sgIv7Rh28fYmRq" target="_blank" rel="noopener">Termine abstimmen <span class="arr">→</span></a>
+<body id="seitenanfang">
+  <a class="skip" href="#inhalt">Zum Inhalt</a>
+  <header class="mast">
+    <a class="brand" href="./" aria-label="Quartieratlas, Startseite">
+      <img src="assets/atlas/mark.svg" width="42" height="42" alt="">
+      <span>Q21 <b>KI_HUB</b></span>
+    </a>
+    <nav class="main-nav" aria-label="Hauptnavigation">
+      <a href="#karte">Themenkarte</a>
+      <a href="#community">Community</a>
+      <a href="#newsletter">Lesestoff</a>
+    </nav>
+    <a class="mast-workshop" href="#dezember"><span aria-hidden="true">✳</span> Dezembertreffen</a>
+  </header>
+  <main id="inhalt">
+    <section class="opening" aria-labelledby="headline">
+      <div class="intro">
+        <p class="locator"><span class="locator-mark" aria-hidden="true"></span> Hamburg · Barmbek</p>
+        <h1 id="headline">Der KI-Atlas<br><i>fürs Quartier.</i></h1>
+        <p class="lede">Wir sind die KI-Runde im Quartier 21. Hier zeigen Nachbar:innen, was sie mit KI bauen, wo es hakt und welche Ideen sie als Nächstes ausprobieren wollen.</p>
+        <a href="#karte" class="primary"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m2 5 6-2 8 3 6-2v15l-6 2-8-3-6 2zm6-2v15m8-12v15"/></svg>Stationen entdecken</a>
       </div>
-    </div>
-  </div>
-</section>
-
-<section class="showcase" id="community">
-  <div class="wrap">
-    <div class="sec-head reveal">
-      <div class="sec-tag">Identity</div>
-      <h2 class="sec-title">Ein offener Hof für Nachbarschaft und KI</h2>
-    </div>
-    <div class="showcase-box reveal">
-      <img src="assets/images/q21-logo.png" alt="Offener Q21-Hof für Nachbarschaft und KI — Logo" width="1400" height="467" loading="lazy">
-    </div>
-  </div>
-</section>
-
-<section class="contact" id="kontakt">
-  <div class="wrap">
-    <div class="sec-head reveal">
-      <div class="sec-tag">Kontakt</div>
-      <h2 class="sec-title">Trag dich ein, komm vorbei</h2>
-    </div>
-    <div class="contact-grid">
-      <div class="c-card reveal">
-        <div class="label">Kontakt</div>
-        <div class="val"><a href="mailto:gf@startvisor.ai">gf@startvisor.ai</a></div>
-        <div class="socials">
-          <a href="https://www.linkedin.com/in/%D6%8E-gerald-fehringer-376b84142/" target="_blank" rel="noopener" aria-label="LinkedIn-Profil">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.063 2.063 0 1 1 0-4.126 2.063 2.063 0 0 1 0 4.126zM7.119 20.452H3.555V9h3.564v11.452z"/></svg>
-          </a>
-          <a href="https://www.youtube.com/@PraKItisch" target="_blank" rel="noopener" aria-label="YouTube-Kanal PraKItisch">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
-          </a>
+      <figure class="map" id="karte" aria-label="Interaktive Themenkarte mit drei Stationen">
+        <div class="art">
+          <div class="map-header"><span><span class="red-rule"></span> Themenkarte</span><span class="north" aria-label="Norden">N <svg viewBox="0 0 20 25" aria-hidden="true"><path d="m10 1 7 22-7-5-7 5Z" fill="none" stroke="currentColor"/><path d="m10 1 0 17-7 5Z" fill="currentColor"/></svg></span></div>
+          <img src="assets/atlas/quartier.svg" class="neighbourhood" width="780" height="475" alt="Isometrische Illustration eines grünen Backsteinquartiers mit Höfen, Giebeln und einem kleinen Turm.">
+          <a href="#austausch" class="pin pin-a" data-station="austausch"><span>A</span>Praxisrunde</a>
+          <a href="#werkstatt" class="pin pin-b" data-station="werkstatt"><span>B</span>Werkstatt</a>
+          <a href="#lektuere" class="pin pin-c" data-station="lektuere"><span>C</span>Lesestoff</a>
+          <button class="tour" type="button" hidden><span aria-hidden="true">▶</span> <span class="tour-label">Rundgang starten</span></button>
+          <span class="map-note">Schematische Darstellung</span>
+        </div>
+        <figcaption>
+          <span class="map-description" aria-live="polite">A · Erfahrungen mit KI teilen</span>
+          <a class="read-entry" href="#austausch">Eintrag lesen</a>
+        </figcaption>
+      </figure>
+    </section>
+    <section class="winter" id="dezember" aria-labelledby="winter-title">
+      <div class="winter-spread">
+        <div class="winter-copy">
+          <p class="winter-kicker"><span aria-hidden="true">✳</span> Workshop im Dezember 2026</p>
+          <h2 id="winter-title">KI-Werkstatt<br><i>bei Glühwein.</i></h2>
+          <p class="winter-lede">Was können aktuelle KI-Modelle wirklich? Wir testen sie live an Bildern, Videos und Webseiten. Dazu gibt’s leckeren Glühwein und Zeit zum Klönen.</p>
+          <p class="winter-time"><strong>Ab 19 Uhr</strong><span aria-hidden="true">·</span> Tag in Abstimmung</p>
+          <div class="winter-actions">
+            <a class="winter-cta" href="mailto:gf@startvisor.ai?subject=Dezember-Workshop%20%E2%80%93%20Zugang%20zur%20Abstimmung">Zugang zur Abstimmung anfragen</a>
+            <a class="winter-access" href="#programm">Programm ansehen</a>
+          </div>
+          <p class="poll-note">Den Abstimmungslink, die Zugangsdaten und den Treffpunkt teilen wir persönlich mit.</p>
+        </div>
+        <figure class="winter-figure">
+          <img src="assets/atlas/gluehwein.webp" width="1152" height="768" loading="lazy" alt="Zwei dampfende Becher Glühwein mit Orange und Zimt vor einem winterlichen Backsteinhof.">
+          <figcaption>Winter im Quartier · Illustration</figcaption>
+        </figure>
+      </div>
+      <div class="bench" id="programm">
+        <div class="bench-intro">
+          <span class="overline"><span class="red-rule"></span> Werkstattprogramm</span>
+          <h3>Was wir <i>ausprobieren.</i></h3>
+          <p>Bring gern eine eigene Frage mit. Mit diesen Beispielen können wir direkt einsteigen.</p>
+        </div>
+        <div class="bench-topics">
+          <details open>
+            <summary>Der Modellvergleich <b aria-hidden="true"></b></summary>
+            <p>Für den Vergleich angekündigt sind Gemini Carbon/Neo, ChatGPT 6.2 Sol/Astra und Anthropic Ops 5.5/Fable 5.2. Wir stellen dieselbe Aufgabe und schauen zusammen, was gelingt und wo wir nacharbeiten müssen.</p>
+          </details>
+          <details>
+            <summary>Bild &amp; Video <b aria-hidden="true"></b></summary>
+            <p>Wie gut hält sich ein Modell an unsere Bildidee? Wir entwerfen einen winterlichen Aushang und schauen, was beim Schritt vom Standbild zum kurzen Clip erhalten bleibt.</p>
+          </details>
+          <details>
+            <summary>Webseiten &amp; 3D <b aria-hidden="true"></b></summary>
+            <p>Aus ein paar Sätzen soll eine kleine Webseite werden. Danach probieren wir einen Entwurf in 3D aus. Wie genau können wir in beiden Fällen sagen, was das Modell ändern soll?</p>
+          </details>
+          <details>
+            <summary>KI am Computer <b aria-hidden="true"></b></summary>
+            <p>Was versteht ein Assistent von einer Aufgabe am Bildschirm? Wir vergleichen seine Schritte mit unserem eigenen Vorgehen und besprechen, wann wir selbst übernehmen würden.</p>
+          </details>
         </div>
       </div>
-      <div class="c-card reveal">
-        <div class="label">Termine</div>
-        <div class="val">Werden gemeinsam diskutiert</div>
+    </section>
+    <section class="registry" id="community" aria-labelledby="register-title">
+      <div class="reg-title"><span class="overline"><span class="red-rule"></span> Themenregister</span><h2 id="register-title">Wege durch den <i>Atlas.</i></h2><p>Drei Einstiege in die KI-Runde. Wähle ein Thema auf der Karte oder direkt im Register.</p></div>
+      <div class="entries">
+        <details class="entry" id="austausch" open>
+          <summary><span class="letter">A</span><span>Praxisrunde</span><b aria-hidden="true"></b></summary>
+          <div class="entry-inner"><p>Was hat im Alltag funktioniert? In der Runde zeigen Nachbar:innen ihre eigenen Versuche mit KI. Bring eine Frage mit, etwa wie aus deinen Notizen ein brauchbares Protokoll wird.</p></div>
+        </details>
+        <details class="entry" id="werkstatt">
+          <summary><span class="letter">B</span><span>Werkstatt</span><b aria-hidden="true"></b></summary>
+          <div class="entry-inner"><p>Von der ersten Webseite bis zur mobilen App begleiten erfahrene Mitglieder eigene Projekte. Live-Demos machen sichtbar, welche Schritte zwischen einer Idee und einem funktionierenden Entwurf liegen.</p><a href="#dezember">Zur Dezember-Werkstatt</a></div>
+        </details>
+        <details class="entry" id="lektuere">
+          <summary><span class="letter">C</span><span>Lesestoff</span><b aria-hidden="true"></b></summary>
+          <div class="entry-inner"><p>Der Q21-Newsletter sammelt Beobachtungen aus der Runde, Werkzeugtipps und Fragen zum gemeinsamen Weiterdenken.</p><a href="#newsletter">Zu den Ausgaben</a></div>
+        </details>
       </div>
-      <div class="c-card reveal">
-        <div class="label">Ort</div>
-        <div class="val">Q21 Wirtshaus oder Workspace-Alternativen — Ideen willkommen!</div>
+    </section>
+    <section id="newsletter" class="library" aria-labelledby="lib-title">
+      <div><span class="overline"><span class="red-rule"></span> Aus dem Quartier</span><h2 id="lib-title">Der <i>Lesetisch.</i></h2></div>
+      <div class="journal-list">
+        <a class="journal" href="newsletter/2026-08/"><span class="edition">Ausgabe 02</span><h3>KI-Werkzeuge im Alltag</h3><time datetime="2026-08">August 2026</time></a>
+        <a class="journal" href="newsletter/2026-06/"><span class="edition">Ausgabe 01</span><h3>Ein Blick hinter den KI-Hype</h3><time datetime="2026-06">Juni 2026</time></a>
       </div>
-    </div>
-
-    <div class="cta-band reveal" id="newsletter">
-      <h2>Werde Teil der KI-Community 🚀</h2>
-      <p>Lass dich von der Faszination KI anstecken und gestalte die digitale Zukunft deiner Nachbarschaft mit.</p>
-      <a class="btn btn-primary" href="newsletter/2026-08/">Newsletter Ausgabe 02 · 5. Aug 2026 <span class="arr">→</span></a>
-    </div>
-  </div>
-</section>
-
-<footer>
-  <div class="wrap foot">
-    <div class="foot-brand">
-      <svg width="22" height="22" viewBox="0 0 64 64" fill="none" aria-hidden="true">
-        <path d="M22 6 H12 a6 6 0 0 0-6 6 v10" stroke="#A99BF0" stroke-width="6" stroke-linecap="round"/>
-        <path d="M42 58 H52 a6 6 0 0 0 6-6 v-10" stroke="#F0B35C" stroke-width="6" stroke-linecap="round"/>
-        <circle cx="24" cy="40" r="8" fill="#F0B35C"/><circle cx="42" cy="24" r="5" fill="#A99BF0"/>
-      </svg>
-      Q21 KI_HUB
-    </div>
-    <div>
-      <a href="newsletter/2026-06/">Ausgabe 01</a> ·
-      <a href="newsletter/2026-08/">Ausgabe 02</a>
-    </div>
-    <div>Quartier21 Nachbarschaft · <a href="https://q21.ctopilot.de">q21.ctopilot.de</a></div>
-  </div>
-</footer>
-
-<script src="assets/js/q21.js"></script>
-<script>
-/* #CriticalThinking — typewriter effect (starts when scrolled into view) */
-(function () {
-  var el = document.getElementById('htText');
-  if (!el) return;
-  var full = '#CriticalThinking';
-  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) { el.textContent = full; return; }
-  el.textContent = '';
-  var started = false;
-  var io = new IntersectionObserver(function (entries) {
-    entries.forEach(function (entry) {
-      if (entry.isIntersecting && !started) {
-        started = true; io.disconnect();
-        var i = 0;
-        (function type() {
-          if (i <= full.length) { el.textContent = full.slice(0, i); i++; setTimeout(type, 75); }
-        })();
-      }
-    });
-  }, { threshold: .6 });
-  io.observe(el.closest('.hashtag-widget'));
-})();
-</script>
+    </section>
+    <section id="kontakt" class="contact" aria-labelledby="contact-title">
+      <div><span class="overline"><span class="red-rule"></span> Kontakt</span><h2 id="contact-title">Komm <i>dazu.</i></h2></div>
+      <div class="contact-body">
+        <p>Ob du zum ersten Mal einen Prompt schreibst oder schon länger an einem Projekt tüftelst: Du bist willkommen. Schreib uns, wenn du zum Treffen kommen oder ein Thema mitbringen möchtest.</p>
+        <a class="primary" href="mailto:gf@startvisor.ai">Der Runde schreiben</a>
+        <nav aria-label="Öffentliche Kanäle"><a href="https://www.linkedin.com/in/%D6%8E-gerald-fehringer-376b84142/" rel="noreferrer">LinkedIn</a><a href="https://www.youtube.com/@PraKItisch" rel="noreferrer">PraKItisch auf YouTube</a></nav>
+      </div>
+    </section>
+  </main>
+  <footer><span>Q21 KI_HUB · Quartier 21</span><a href="#seitenanfang">Nach oben</a></footer>
 </body>
 </html>

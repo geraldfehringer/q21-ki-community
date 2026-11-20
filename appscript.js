@@ -269,23 +269,6 @@ function sendConfirmationEmail(email, selectedDate, attendees) {
     .info-box strong {
       color: #667eea;
     }
-    .highlight {
-      background: #e3f2fd;
-      padding: 15px;
-      border-radius: 5px;
-      margin: 15px 0;
-      border-left: 3px solid #2196F3;
-    }
-    .button {
-      display: inline-block;
-      background: linear-gradient(135deg, #667eea, #764ba2);
-      color: white;
-      padding: 12px 30px;
-      text-decoration: none;
-      border-radius: 50px;
-      margin: 15px 0;
-      font-weight: bold;
-    }
     .footer {
       text-align: center;
       margin-top: 30px;
@@ -316,21 +299,9 @@ function sendConfirmationEmail(email, selectedDate, attendees) {
       <h2>🎯 Workshop-Details: KI - Alle reden über AGENTIC, was nun?</h2>
       <p><strong>Aktuelle KI-Modelle und warum alle über AGENTIC reden!</strong></p>
       <p>TOP-Insights von einem echten AGENTIC-Anwender. WAS GEHT WIRKLICH? 2026 wird ein (noch) krasseres KI-Jahr!</p>
-      <p><strong>📍 Lokation:</strong> Britta&Geri AKR22d, je nach Anmeldungen (wenn jemand Idee hat, bitte melden!)</p>
+      <p><strong>📍 Lokation:</strong> Treffpunkt auf Anfrage.</p>
       <p><strong>⏱️ Dauer:</strong> 3h+</p>
     </div>
-    
-    <div class="highlight">
-      <p><strong>ℹ️ Wichtiger Hinweis:</strong></p>
-      <p>Die finale Terminentscheidung erfolgt in Kürze auf Basis der Abstimmungsergebnisse. Wir wählen den Termin, für den die meisten Teilnehmer gestimmt haben.</p>
-      <p>Du erhältst automatisch eine weitere Email mit der finalen Terminbestätigung und allen weiteren Details (Lokation, Agenda, etc.).</p>
-    </div>
-    
-    <p style="text-align: center;">
-      <a href="https://q21.ctopilot.de/workshop.html" class="button">
-        📊 Aktuelle Abstimmungsergebnisse anzeigen
-      </a>
-    </p>
     
     <p>Bei Fragen oder Anregungen kannst Du dich jederzeit bei uns melden:</p>
     <p><strong>Email:</strong> <a href="mailto:gf@zerohat.net">gf@zerohat.net</a></p>
@@ -363,15 +334,8 @@ Aktuelle KI-Modelle und warum alle über AGENTIC reden!
 
 TOP-Insights von einem echten AGENTIC-Anwender. WAS GEHT WIRKLICH? 2026 wird ein (noch) krasseres KI-Jahr!
 
-📍 Lokation: Britta&Geri AKR22d, je nach Anmeldungen (wenn jemand Idee hat, bitte melden!)
+📍 Lokation: Treffpunkt auf Anfrage.
 ⏱️ Dauer: 3h+
-
-ℹ️ WICHTIGER HINWEIS:
-Die finale Terminentscheidung erfolgt in Kürze auf Basis der Abstimmungsergebnisse. Wir wählen den Termin, für den die meisten Teilnehmer gestimmt haben.
-
-Du erhältst automatisch eine weitere Email mit der finalen Terminbestätigung und allen weiteren Details (Lokation, Agenda, etc.).
-
-📊 Aktuelle Abstimmungsergebnisse: https://q21.ctopilot.de/workshop.html
 
 Bei Fragen oder Anregungen kannst Du dich jederzeit bei uns melden:
 Email: gf@zerohat.net
