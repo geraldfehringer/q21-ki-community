@@ -10,6 +10,7 @@ ROOT = Path(__file__).resolve().parents[1]
 PUBLIC_FILES = (
     ".nojekyll",
     "index.html",
+    "datenschutz.html",
     "assets/observatorium/observatorium.css",
     "assets/observatorium/observatorium.js",
     "assets/observatorium/december.css",

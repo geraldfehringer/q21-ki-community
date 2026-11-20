@@ -303,16 +303,31 @@
   .winter-cta { transition: background-color .18s ease; }
 }
 
+@media (max-width: 1200px) {
+  .winter-spread { grid-template-columns: minmax(0, 1fr); }
+  .winter-figure { min-height: 0; aspect-ratio: 1.65; }
+}
+
+@media (min-width: 701px) and (max-width: 1200px) {
+  .winter-copy {
+    display: grid;
+    grid-template-columns: minmax(0, .92fr) minmax(0, 1.08fr);
+    column-gap: clamp(1.5rem, 4vw, 3.5rem);
+  }
+  .winter-kicker { grid-column: 1 / -1; margin-bottom: 1rem; }
+  .winter-copy h2 { grid-row: 2 / span 4; margin: 0; }
+  .winter-figure { aspect-ratio: 1.8; }
+}
+
 @media (max-width: 900px) {
   .winter, .contact { width: 92%; }
 }
 
 @media (max-width: 700px) {
   .winter, .contact { width: 89%; }
-  .winter-spread, .bench { grid-template-columns: minmax(0, 1fr); }
+  .bench { grid-template-columns: minmax(0, 1fr); }
   .winter-copy { padding: clamp(1.15rem, 5vw, 2rem); }
   .winter-copy h2 { font-size: clamp(2.6rem, 12vw, 4.7rem); }
-  .winter-figure { min-height: 0; aspect-ratio: 1.65; }
   .bench { gap: 1.4rem; }
   .contact {
     grid-template-columns: clamp(4.8rem, 19vw, 7.5rem) minmax(0, 1fr);
