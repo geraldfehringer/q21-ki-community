@@ -10,13 +10,14 @@ ROOT = Path(__file__).resolve().parents[1]
 PUBLIC_FILES = (
     ".nojekyll",
     "index.html",
-    "assets/atlas/atlas.css",
-    "assets/atlas/atlas.js",
-    "assets/atlas/winter.css",
+    "assets/observatorium/observatorium.css",
+    "assets/observatorium/observatorium.js",
+    "assets/observatorium/december.css",
+    "assets/observatorium/zeichen.svg",
+    "assets/observatorium/quartier.webp",
+    "assets/observatorium/fonts/dm-sans.ttf",
+    "assets/observatorium/fonts/dm-sans-license.txt",
     "assets/atlas/gluehwein.webp",
-    "assets/atlas/mark.svg",
-    "assets/atlas/quartier.svg",
-    "assets/atlas/fonts/InstrumentSerif-Regular.ttf",
     "assets/atlas/fonts/InstrumentSerif-Italic.ttf",
     "assets/atlas/fonts/OFL.txt",
     "newsletter/2026-06/index.html",
@@ -24,6 +25,17 @@ PUBLIC_FILES = (
     "newsletter/2026-08/mein-stack.html",
     "newsletter/2026-08/tools.html",
 )
+
+# These previously staged assets can be removed from an existing local build
+# only when the staged copies still match their source files.
+RETIRED_FILES = {
+    Path("assets/atlas/atlas.css"),
+    Path("assets/atlas/atlas.js"),
+    Path("assets/atlas/winter.css"),
+    Path("assets/atlas/mark.svg"),
+    Path("assets/atlas/quartier.svg"),
+    Path("assets/atlas/fonts/InstrumentSerif-Regular.ttf"),
+}
 
 
 def stage(output: Path) -> None:
@@ -41,9 +53,18 @@ def stage(output: Path) -> None:
             raise ValueError(f"Missing or linked public file: {name}")
 
     directories = {parent for name in files for parent in name.parents}
+    retired_copies = []
     for entry in output.rglob("*"):
         name = entry.relative_to(output)
-        if entry.resolve() != entry or not (
+        if entry.resolve() != entry:
+            raise ValueError("The staging directory contains a linked entry.")
+        if name in RETIRED_FILES and entry.is_file():
+            source = ROOT / name
+            if not source.is_file() or source.resolve() != source or entry.read_bytes() != source.read_bytes():
+                raise ValueError(f"Cannot verify obsolete staged copy: {name}")
+            retired_copies.append(entry)
+            continue
+        if not (
             (name in files | {cname} and entry.is_file())
             or (name in directories and entry.is_dir())
         ):
@@ -60,6 +81,8 @@ def stage(output: Path) -> None:
             target = output / name
             target.parent.mkdir(parents=True, exist_ok=True)
             (Path(scratch) / name).replace(target)
+    for entry in retired_copies:
+        entry.unlink()
     if cname not in files:
         (output / cname).unlink(missing_ok=True)
     print(f"Staged {len(files)} public files in {output}.")

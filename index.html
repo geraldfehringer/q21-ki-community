@@ -3,61 +3,57 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="color-scheme" content="light">
-  <meta name="description" content="Ein interaktiver Atlas der Q21 KI-Community. Entdecke Praxisaustausch, Werkstatt und Lesestoff aus dem Quartier 21.">
-  <meta name="theme-color" content="#f6f4e9">
+  <meta name="color-scheme" content="dark">
+  <meta name="description" content="Die KI-Community im Quartier 21 in Hamburg-Barmbek. Gemeinsam KI ausprobieren, Erfahrungen teilen und zum Dezember-Workshop bei Glühwein zusammenkommen.">
+  <meta name="theme-color" content="#101114">
   <meta name="referrer" content="no-referrer">
   <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self'; style-src 'self'; img-src 'self'; font-src 'self'; base-uri 'none'; form-action 'none'">
   <link rel="canonical" href="https://q21.ctopilot.de/">
-  <meta property="og:title" content="Q21 KI_HUB · Der KI-Atlas fürs Quartier">
-  <meta property="og:description" content="Die KI-Runde in Hamburg-Barmbek. Entdecke die Themenkarte und unseren Dezember-Workshop mit Glühwein.">
+  <meta property="og:title" content="Q21 KI_HUB COMMUNITY">
+  <meta property="og:description" content="Die KI-Runde in Hamburg-Barmbek. Gemeinsam KI ausprobieren und im Dezember bei Glühwein zusammenkommen.">
   <meta property="og:type" content="website">
   <meta property="og:locale" content="de_DE">
   <meta property="og:url" content="https://q21.ctopilot.de/">
-  <meta property="og:image" content="https://q21.ctopilot.de/assets/atlas/gluehwein.webp">
-  <meta property="og:image:alt" content="Illustrierte Glühweintassen im winterlichen Quartier">
-  <title>Q21 KI_HUB · Der KI-Atlas fürs Quartier</title>
-  <link rel="icon" href="assets/atlas/mark.svg" type="image/svg+xml">
-  <link rel="stylesheet" href="assets/atlas/atlas.css">
-  <link rel="stylesheet" href="assets/atlas/winter.css">
-  <script src="assets/atlas/atlas.js" defer></script>
+  <meta property="og:image" content="https://q21.ctopilot.de/assets/observatorium/quartier.webp">
+  <meta property="og:image:alt" content="Winterlicher Innenhof mit violett leuchtenden Backsteinpavillons">
+  <title>Q21 KI_HUB COMMUNITY</title>
+  <link rel="icon" href="assets/observatorium/zeichen.svg" type="image/svg+xml">
+  <link rel="preload" href="assets/atlas/fonts/InstrumentSerif-Italic.ttf" as="font" type="font/ttf" crossorigin>
+  <link rel="stylesheet" href="assets/observatorium/observatorium.css">
+  <link rel="stylesheet" href="assets/observatorium/december.css">
+  <script defer src="assets/observatorium/observatorium.js"></script>
 </head>
 <body id="seitenanfang">
   <a class="skip" href="#inhalt">Zum Inhalt</a>
-  <header class="mast">
-    <a class="brand" href="./" aria-label="Quartieratlas, Startseite">
-      <img src="assets/atlas/mark.svg" width="42" height="42" alt="">
-      <span>Q21 <b>KI_HUB</b></span>
-    </a>
-    <nav class="main-nav" aria-label="Hauptnavigation">
-      <a href="#karte">Themenkarte</a>
-      <a href="#community">Community</a>
-      <a href="#newsletter">Lesestoff</a>
-    </nav>
-    <a class="mast-workshop" href="#dezember"><span aria-hidden="true">✳</span> Dezembertreffen</a>
+  <header class="site-header">
+    <div class="frame header-row">
+      <a class="brand" href="#seitenanfang" aria-label="Q21 KI_HUB COMMUNITY, Startseite">
+        <img src="assets/observatorium/zeichen.svg" width="38" height="38" alt=""><b>Q21</b><span class="brand-slash" aria-hidden="true">/</span>KI_HUB
+      </a>
+      <nav class="main-nav" aria-label="Seitennavigation">
+        <a href="#community">Community</a><a href="#dezember">Treffen</a><a href="#newsletter">Leseraum</a>
+      </nav>
+      <a class="header-contact" href="#kontakt">Mitmachen</a>
+    </div>
   </header>
   <main id="inhalt">
-    <section class="opening" aria-labelledby="headline">
-      <div class="intro">
-        <p class="locator"><span class="locator-mark" aria-hidden="true"></span> Hamburg · Barmbek</p>
-        <h1 id="headline">Der KI-Atlas<br><i>fürs Quartier.</i></h1>
-        <p class="lede">Wir sind die KI-Runde im Quartier 21. Hier zeigen Nachbar:innen, was sie mit KI bauen, wo es hakt und welche Ideen sie als Nächstes ausprobieren wollen.</p>
-        <a href="#karte" class="primary"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m2 5 6-2 8 3 6-2v15l-6 2-8-3-6 2zm6-2v15m8-12v15"/></svg>Stationen entdecken</a>
+    <section class="frame hero" aria-labelledby="hero-heading">
+      <div class="hero-copy">
+        <p class="overline location"><span class="location-glyph" aria-hidden="true"></span> Hamburg · Barmbek</p>
+        <h1 id="hero-heading">Q21 KI_HUB <em>COMMUNITY</em></h1>
+        <p class="intro">Der offene Treff für künstliche Intelligenz im Quartier 21. Wir probieren Neues aus, teilen Erfahrungen und lernen voneinander.</p>
+        <div class="hero-actions"><a class="button primary" href="#dezember"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3.5" y="5.5" width="17" height="15" rx="3"/><path d="M7.5 3v5m9-5v5m-13 3h17"/></svg>Dezembertreffen</a><a class="button secondary" href="#community">Die Community</a></div>
       </div>
-      <figure class="map" id="karte" aria-label="Interaktive Themenkarte mit drei Stationen">
-        <div class="art">
-          <div class="map-header"><span><span class="red-rule"></span> Themenkarte</span><span class="north" aria-label="Norden">N <svg viewBox="0 0 20 25" aria-hidden="true"><path d="m10 1 7 22-7-5-7 5Z" fill="none" stroke="currentColor"/><path d="m10 1 0 17-7 5Z" fill="currentColor"/></svg></span></div>
-          <img src="assets/atlas/quartier.svg" class="neighbourhood" width="780" height="475" alt="Isometrische Illustration eines grünen Backsteinquartiers mit Höfen, Giebeln und einem kleinen Turm.">
-          <a href="#austausch" class="pin pin-a" data-station="austausch"><span>A</span>Praxisrunde</a>
-          <a href="#werkstatt" class="pin pin-b" data-station="werkstatt"><span>B</span>Werkstatt</a>
-          <a href="#lektuere" class="pin pin-c" data-station="lektuere"><span>C</span>Lesestoff</a>
-          <button class="tour" type="button" hidden><span aria-hidden="true">▶</span> <span class="tour-label">Rundgang starten</span></button>
-          <span class="map-note">Schematische Darstellung</span>
+      <figure class="observatory" id="karte" aria-label="Interaktive Quartierillustration">
+        <div class="plate-caption"><span class="aperture" aria-hidden="true">⌖</span> Quartieransicht</div>
+        <a class="art-link" href="assets/observatorium/quartier.webp" target="_blank" rel="noopener" aria-label="Winterillustration in voller Größe in neuem Tab öffnen">Bild öffnen</a>
+        <div class="scene" id="scene">
+          <img src="assets/observatorium/quartier.webp" width="1536" height="1024" fetchpriority="high" alt="Violette Lichtpunkte zeichnen die winterlichen Backsteinpavillons und Bäume im Hof. Die Fenster leuchten warm.">
+          <canvas aria-hidden="true"></canvas>
         </div>
-        <figcaption>
-          <span class="map-description" aria-live="polite">A · Erfahrungen mit KI teilen</span>
-          <a class="read-entry" href="#austausch">Eintrag lesen</a>
-        </figcaption>
+        <div class="model-labels" hidden><a class="node-demo" href="#demos">Live-Demos</a><a class="node-talk" href="#austausch">Austausch</a><a class="node-mentor" href="#mentoring">Mentoring</a></div>
+        <button type="button" class="layer-toggle" aria-pressed="false" hidden><span aria-hidden="true">⌘</span> Themennetz</button>
+        <figcaption class="plate-bottom"><span>Q21 <i>/</i> KI-Illustration</span><button type="button" class="motion" aria-pressed="false" aria-label="Bewegung pausieren" hidden><span aria-hidden="true">Ⅱ</span></button></figcaption>
       </figure>
     </section>
     <section class="winter" id="dezember" aria-labelledby="winter-title">
@@ -104,29 +100,18 @@
         </div>
       </div>
     </section>
-    <section class="registry" id="community" aria-labelledby="register-title">
-      <div class="reg-title"><span class="overline"><span class="red-rule"></span> Themenregister</span><h2 id="register-title">Wege durch den <i>Atlas.</i></h2><p>Drei Einstiege in die KI-Runde. Wähle ein Thema auf der Karte oder direkt im Register.</p></div>
-      <div class="entries">
-        <details class="entry" id="austausch" open>
-          <summary><span class="letter">A</span><span>Praxisrunde</span><b aria-hidden="true"></b></summary>
-          <div class="entry-inner"><p>Was hat im Alltag funktioniert? In der Runde zeigen Nachbar:innen ihre eigenen Versuche mit KI. Bring eine Frage mit, etwa wie aus deinen Notizen ein brauchbares Protokoll wird.</p></div>
-        </details>
-        <details class="entry" id="werkstatt">
-          <summary><span class="letter">B</span><span>Werkstatt</span><b aria-hidden="true"></b></summary>
-          <div class="entry-inner"><p>Von der ersten Webseite bis zur mobilen App begleiten erfahrene Mitglieder eigene Projekte. Live-Demos machen sichtbar, welche Schritte zwischen einer Idee und einem funktionierenden Entwurf liegen.</p><a href="#dezember">Zur Dezember-Werkstatt</a></div>
-        </details>
-        <details class="entry" id="lektuere">
-          <summary><span class="letter">C</span><span>Lesestoff</span><b aria-hidden="true"></b></summary>
-          <div class="entry-inner"><p>Der Q21-Newsletter sammelt Beobachtungen aus der Runde, Werkzeugtipps und Fragen zum gemeinsamen Weiterdenken.</p><a href="#newsletter">Zu den Ausgaben</a></div>
-        </details>
+    <section class="frame section" id="community" aria-labelledby="community-title">
+      <p class="overline section-label"><span></span> Die Community</p>
+      <h2 id="community-title">Gemeinsam <em>ausprobieren.</em></h2>
+      <div class="activity-grid">
+        <article id="demos"><div class="activity-art waves" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></div><h3 id="werkstatt">Live-Demos</h3><p>Vom ersten Prompt bis zur fertigen Webseite. Wir zeigen, was funktioniert, und schauen uns die Fehlversuche genauso genau an.</p></article>
+        <article id="austausch"><div class="activity-art network" aria-hidden="true">✳</div><h3>Praxisaustausch</h3><p>Wofür nutzt du KI im Alltag? Bring ein Beispiel mit oder hör einfach zu, wenn andere aus dem Viertel erzählen.</p></article>
+        <article id="mentoring"><div class="activity-art layers" aria-hidden="true"><i></i><i></i><i></i></div><h3>Mentoring</h3><p>Du tüftelst an einer App, einer Webseite oder einer ersten Idee? In der Runde kannst du Fragen stellen und dir Feedback holen.</p></article>
       </div>
     </section>
-    <section id="newsletter" class="library" aria-labelledby="lib-title">
-      <div><span class="overline"><span class="red-rule"></span> Aus dem Quartier</span><h2 id="lib-title">Der <i>Lesetisch.</i></h2></div>
-      <div class="journal-list">
-        <a class="journal" href="newsletter/2026-08/"><span class="edition">Ausgabe 02</span><h3>KI-Werkzeuge im Alltag</h3><time datetime="2026-08">August 2026</time></a>
-        <a class="journal" href="newsletter/2026-06/"><span class="edition">Ausgabe 01</span><h3>Ein Blick hinter den KI-Hype</h3><time datetime="2026-06">Juni 2026</time></a>
-      </div>
+    <section class="frame section reading" id="newsletter" aria-labelledby="reading-title">
+      <div><p class="overline section-label"><span></span> Leseraum</p><h2 id="reading-title">Aus dem <em>KI_HUB.</em></h2><p class="intro">Zwei Themen aus unserem Newsletter zum Nachlesen und Ausprobieren.</p></div>
+      <div class="issue-list" id="lektuere"><a href="newsletter/2026-08/"><small>August 2026</small><strong>Welche Werkzeuge helfen im Alltag?</strong><span>Lesen</span></a><a href="newsletter/2026-06/"><small>Juni 2026</small><strong>Ein kritischer Blick auf den KI-Buzz</strong><span>Lesen</span></a></div>
     </section>
     <section id="kontakt" class="contact" aria-labelledby="contact-title">
       <div><span class="overline"><span class="red-rule"></span> Kontakt</span><h2 id="contact-title">Komm <i>dazu.</i></h2></div>
@@ -137,6 +122,6 @@
       </div>
     </section>
   </main>
-  <footer><span>Q21 KI_HUB · Quartier 21</span><a href="#seitenanfang">Nach oben</a></footer>
+  <footer class="frame footer"><a class="brand" href="#seitenanfang"><img src="assets/observatorium/zeichen.svg" width="27" height="27" alt="">Q21 KI_HUB COMMUNITY</a><span>Hamburg · Quartier 21</span><nav aria-label="Fußnavigation"><a href="#seitenanfang">Nach oben</a></nav></footer>
 </body>
 </html>
