@@ -139,7 +139,7 @@
         <div class="quiz-invite-copy">
           <p class="overline section-label"><span></span> Wissensquiz</p>
           <h2 id="quiz-title" tabindex="-1">Der <em>KI-Kompass.</em></h2>
-          <p class="quiz-lead">Wie schreibt eine KI? Woher kennt sie die Nachrichten von heute? Wie erzeugt sie Bilder und Töne? Entdecke in fünf Fragen, wie aktuelle KI-Systeme arbeiten.</p>
+          <p class="quiz-lead">Wie schreibt eine KI? Wie erzeugt sie Bilder und Töne? Und welche Daten dürfen in den Chat? Sieben Fragen zu KI-Technik und Datenschutz.</p>
           <p class="quiz-score" hidden></p>
           <button class="quiz-launch" type="button" aria-expanded="false" aria-controls="quiz-panel" hidden>Quiz starten</button>
         </div>
@@ -155,19 +155,21 @@
               <g fill="none" stroke="#9d88bc"><ellipse rx="156" ry="50" transform="rotate(-18)" opacity=".36"/><ellipse rx="158" ry="52" transform="rotate(18)" opacity=".22" stroke-dasharray="3 6"/></g>
               <circle r="96" fill="url(#kompass-himmel)" stroke="url(#kompass-metall)" stroke-width="1.5"/>
               <g fill="none" class="compass-orbit"><circle r="91" stroke="#ad9abe" stroke-width="4" stroke-dasharray="1 3.75"/><circle r="88" stroke="#987d9e" stroke-width=".7"/><circle r="75" stroke="#b798a7" stroke-opacity=".7"/><circle r="52" stroke="#a68fb5" stroke-opacity=".57" stroke-dasharray="1 4"/><circle r="34" stroke="#a38bb9" stroke-opacity=".34"/></g>
-              <path d="M0 0V-86M0 0 82-27M0 0 51 70M0 0-51 70M0 0-82-27" fill="none" stroke="#d1bbd8" stroke-width=".8" opacity=".67"/>
+              <path d="M0 0V-86 M0 0 67-54 M0 0 84 19 M0 0 37 77 M0 0-37 77 M0 0-84 19 M0 0-67-54" fill="none" stroke="#d1bbd8" stroke-width=".8" opacity=".67"/>
               <g>
-                <use href="#kompass-peilstrich"/><use href="#kompass-peilstrich" transform="rotate(72)"/>
-                <use href="#kompass-peilstrich" transform="rotate(144)"/><use href="#kompass-peilstrich" transform="rotate(216)"/>
-                <use href="#kompass-peilstrich" transform="rotate(288)"/>
+                <use href="#kompass-peilstrich"/><use href="#kompass-peilstrich" transform="rotate(51.43)"/>
+                <use href="#kompass-peilstrich" transform="rotate(102.86)"/><use href="#kompass-peilstrich" transform="rotate(154.29)"/>
+                <use href="#kompass-peilstrich" transform="rotate(205.71)"/><use href="#kompass-peilstrich" transform="rotate(257.14)"/>
+                <use href="#kompass-peilstrich" transform="rotate(308.57)"/>
               </g>
-              <path d="M0 -97 V-104 M93 -30 L104 -34 H109 M57 79 L68 94 H85 M-57 79 L-68 94 H-85 M-93 -30 L-104 -34 H-109" fill="none" stroke="#bb98ac" stroke-width=".9"/>
+              <path d="M0 -97 V-104 M77 -61 L86 -68 H103 M96 22 L105 24 H112 M43 88 L49 100 H74 M-43 88 L-49 100 H-74 M-96 22 L-105 24 H-109 M-77 -61 L-86 -68 H-109" fill="none" stroke="#bb98ac" stroke-width=".9"/>
               <g fill="#bba3ce"><circle cx="-44" cy="20" r="1.5"/><circle cx="14" cy="-45" r="2"/><circle cx="22" cy="-40" r="1"/><circle cx="-29" cy="-54" r="1.1"/><circle cx="34" cy="35" r="1.6"/><circle cx="-22" cy="58" r="1"/><circle cx="51" cy="14" r="1.1"/></g>
-              <polygon id="quiz-constellation" points="0,-68 65,-21 40,55 -40,55 -65,-21" fill="#c0a8ef" fill-opacity=".09" stroke="#c8afda" stroke-width="1.35" stroke-dasharray="3 4"/>
+              <polygon id="quiz-constellation" points="0,-68 53,-42 66,15 30,61 -30,61 -66,15 -53,-42" fill="#c0a8ef" fill-opacity=".09" stroke="#c8afda" stroke-width="1.35" stroke-dasharray="3 4"/>
               <g fill="currentColor" stroke="#ffedc9" stroke-width=".6">
-                <use class="compass-point" href="#kompass-stern" x="0" y="-68"/><use class="compass-point" href="#kompass-stern" x="65" y="-21"/>
-                <use class="compass-point" href="#kompass-stern" x="40" y="55"/><use class="compass-point" href="#kompass-stern" x="-40" y="55"/>
-                <use class="compass-point" href="#kompass-stern" x="-65" y="-21"/>
+                <use class="compass-point" href="#kompass-stern" x="0" y="-68"/><use class="compass-point" href="#kompass-stern" x="53" y="-42"/>
+                <use class="compass-point" href="#kompass-stern" x="66" y="15"/><use class="compass-point" href="#kompass-stern" x="30" y="61"/>
+                <use class="compass-point" href="#kompass-stern" x="-30" y="61"/><use class="compass-point" href="#kompass-stern" x="-66" y="15"/>
+                <use class="compass-point" href="#kompass-stern" x="-53" y="-42"/>
               </g>
               <g id="quiz-bearing" transform="rotate(32)">
                 <path d="M0-58 9 0 0 10-9 0Z" fill="#f3cfa7"/><path d="m0-58 9 58-9 10Z" fill="#b98372"/>
@@ -177,13 +179,15 @@
             </g>
             <g fill="#eddfef" font-family="Arial,sans-serif" font-size="17" text-anchor="middle">
               <text x="210" y="17">Sprachmodelle</text>
-              <text text-anchor="start" x="323" y="86">Multimodale<tspan x="323" dy="18">KI</tspan></text>
-              <text x="302" y="237">KI-Suche</text>
-              <text x="118" y="237">KI-Agenten</text>
-              <text text-anchor="end" x="97" y="86">Medien-<tspan x="97" dy="18">generierung</tspan></text>
+              <text text-anchor="start" x="319" y="54">Multimodale <tspan x="319" dy="18">KI</tspan></text>
+              <text text-anchor="start" x="328" y="155">KI-Suche</text>
+              <text x="292" y="243">KI-Agenten</text>
+              <text x="123" y="243">Mediengenerierung</text>
+              <text text-anchor="end" x="96" y="146">Datenschutz <tspan x="96" dy="18">USA</tspan></text>
+              <text text-anchor="end" x="96" y="54">Datenschutz <tspan x="96" dy="18">China</tspan></text>
             </g>
           </svg>
-          <p class="quiz-chart-caption">5 Fragen · ca. 3 Minuten</p>
+          <p class="quiz-chart-caption">7 Fragen · ca. 5 Minuten</p>
         </div>
       </div>
       <div class="quiz-panel" id="quiz-panel" hidden>
@@ -205,7 +209,7 @@
         </div>
       </div>
       <details class="quiz-facts">
-        <summary>Fünf Fragen zum Selbsttesten öffnen</summary>
+        <summary>Sieben Fragen zum Selbsttesten öffnen</summary>
         <article data-topic="Sprachmodelle">
           <h3>Wie baut ein Sprachmodell eine Textantwort auf?</h3>
           <ol>
@@ -250,6 +254,24 @@
             <li>Es setzt für jedes Wort einen fertigen Bild- oder Tonbaustein an die entsprechende Stelle.</li>
           </ol>
           <details><summary>Auflösung</summary><p>Beim Training lernt das Modell, in verrauschten Beispielen wieder Struktur zu erkennen. Beim Erzeugen startet es mit neuem Rauschen. Die Textbeschreibung lenkt das schrittweise Entrauschen. So entstehen je nach Modell Formen im Bild, Klänge im Audio oder Bewegungen im Video.</p><a href="https://aws.amazon.com/what-is/diffusion-model/" target="_blank" rel="noreferrer">AWS erklärt die Erzeugung von Bild, Ton und Video (Englisch)</a></details>
+        </article>
+        <article data-topic="Datenschutz USA">
+          <h3>Ein KI-Chat verarbeitet Eingaben in den USA. Reicht „Training ausschalten“, damit dein Betrieb Kundenmails mit Namen einfügen darf?</h3>
+          <ol>
+            <li>Ja, denn durch die Einstellung bleiben die Mails im Betrieb.</li>
+            <li>Ja, wenn der Dienst den Chat nach der Antwort automatisch löscht.</li>
+            <li data-answer>Nein. Sowohl die Nutzung der Mails als auch die Übermittlung an diesen US-Empfänger müssen erlaubt sein.</li>
+          </ol>
+          <details><summary>Auflösung</summary><p>Schon beim Absenden erhält der Dienst die Mail. Dein Betrieb braucht eine Rechtsgrundlage für die Verarbeitung. Für die Übermittlung kann das EU-US Data Privacy Framework greifen, wenn genau dieser Empfänger aktuell zertifiziert ist und seine Zertifizierung die Daten abdeckt. Andernfalls braucht es einen anderen zulässigen Übermittlungsweg. Lass die Mail im Postfach, bis beides geklärt ist.</p><a href="https://www.datenschutz-berlin.de/themen/unternehmen-und-vereine/internationaler-datenverkehr/" target="_blank" rel="noreferrer">Berliner Datenschutzaufsicht zu Datenübermittlungen in die USA</a></details>
+        </article>
+        <article data-topic="Datenschutz China">
+          <h3>Euer Verein darf seine Mitgliederliste auswerten, aber nicht nach China übertragen. Wie lässt sich dafür ein Modell wie DeepSeek-R1 einsetzen?</h3>
+          <ol>
+            <li>Ihr ladet die Liste über eine verschlüsselte Verbindung in den Onlinedienst in China.</li>
+            <li data-answer>Ihr betreibt das Modell vollständig offline auf dem Vereinsrechner, ohne Datenversand oder Fernzugriff des Anbieters.</li>
+            <li>Ihr entfernt die Namen und ladet die Liste mit den persönlichen E-Mail-Adressen in den Onlinedienst in China.</li>
+          </ol>
+          <details><summary>Auflösung</summary><p>Entscheidend ist, wer die Daten erhält. Für China gibt es keinen Angemessenheitsbeschluss der EU. Ohne wirksame Garantien oder eine anwendbare gesetzliche Ausnahme darf die Liste nicht dorthin. Auch persönliche E-Mail-Adressen sind personenbezogen. Eine verschlüsselte Verbindung schützt den Transport. Beim vollständigen Offline-Betrieb bleibt die Liste dagegen im Verein.</p><a href="https://www.datenschutz.rlp.de/themen/ki-aus-nicht-eu-staaten" target="_blank" rel="noreferrer">Datenschutzaufsicht Rheinland-Pfalz zum Online- und Offline-Einsatz von KI</a></details>
         </article>
       </details>
     </section>
