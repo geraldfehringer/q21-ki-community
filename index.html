@@ -59,9 +59,14 @@
 .teaser-txt h3 em{font-style:normal;color:var(--apricot)}
 .teaser-txt p{color:rgba(245,237,220,.7);font-weight:300;max-width:560px}
 .teaser-txt p + p{margin-top:10px}
-.teaser-meta{display:flex;gap:10px;flex-wrap:wrap;margin-top:20px}
-.teaser-meta span{font-size:.78rem;border:1px solid var(--stroke);border-radius:100px;padding:7px 14px;
+.teaser-meta{display:flex;gap:10px;flex-wrap:wrap;margin-top:20px;align-items:center}
+.teaser-meta span,.teaser-meta a{font-size:.78rem;border:1px solid var(--stroke);border-radius:100px;padding:7px 14px;
   color:rgba(245,237,220,.65);background:var(--glass)}
+.teaser-meta a{text-decoration:none;transition:color .3s,border-color .3s,background .3s}
+.teaser-meta a:hover{color:var(--apricot);border-color:rgba(240,179,92,.5);background:rgba(240,179,92,.08)}
+.teaser-note{margin-top:14px;font-size:.8rem;color:rgba(245,237,220,.55)}
+.teaser-note a{color:var(--apricot);text-decoration:none;border-bottom:1px dashed rgba(240,179,92,.5)}
+.teaser-note a:hover{border-bottom-style:solid}
 
 /* ---------- Logo showcase ---------- */
 .showcase{padding:100px 0 110px}
@@ -230,10 +235,11 @@
           <p>Brandaktueller Fokus: Gemini Carbon/Neo, ChatGPT 6.2 Sol/Astra, Anthropic Ops 5.5/Fable 5.2</p>
           <p>Praktische Beispiele: Images, Video, Webseiten, 3D-Designs, autarke Steuerung Eures Computers mit KI ;-)</p>
           <div class="teaser-meta">
-            <span>⏱ 2 Stunden</span>
+            <span>⏱ Beginn ab 19:00h</span>
             <span>📍 Britta&amp;Geri AKR22d</span>
-            <span>🗳 Terminabstimmung läuft</span>
+            <a href="https://nuudel.digitalcourage.de/X6sgIv7Rh28fYmRq" target="_blank" rel="noopener">🗳 Terminabstimmung läuft ↗</a>
           </div>
+          <p class="teaser-note">Hinweis: Die Abstimmung ist passwortgeschützt. Bei Bedarf kontaktiere Geri: <a href="mailto:gf@startvisor.ai">gf@startvisor.ai</a></p>
         </div>
         <a class="btn btn-primary" href="workshop.html">Termine abstimmen <span class="arr">→</span></a>
       </div>
