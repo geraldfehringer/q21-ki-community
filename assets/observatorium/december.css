@@ -114,6 +114,8 @@
 
 .winter-access:hover, .contact-body nav a:hover { color: white; }
 
+.poll-note a { text-decoration: underline; text-underline-offset: .18em; }
+
 .poll-note {
   max-width: 45ch;
   margin-top: .8rem;

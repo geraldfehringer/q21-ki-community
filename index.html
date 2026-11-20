@@ -50,8 +50,8 @@
           <img src="assets/observatorium/quartier.webp" width="1536" height="1024" fetchpriority="high" alt="Violette Lichtpunkte zeichnen die winterlichen Backsteinpavillons und Bäume im Hof. Die Fenster leuchten warm.">
           <canvas aria-hidden="true"></canvas>
         </div>
-        <div class="model-labels" hidden><a class="node-demo" href="#demos">Live-Demos</a><a class="node-talk" href="#austausch">Austausch</a><a class="node-mentor" href="#mentoring">Mentoring</a></div>
-        <button type="button" class="layer-toggle" aria-pressed="false" hidden><span aria-hidden="true">⌘</span> Themennetz</button>
+        <div class="model-labels" id="themen-im-quartier"><a class="node-demo" href="#demos">Live-Demos</a><a class="node-talk" href="#austausch">Austausch</a><a class="node-mentor" href="#mentoring">Mentoring</a></div>
+        <button type="button" class="layer-toggle" aria-pressed="true" aria-controls="themen-im-quartier" hidden><span aria-hidden="true">⌘</span> Themennetz</button>
         <button type="button" class="motion" aria-pressed="false" aria-label="Bewegung pausieren" hidden><span aria-hidden="true">Ⅱ</span></button>
       </figure>
     </section>
@@ -63,10 +63,10 @@
           <p class="winter-lede">Was können aktuelle KI-Modelle wirklich? Wir testen sie live an Bildern, Videos und Webseiten. Dazu gibt’s leckeren Glühwein und Zeit zum Klönen.</p>
           <p class="winter-time"><strong>Ab 19 Uhr</strong><span aria-hidden="true">·</span> Tag in Abstimmung</p>
           <div class="winter-actions">
-            <a class="winter-cta" href="mailto:gf@startvisor.ai?subject=Dezember-Workshop%20%E2%80%93%20Zugang%20zur%20Abstimmung">Zugang zur Abstimmung anfragen</a>
+            <a class="winter-cta" href="https://nuudel.digitalcourage.de/X6sgIv7Rh28fYmRq" rel="noreferrer" aria-describedby="abstimmung-hinweis">Zur Terminabstimmung</a>
             <a class="winter-access" href="#programm">Programm ansehen</a>
           </div>
-          <p class="poll-note">Den Abstimmungslink, die Zugangsdaten und den Treffpunkt teilen wir persönlich mit.</p>
+          <p class="poll-note" id="abstimmung-hinweis">Für die Abstimmung brauchst du ein Passwort. <a href="mailto:gf@startvisor.ai?subject=Passwort%20zur%20Terminabstimmung%20im%20Dezember">Frag Geri danach.</a></p>
         </div>
         <figure class="winter-figure">
           <img src="assets/atlas/gluehwein.webp" width="1152" height="768" loading="lazy" alt="Zwei dampfende Becher Glühwein mit Orange und Zimt vor einem winterlichen Backsteinhof.">

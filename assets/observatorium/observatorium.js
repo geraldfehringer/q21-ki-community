@@ -7,7 +7,7 @@ const motion = figure.querySelector(".motion");
 const preference = matchMedia("(prefers-reduced-motion: reduce)");
 let paused = preference.matches;
 let inView = true;
-let network = false;
+let network = layer.getAttribute("aria-pressed") === "true";
 let frame = 0;
 let elapsed = 0;
 let previous = 0;
