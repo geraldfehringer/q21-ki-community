@@ -13,6 +13,8 @@ PUBLIC_FILES = (
     "assets/observatorium/observatorium.css",
     "assets/observatorium/observatorium.js",
     "assets/observatorium/december.css",
+    "assets/observatorium/quiz.css",
+    "assets/observatorium/quiz.js",
     "assets/observatorium/zeichen.svg",
     "assets/observatorium/quartier.webp",
     "assets/observatorium/fonts/dm-sans.ttf",

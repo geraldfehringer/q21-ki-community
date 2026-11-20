@@ -21,7 +21,9 @@
   <link rel="preload" href="assets/atlas/fonts/InstrumentSerif-Italic.ttf" as="font" type="font/ttf" crossorigin>
   <link rel="stylesheet" href="assets/observatorium/observatorium.css">
   <link rel="stylesheet" href="assets/observatorium/december.css">
+  <link rel="stylesheet" href="assets/observatorium/quiz.css">
   <script defer src="assets/observatorium/observatorium.js"></script>
+  <script defer src="assets/observatorium/quiz.js"></script>
 </head>
 <body id="seitenanfang">
   <a class="skip" href="#inhalt">Zum Inhalt</a>
@@ -106,6 +108,107 @@
         <article id="austausch"><div class="activity-art network" aria-hidden="true">✳</div><h3>Praxisaustausch</h3><p>Wofür nutzt du KI im Alltag? Bring ein Beispiel mit oder hör einfach zu, wenn andere aus dem Viertel erzählen.</p></article>
         <article id="mentoring"><div class="activity-art layers" aria-hidden="true"><i></i><i></i><i></i></div><h3>Mentoring</h3><p>Du tüftelst an einer App, einer Webseite oder einer ersten Idee? In der Runde kannst du Fragen stellen und dir Feedback holen.</p></article>
       </div>
+    </section>
+    <section class="frame quiz" id="ki-quiz" aria-labelledby="quiz-title">
+      <div class="quiz-invite">
+        <div class="quiz-invite-copy">
+          <p class="overline section-label"><span></span> Wissensquiz</p>
+          <h2 id="quiz-title" tabindex="-1">Der <em>KI-Kompass.</em></h2>
+          <p class="quiz-lead">Wie entsteht eine KI-Antwort? Wie kommt das Wissen von heute hinein? Entdecke in vier Fragen, wie aktuelle KI-Systeme arbeiten.</p>
+          <p class="quiz-score" hidden></p>
+          <button class="quiz-launch" type="button" aria-expanded="false" aria-controls="quiz-panel" hidden>Quiz starten</button>
+        </div>
+        <div class="quiz-chart">
+          <svg class="compass-art" viewBox="0 0 420 250" aria-hidden="true" focusable="false">
+            <defs>
+              <radialGradient id="kompass-himmel"><stop stop-color="#514161"/><stop offset=".52" stop-color="#302739"/><stop offset="1" stop-color="#15131a"/></radialGradient>
+              <linearGradient id="kompass-metall" x2="1" y2="1" gradientUnits="objectBoundingBox"><stop stop-color="#ffe6bd"/><stop offset=".45" stop-color="#bb97b4"/><stop offset=".8" stop-color="#655b79"/><stop offset="1" stop-color="#eac4a2"/></linearGradient>
+              <path id="kompass-stern" d="m0-5 1.4 3.6L5 0 1.4 1.4 0 5l-1.4-3.6L-5 0l3.6-1.4Z"/>
+            </defs>
+            <g transform="translate(210 125)">
+              <g fill="none" stroke="#9d88bc"><ellipse rx="156" ry="50" transform="rotate(-18)" opacity=".36"/><ellipse rx="158" ry="52" transform="rotate(18)" opacity=".22" stroke-dasharray="3 6"/></g>
+              <circle r="96" fill="url(#kompass-himmel)" stroke="url(#kompass-metall)" stroke-width="1.5"/>
+              <g fill="none" class="compass-orbit"><circle r="91" stroke="#ad9abe" stroke-width="4" stroke-dasharray="1 3.75"/><circle r="88" stroke="#987d9e" stroke-width=".7"/><circle r="75" stroke="#b798a7" stroke-opacity=".7"/><circle r="52" stroke="#a68fb5" stroke-opacity=".57" stroke-dasharray="1 4"/><circle r="34" stroke="#a38bb9" stroke-opacity=".34"/></g>
+              <g stroke="#b5a4c5" stroke-width=".7" opacity=".57"><path d="M0-86V86M-86 0H86M-60-60 60 60m-120 0L60-60"/></g>
+              <g fill="#bba3ce"><circle cx="-44" cy="20" r="1.5"/><circle cx="14" cy="-45" r="2"/><circle cx="22" cy="-40" r="1"/><circle cx="-29" cy="-54" r="1.1"/><circle cx="34" cy="35" r="1.6"/><circle cx="-22" cy="58" r="1"/><circle cx="51" cy="14" r="1.1"/></g>
+              <polygon id="quiz-constellation" points="0,-68 68,0 0,68 -68,0" fill="#c0a8ef" fill-opacity=".09" stroke="#c8afda" stroke-width="1.35" stroke-dasharray="3 4"/>
+              <g fill="currentColor" stroke="#ffedc9" stroke-width=".6">
+                <use class="compass-point" href="#kompass-stern" x="0" y="-68"/><use class="compass-point" href="#kompass-stern" x="68" y="0"/>
+                <use class="compass-point" href="#kompass-stern" x="0" y="68"/><use class="compass-point" href="#kompass-stern" x="-68" y="0"/>
+              </g>
+              <g id="quiz-bearing" transform="rotate(32)">
+                <path d="M0-58 9 0 0 10-9 0Z" fill="#f3cfa7"/><path d="m0-58 9 58-9 10Z" fill="#b98372"/>
+                <path d="M0 58-9 0 0-10 9 0Z" fill="#8f7aaf"/><path d="M0 58V-10l9 10Z" fill="#cdbbe9"/>
+              </g>
+              <circle r="7" fill="#2b2336" stroke="#ecd2bb" stroke-width="1.4"/><circle r="2.3" fill="#f8d7a8"/>
+            </g>
+            <g fill="#e0d3e6" font-family="Consolas,monospace" font-size="15" text-anchor="middle">
+              <text x="210" y="17">Sprachmodelle</text>
+              <text x="361" y="130" font-size="13">Multimodale KI</text>
+              <text x="210" y="246">KI-Suche</text>
+              <text x="58" y="130">KI-Agenten</text>
+            </g>
+          </svg>
+          <p class="quiz-chart-caption">4 Fragen · ca. 2 Minuten</p>
+        </div>
+      </div>
+      <div class="quiz-panel" id="quiz-panel" hidden>
+        <div id="quiz-round">
+          <div class="quiz-meta"><span id="quiz-progress"></span><span class="quiz-steps" aria-hidden="true"></span></div>
+          <h3 class="quiz-question" tabindex="-1"></h3>
+          <fieldset class="quiz-options" aria-labelledby="quiz-question-label"><legend id="quiz-question-label" class="quiz-sr">Wähle eine Antwort</legend></fieldset>
+          <div class="quiz-feedback" hidden>
+            <h4 class="quiz-feedback-title" tabindex="-1" aria-describedby="quiz-explanation"></h4>
+            <p id="quiz-explanation"></p><p id="quiz-source"></p>
+            <button class="quiz-next" type="button">Nächste Frage</button>
+          </div>
+        </div>
+        <div class="quiz-result" hidden>
+          <h3 tabindex="-1">Die vier Antworten erklärt</h3>
+          <ol class="quiz-review"></ol>
+          <button class="quiz-save" type="button">Sternkarte speichern (SVG)</button>
+          <button class="quiz-reset" type="button">Noch einmal spielen</button>
+        </div>
+      </div>
+      <details class="quiz-facts">
+        <summary>Vier Fragen zum Selbsttesten öffnen</summary>
+        <article data-topic="Sprachmodelle">
+          <h3>Wie baut ein Sprachmodell eine Textantwort auf?</h3>
+          <ol>
+            <li>Es sucht im Trainingsmaterial die ähnlichste Frage und übernimmt die zugehörige Antwort.</li>
+            <li data-answer>Es berechnet Schritt für Schritt, welche Textbausteine als Nächstes passen könnten.</li>
+            <li>Es ruft zu jedem Satz einen geprüften Fakt aus einer Wissensdatenbank ab.</li>
+          </ol>
+          <details><summary>Auflösung</summary><p>Beim Schreiben schätzt das Modell, wie wahrscheinlich verschiedene Fortsetzungen sind. Es wählt einen Textbaustein aus und rechnet mit dem längeren Text weiter. Solche Bausteine heißen Tokens. Auch ein Wortteil kann ein Token sein. Das erklärt, warum selbst ein flüssiger Satz einen Fehler enthalten kann.</p><a href="https://developers.google.com/machine-learning/crash-course/llm?hl=de" target="_blank" rel="noreferrer">Google-Lernkurs zu Sprachmodellen</a></details>
+        </article>
+        <article data-topic="Multimodale KI">
+          <h3>Welche Fähigkeit macht ein KI-Modell „multimodal“?</h3>
+          <ol>
+            <li data-answer>Es kann ein Foto und eine dazu geschriebene Frage gemeinsam auswerten.</li>
+            <li>Es kann denselben Text in mehrere Sprachen übersetzen.</li>
+            <li>Es kann einen Artikel in einer kurzen und einer ausführlichen Fassung zusammenfassen.</li>
+          </ol>
+          <details><summary>Auflösung</summary><p>Text, Bild und Ton sind unterschiedliche Arten von Information. In der KI heißen sie Modalitäten. Ein Modell kann sie auch bei der Ausgabe verknüpfen. Genie 4 von Google DeepMind erzeugt zum Beispiel gleichzeitig bewegte Bilder und die passenden Geräusche.</p><a href="https://deepmind.google/models/model-cards/genie-4/" target="_blank" rel="noreferrer">Google DeepMind zu Genie 4, 18. November 2026 (Englisch)</a></details>
+        </article>
+        <article data-topic="KI-Suche">
+          <h3>Wie kann eine KI-Suche über eine Meldung berichten, die erst heute erschienen ist?</h3>
+          <ol>
+            <li>Das Modell lässt sich mit der Frage länger Zeit und leitet die Meldung aus älteren Nachrichten ab.</li>
+            <li>Bei jeder Suchanfrage wird das Modell mit den neuesten Meldungen neu trainiert.</li>
+            <li data-answer>Eine Websuche ruft aktuelle Quellen ab. Das Modell nutzt die Fundstellen für seine Antwort.</li>
+          </ol>
+          <details><summary>Auflösung</summary><p>Die Suche liefert dem Modell beim Antworten zusätzliches Material. So kann es auch Informationen verwenden, die erst nach seinem Training veröffentlicht wurden. Ein Blick auf Datum und Wortlaut der verlinkten Quelle zeigt dir, ob sie die Aussage tatsächlich stützt.</p><a href="https://aistudio.google.com/docs/google-search" target="_blank" rel="noreferrer">Wie Gemini die Websuche nutzt (Englisch)</a></details>
+        </article>
+        <article data-topic="KI-Agenten">
+          <h3>Was braucht ein KI-Agent, um einen Termin in deinem Online-Kalender einzutragen?</h3>
+          <ol>
+            <li>Einen Link, über den er deinen Kalender und die freien Zeiten lesen kann.</li>
+            <li data-answer>Ein verbundenes Werkzeug, das in deinem Kalender Termine anlegen darf.</li>
+            <li>Eine Textvorlage, mit der er Datum und Uhrzeit im Format deines Kalenders ausgeben kann.</li>
+          </ol>
+          <details><summary>Auflösung</summary><p>Der Agent kann Titel, Datum und Uhrzeit vorbereiten. Der Eintrag entsteht erst, wenn die Kalenderanwendung den Auftrag ausführt. Bei Outlook braucht das verbundene Werkzeug dafür Schreibzugriff auf den Kalender. Leserechte reichen nur zum Nachschauen.</p><a href="https://learn.microsoft.com/de-de/graph/api/user-post-events?view=graph-rest-1.0" target="_blank" rel="noreferrer">Microsoft zu den Berechtigungen für Kalendereinträge</a></details>
+        </article>
+      </details>
     </section>
     <section class="frame section reading" id="newsletter" aria-labelledby="reading-title">
       <div><p class="overline section-label"><span></span> Leseraum</p><h2 id="reading-title">Aus dem <em>KI_HUB.</em></h2><p class="intro">Zwei Themen aus unserem Newsletter zum Nachlesen und Ausprobieren.</p></div>
