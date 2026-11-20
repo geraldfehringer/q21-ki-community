@@ -65,7 +65,7 @@
     });
     constellation.setAttribute("points", coordinates.join(" "));
     constellation.setAttribute("stroke-dasharray", finished ? "none" : "3 4");
-    bearing.setAttribute("transform", "rotate(" + (index * 90) + ")");
+    bearing.setAttribute("transform", "rotate(" + (index * 360 / questions.length) + ")");
     bearing.setAttribute("visibility", finished ? "hidden" : "visible");
     caption.textContent = finished ? "Äußere Sterne zeigen richtige Antworten" : questions[index].topic;
   }
@@ -126,7 +126,7 @@
     score.hidden = false;
     lead.textContent = missedTopics.length
       ? "Auf dem inneren Ring findest du " + new Intl.ListFormat("de").format(missedTopics) + ". Unten kannst du die Erklärung zu jedem Thema nachlesen."
-      : "Jeder deiner vier Sterne steht außen. Du hast erkannt, wie KI Text erzeugt, verschiedene Medien verbindet, Quellen nutzt und Werkzeuge einsetzt.";
+      : "Alle Sterne stehen außen. Du hast unter anderem erkannt, wie KI Schritt für Schritt Text schreibt und wie aus Rauschen Bilder, Klänge und Videos entstehen.";
     review.replaceChildren();
     questions.forEach((question, station) => {
       const hit = choices[station] === question.correct;

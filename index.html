@@ -114,7 +114,7 @@
         <div class="quiz-invite-copy">
           <p class="overline section-label"><span></span> Wissensquiz</p>
           <h2 id="quiz-title" tabindex="-1">Der <em>KI-Kompass.</em></h2>
-          <p class="quiz-lead">Wie entsteht eine KI-Antwort? Wie kommt das Wissen von heute hinein? Entdecke in vier Fragen, wie aktuelle KI-Systeme arbeiten.</p>
+          <p class="quiz-lead">Wie schreibt eine KI? Woher kennt sie die Nachrichten von heute? Wie erzeugt sie Bilder und Töne? Entdecke in fünf Fragen, wie aktuelle KI-Systeme arbeiten.</p>
           <p class="quiz-score" hidden></p>
           <button class="quiz-launch" type="button" aria-expanded="false" aria-controls="quiz-panel" hidden>Quiz starten</button>
         </div>
@@ -124,17 +124,25 @@
               <radialGradient id="kompass-himmel"><stop stop-color="#514161"/><stop offset=".52" stop-color="#302739"/><stop offset="1" stop-color="#15131a"/></radialGradient>
               <linearGradient id="kompass-metall" x2="1" y2="1" gradientUnits="objectBoundingBox"><stop stop-color="#ffe6bd"/><stop offset=".45" stop-color="#bb97b4"/><stop offset=".8" stop-color="#655b79"/><stop offset="1" stop-color="#eac4a2"/></linearGradient>
               <path id="kompass-stern" d="m0-5 1.4 3.6L5 0 1.4 1.4 0 5l-1.4-3.6L-5 0l3.6-1.4Z"/>
+              <path id="kompass-peilstrich" d="M0-86v-8" stroke="#f4c7a2" stroke-width="2"/>
             </defs>
             <g transform="translate(210 125)">
               <g fill="none" stroke="#9d88bc"><ellipse rx="156" ry="50" transform="rotate(-18)" opacity=".36"/><ellipse rx="158" ry="52" transform="rotate(18)" opacity=".22" stroke-dasharray="3 6"/></g>
               <circle r="96" fill="url(#kompass-himmel)" stroke="url(#kompass-metall)" stroke-width="1.5"/>
               <g fill="none" class="compass-orbit"><circle r="91" stroke="#ad9abe" stroke-width="4" stroke-dasharray="1 3.75"/><circle r="88" stroke="#987d9e" stroke-width=".7"/><circle r="75" stroke="#b798a7" stroke-opacity=".7"/><circle r="52" stroke="#a68fb5" stroke-opacity=".57" stroke-dasharray="1 4"/><circle r="34" stroke="#a38bb9" stroke-opacity=".34"/></g>
-              <g stroke="#b5a4c5" stroke-width=".7" opacity=".57"><path d="M0-86V86M-86 0H86M-60-60 60 60m-120 0L60-60"/></g>
+              <path d="M0 0V-86M0 0 82-27M0 0 51 70M0 0-51 70M0 0-82-27" fill="none" stroke="#d1bbd8" stroke-width=".8" opacity=".67"/>
+              <g>
+                <use href="#kompass-peilstrich"/><use href="#kompass-peilstrich" transform="rotate(72)"/>
+                <use href="#kompass-peilstrich" transform="rotate(144)"/><use href="#kompass-peilstrich" transform="rotate(216)"/>
+                <use href="#kompass-peilstrich" transform="rotate(288)"/>
+              </g>
+              <path d="M0 -97 V-104 M93 -30 L104 -34 H109 M57 79 L68 94 H85 M-57 79 L-68 94 H-85 M-93 -30 L-104 -34 H-109" fill="none" stroke="#bb98ac" stroke-width=".9"/>
               <g fill="#bba3ce"><circle cx="-44" cy="20" r="1.5"/><circle cx="14" cy="-45" r="2"/><circle cx="22" cy="-40" r="1"/><circle cx="-29" cy="-54" r="1.1"/><circle cx="34" cy="35" r="1.6"/><circle cx="-22" cy="58" r="1"/><circle cx="51" cy="14" r="1.1"/></g>
-              <polygon id="quiz-constellation" points="0,-68 68,0 0,68 -68,0" fill="#c0a8ef" fill-opacity=".09" stroke="#c8afda" stroke-width="1.35" stroke-dasharray="3 4"/>
+              <polygon id="quiz-constellation" points="0,-68 65,-21 40,55 -40,55 -65,-21" fill="#c0a8ef" fill-opacity=".09" stroke="#c8afda" stroke-width="1.35" stroke-dasharray="3 4"/>
               <g fill="currentColor" stroke="#ffedc9" stroke-width=".6">
-                <use class="compass-point" href="#kompass-stern" x="0" y="-68"/><use class="compass-point" href="#kompass-stern" x="68" y="0"/>
-                <use class="compass-point" href="#kompass-stern" x="0" y="68"/><use class="compass-point" href="#kompass-stern" x="-68" y="0"/>
+                <use class="compass-point" href="#kompass-stern" x="0" y="-68"/><use class="compass-point" href="#kompass-stern" x="65" y="-21"/>
+                <use class="compass-point" href="#kompass-stern" x="40" y="55"/><use class="compass-point" href="#kompass-stern" x="-40" y="55"/>
+                <use class="compass-point" href="#kompass-stern" x="-65" y="-21"/>
               </g>
               <g id="quiz-bearing" transform="rotate(32)">
                 <path d="M0-58 9 0 0 10-9 0Z" fill="#f3cfa7"/><path d="m0-58 9 58-9 10Z" fill="#b98372"/>
@@ -142,14 +150,15 @@
               </g>
               <circle r="7" fill="#2b2336" stroke="#ecd2bb" stroke-width="1.4"/><circle r="2.3" fill="#f8d7a8"/>
             </g>
-            <g fill="#e0d3e6" font-family="Consolas,monospace" font-size="15" text-anchor="middle">
+            <g fill="#eddfef" font-family="Arial,sans-serif" font-size="17" text-anchor="middle">
               <text x="210" y="17">Sprachmodelle</text>
-              <text x="361" y="130" font-size="13">Multimodale KI</text>
-              <text x="210" y="246">KI-Suche</text>
-              <text x="58" y="130">KI-Agenten</text>
+              <text text-anchor="start" x="323" y="86">Multimodale<tspan x="323" dy="18">KI</tspan></text>
+              <text x="302" y="237">KI-Suche</text>
+              <text x="118" y="237">KI-Agenten</text>
+              <text text-anchor="end" x="97" y="86">Medien-<tspan x="97" dy="18">generierung</tspan></text>
             </g>
           </svg>
-          <p class="quiz-chart-caption">4 Fragen · ca. 2 Minuten</p>
+          <p class="quiz-chart-caption">5 Fragen · ca. 3 Minuten</p>
         </div>
       </div>
       <div class="quiz-panel" id="quiz-panel" hidden>
@@ -164,14 +173,14 @@
           </div>
         </div>
         <div class="quiz-result" hidden>
-          <h3 tabindex="-1">Die vier Antworten erklärt</h3>
+          <h3 tabindex="-1">Die Antworten erklärt</h3>
           <ol class="quiz-review"></ol>
           <button class="quiz-save" type="button">Sternkarte speichern (SVG)</button>
           <button class="quiz-reset" type="button">Noch einmal spielen</button>
         </div>
       </div>
       <details class="quiz-facts">
-        <summary>Vier Fragen zum Selbsttesten öffnen</summary>
+        <summary>Fünf Fragen zum Selbsttesten öffnen</summary>
         <article data-topic="Sprachmodelle">
           <h3>Wie baut ein Sprachmodell eine Textantwort auf?</h3>
           <ol>
@@ -207,6 +216,15 @@
             <li>Eine Textvorlage, mit der er Datum und Uhrzeit im Format deines Kalenders ausgeben kann.</li>
           </ol>
           <details><summary>Auflösung</summary><p>Der Agent kann Titel, Datum und Uhrzeit vorbereiten. Der Eintrag entsteht erst, wenn die Kalenderanwendung den Auftrag ausführt. Bei Outlook braucht das verbundene Werkzeug dafür Schreibzugriff auf den Kalender. Leserechte reichen nur zum Nachschauen.</p><a href="https://learn.microsoft.com/de-de/graph/api/user-post-events?view=graph-rest-1.0" target="_blank" rel="noreferrer">Microsoft zu den Berechtigungen für Kalendereinträge</a></details>
+        </article>
+        <article data-topic="Mediengenerierung">
+          <h3>Wie erzeugt ein Diffusionsmodell aus einer Textbeschreibung ein Bild, ein Geräusch oder ein Video?</h3>
+          <ol>
+            <li data-answer>Es beginnt mit zufälligem Rauschen und verändert es Schritt für Schritt passend zur Beschreibung.</li>
+            <li>Es wählt die passendste Aufnahme aus seinem Trainingsmaterial und wandelt sie ins gewünschte Dateiformat um.</li>
+            <li>Es setzt für jedes Wort einen fertigen Bild- oder Tonbaustein an die entsprechende Stelle.</li>
+          </ol>
+          <details><summary>Auflösung</summary><p>Beim Training lernt das Modell, in verrauschten Beispielen wieder Struktur zu erkennen. Beim Erzeugen startet es mit neuem Rauschen. Die Textbeschreibung lenkt das schrittweise Entrauschen. So entstehen je nach Modell Formen im Bild, Klänge im Audio oder Bewegungen im Video.</p><a href="https://aws.amazon.com/what-is/diffusion-model/" target="_blank" rel="noreferrer">AWS erklärt die Erzeugung von Bild, Ton und Video (Englisch)</a></details>
         </article>
       </details>
     </section>
